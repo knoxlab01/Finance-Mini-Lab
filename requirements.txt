@@ -1,1 +1,1 @@
-# No third-party dependencies. Python standard library only.
+streamlit>=1.50,<2

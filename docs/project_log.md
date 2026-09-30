@@ -82,3 +82,38 @@ Finance-Mini-Lab/
 ### 下一步候选计划
 
 后续可加入错误后重新输入，并将当前验证场景整理成可重复运行的自动化测试；本次未实现这些扩展。
+
+## 2026-09-30 — Milestone 1.2：Streamlit UI + Growth Chart
+
+### UI 技术路线与新增功能
+
+- 新增 streamlit_app.py，使用 Streamlit 表单、数字输入框、Calculate 按钮、metric 结果区和内置图表；保留 app.py 命令行入口。
+- 原 src/compound_interest.py 完全不变。网页将百分比除以 100，再复用 calculate_future_value；未重复实现复利公式。
+- 图表数据使用 Python 字典。第 0 年到最终年逐年调用核心函数，横轴 Year，纵轴 Portfolio Value。0 年期限用单个散点展示本金。
+- 本金和年限不能为负，收益率必须大于 -100%；提供友好错误提示，并处理非有限数值及溢出。用户可修改参数后重新计算。
+- 网页使用整数年，上限为 1000 年，限制图表数据量。数字控件负责非数字及控件范围的输入约束。
+- requirements.txt 新增唯一直接依赖 streamlit>=1.50,<2；未直接使用 pandas，不单独声明。Streamlit 的间接依赖由 pip 安装。
+- 在项目 .venv 中安装依赖，实际验证版本为 Python 3.12.14、Streamlit 1.64.0；.venv 已由现有 .gitignore 忽略。
+- 更新 README，补充安装、启动、交互、曲线说明及测试命令。
+- 新增 tests/test_streamlit_app.py，使用标准库 unittest 与 Streamlit AppTest 验证交互与图表数据，无新增测试框架依赖。
+
+### 验证结果
+
+- Python 语法检查通过，覆盖命令行入口、网页入口、核心函数和测试文件。
+- 核心函数 10000 / 0.08 / 10 返回值按两位小数显示为 21589.25。
+- 6 个自动化测试方法全部通过，包含标准结果及逐年数据、零收益率、零年限、4 种无效参数、溢出、错误修正后再次计算。
+- 默认曲线共有 11 个点，起点为 10000，终点约 21589.25；验证各相邻年份按 8% 增长。
+- 实际启动 Streamlit 服务成功；http://127.0.0.1:8501/ 返回 HTTP 200，/_stcore/health 返回 HTTP 200 和 ok。
+- 测试最初发现 AppTest 相对路径以测试文件目录为基准，改为绝对路径后通过。测试运行会出现可忽略的 missing ScriptRunContext 提示，没有未处理异常。
+- 本次完成应用层自动化测试与 HTTP 启动检查，未进行真实浏览器视觉验收。
+- Git 差异检查通过，app.py 和核心函数无改动。本次不暂存、不 commit。
+
+### 环境与运行方式
+
+沙箱进程仍无法启动，经授权在沙箱外执行。系统 python 命令不可用，因此利用已有解释器创建项目虚拟环境。后续可直接在项目根目录运行：
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
+```
+
+本次验证服务在 127.0.0.1:8501 启动，用户可在浏览器打开该地址查看。
