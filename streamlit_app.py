@@ -5,11 +5,10 @@ from math import isfinite
 import streamlit as st
 
 from src.compound_interest import calculate_future_value
+from src.dca import calculate_dca
 
 
-def main() -> None:
-    st.set_page_config(page_title="Finance Mini Lab v0.1", page_icon="📈")
-    st.title("Finance Mini Lab v0.1")
+def render_compound_interest() -> None:
     st.caption("Estimate how an investment grows through annual compounding.")
 
     st.subheader("Investment Inputs")
@@ -135,6 +134,67 @@ def main() -> None:
 
     with st.expander("Assumptions / 假设说明", expanded=True):
         st.caption("年化收益率固定；每年复利；不考虑额外投入或取款；不考虑税费、通胀和手续费。仅用于教育和演示，不构成投资建议。")
+
+
+def render_dca() -> None:
+    st.caption("Simulate an initial investment with fixed monthly contributions.")
+    st.subheader("DCA Investment Inputs")
+    with st.form("dca"):
+        principal = st.number_input("Initial Principal / 初始本金 (¥)", value=10000.0, step=100.0, format="%.2f", key="dca_principal")
+        contribution = st.number_input("Monthly Contribution / 每月投入 (¥)", value=1000.0, step=100.0, format="%.2f", key="dca_contribution")
+        rate_percent = st.number_input("Annual Return / 年化收益率 (%)", value=8.0, step=0.1, format="%.2f", key="dca_rate")
+        years = st.number_input("Investment Period / 投资年限 (Years)", value=10, step=1, max_value=1000, key="dca_years", help="输入 0–1000 的整数年。每月先增长，再投入。")
+        submitted = st.form_submit_button("Calculate", type="primary")
+    st.caption("v0.1 使用固定收益率模拟，并非真实市场回报预测。")
+    if not submitted:
+        return
+
+    try:
+        result = calculate_dca(principal, contribution, rate_percent / 100, years)
+    except (ValueError, OverflowError) as error:
+        st.error(str(error))
+        return
+
+    st.subheader("DCA Calculation Results")
+    left, right = st.columns(2)
+    left.metric("Final Portfolio Value / 最终资产", f"¥{result['final_portfolio_value']:,.2f}", border=True)
+    right.metric("Total Contributions / 累计投入", f"¥{result['total_contributions']:,.2f}", border=True)
+    left.metric("Investment Growth / 投资收益", f"¥{result['investment_growth']:,.2f}", border=True)
+    total_return = result["total_return"]
+    right.metric("Total Return / 总收益率", f"{total_return * 100:,.2f}%" if total_return is not None else "N/A", border=True)
+    left.metric("Investment Period / 投资年限", f"{years} years", border=True)
+    st.caption("Total Return = 投资收益 ÷ 累计投入，不是年化收益率，也未衡量各笔投入的持有时间。累计投入为 0 时不适用。")
+
+    rows = result["yearly_data"]
+    st.subheader("DCA Portfolio Growth Chart")
+    data = {
+        "Year": [row["year"] for row in rows],
+        "Total Contributions": [row["total_contributions"] for row in rows],
+        "Portfolio Value": [row["portfolio_value"] for row in rows],
+    }
+    chart = st.scatter_chart if years == 0 else st.line_chart
+    chart(data, x="Year", y=["Total Contributions", "Portfolio Value"], x_label="Year", y_label="Value (¥)", height=360)
+    st.subheader("DCA Year-by-Year Table")
+    st.dataframe({
+        "Year": data["Year"],
+        "Total Contributions": [f"¥{row['total_contributions']:,.2f}" for row in rows],
+        "Portfolio Value": [f"¥{row['portfolio_value']:,.2f}" for row in rows],
+        "Investment Growth": [f"¥{row['investment_growth']:,.2f}" for row in rows],
+    }, hide_index=True)
+    with st.expander("DCA Assumptions / 定投假设", expanded=True):
+        st.caption("年化收益率固定，月收益率 = 年化收益率 ÷ 12；每月先增长再投入，每年投入 12 次。累计投入包括初始本金。不计税费、通胀、手续费和真实市场波动。仅用于教育和演示。")
+
+
+def main() -> None:
+    st.set_page_config(page_title="Finance Mini Lab v0.1", page_icon="📈")
+    st.title("Finance Mini Lab v0.1")
+    compound_tab, dca_tab = st.tabs([
+        "Compound Interest / 复利计算", "DCA Simulator / 定投模拟",
+    ])
+    with compound_tab:
+        render_compound_interest()
+    with dca_tab:
+        render_dca()
 
 
 if __name__ == "__main__":

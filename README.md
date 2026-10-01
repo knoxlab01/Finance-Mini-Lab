@@ -2,7 +2,14 @@
 
 Program One 的 Python/Finance 基础项目。从复利计算开始，后续逐步扩展到收益率计算、Sharpe Ratio、金融数据分析、加密资产和投资组合优化。
 
-## 当前功能：Compound Interest Calculator
+## 当前核心模块
+
+1. **Compound Interest / 复利计算**：一次性本金按年复利，包含收益分析、逐年表格和情景对比。
+2. **DCA Simulator / 定投模拟**：DCA（Dollar-Cost Averaging，定期定额投资）指按固定周期投入固定金额。本项目模拟初始本金加每月固定投入，按固定月收益率增长，不使用真实市场价格。
+
+网页通过两个标签页切换模块；命令行入口仍运行原复利计算器。
+
+## Compound Interest Calculator
 
 使用公式 `FV = PV × (1 + r)^n` 计算未来价值：
 
@@ -45,9 +52,12 @@ Finance-Mini-Lab/
 ├─ streamlit_app.py
 ├─ .gitignore
 ├─ src/
-│  └─ compound_interest.py
+│  ├─ compound_interest.py
+│  └─ dca.py
 ├─ tests/
-│  └─ test_streamlit_app.py
+│  ├─ test_streamlit_app.py
+│  ├─ test_dca.py
+│  └─ test_dca_ui.py
 ├─ assets/
 └─ docs/
    └─ project_log.md
@@ -105,4 +115,53 @@ python -m venv .venv
 
 逐年明细、收益构成和情景对比使用标签页组织，不新增第三方依赖。输入 10000 / 8 / 10 时，未来价值为 ¥21,589.25，累计收益为 ¥11,589.25，总收益率为 115.89%，Rule of 72 估算为 9.00 年。实际精确翻倍时间不由本模块计算。
 
-测试命令不变，目前包含 12 个测试方法，覆盖收益汇总、逐年数据、收益构成、Rule of 72、情景去重、零本金及非正收益率等场景。
+Milestone 1.3 包含 12 个测试方法，覆盖收益汇总、逐年数据、收益构成、Rule of 72、情景去重、零本金及非正收益率等场景。
+
+
+## Milestone 2.0：DCA Simulator
+
+启动方式保持不变：
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
+```
+
+选择 **DCA Simulator / 定投模拟** 标签页，输入初始本金、每月投入、年化收益率百分数和整数年限，然后点击 Calculate。默认值为 10000 / 1000 / 8 / 10。支持 0–1000 整数年；本金和每月投入必须非负，年化收益率必须大于 -100%，所有输入必须为有限数值。
+
+核心函数位于 `src/dca.py`：
+
+```python
+result = calculate_dca(10000, 1000, 0.08, 10)
+```
+
+`annual_rate` 是小数形式。算法设 `monthly_rate = annual_rate / 12`，每月按以下顺序执行：
+
+```text
+当前资产 = 当前资产 × (1 + monthly_rate)
+当前资产 = 当前资产 + 每月投入
+```
+
+这是月末投入假设，最后一笔投入在该月不产生收益。累计投入包括初始本金及所有月末投入。函数返回 final_portfolio_value、total_contributions、investment_growth、total_return 和 yearly_data；其中 total_return 为小数形式，累计投入为零时为 None。逐年数据含 Year 0 以及每个完整年度的累计投入、资产价值和投资收益，中间计算不舍入。
+
+页面显示最终资产、累计投入、投资收益、总收益率、投资年限，以及累计投入与资产价值两条曲线和逐年表格。Total Return = 投资收益 / 累计投入，不是年化收益率或资金加权收益率，不反映每笔投入的持有时间。
+
+标准案例（初始本金 10000、每月投入 1000、年化收益率 8%、10 年）：
+
+| 指标 | 结果 |
+|---|---:|
+| Final Portfolio Value | ¥205,142.44 |
+| Total Contributions | ¥130,000.00 |
+| Investment Growth | ¥75,142.44 |
+| Total Return | 57.80% |
+
+当每月投入为 0 时，DCA 等价于 `PV × (1 + r/12)^(12n)`，并不等于原模块的 `PV × (1 + r)^n`：前者按月复利，后者按年复利。若将月度复利换算为有效年收益率 `(1 + r/12)^12 - 1`，两者结果一致；相关测试已明确验证这一差异。
+
+v0.1 是固定收益率模拟，并非真实市场回报预测。不考虑税费、通胀、手续费或真实市场波动，仅用于教育和演示。未增加新依赖。
+
+运行所有测试：
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+目前共 25 个测试方法：原复利页面 12 个、DCA 核心 9 个、DCA 页面 4 个，覆盖零收益率、零月投入、零本金、无效输入、逐年序列、月末投入、图表和双模块运行。
