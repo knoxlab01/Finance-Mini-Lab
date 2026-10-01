@@ -7,7 +7,9 @@ Program One 的 Python/Finance 基础项目。从复利计算开始，后续逐�
 1. **Compound Interest / 复利计算**：一次性本金按年复利，包含收益分析、逐年表格和情景对比。
 2. **DCA Simulator / 定投模拟**：DCA（Dollar-Cost Averaging，定期定额投资）指按固定周期投入固定金额。本项目模拟初始本金加每月固定投入，按固定月收益率增长，不使用真实市场价格。
 
-网页通过两个标签页切换模块；命令行入口仍运行原复利计算器。
+3. **Goal Planner / 目标规划**：根据目标资产、初始本金、固定年化收益率和年限，反推所需月末投入。
+
+网页通过三个标签页切换模块；命令行入口仍运行原复利计算器。
 
 ## Compound Interest Calculator
 
@@ -53,11 +55,14 @@ Finance-Mini-Lab/
 ├─ .gitignore
 ├─ src/
 │  ├─ compound_interest.py
-│  └─ dca.py
+│  ├─ dca.py
+│  └─ goal_planner.py
 ├─ tests/
 │  ├─ test_streamlit_app.py
 │  ├─ test_dca.py
-│  └─ test_dca_ui.py
+│  ├─ test_dca_ui.py
+│  ├─ test_goal_planner.py
+│  └─ test_goal_planner_ui.py
 ├─ assets/
 └─ docs/
    └─ project_log.md
@@ -164,4 +169,36 @@ v0.1 是固定收益率模拟，并非真实市场回报预测。不考虑税费
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-目前共 25 个测试方法：原复利页面 12 个、DCA 核心 9 个、DCA 页面 4 个，覆盖零收益率、零月投入、零本金、无效输入、逐年序列、月末投入、图表和双模块运行。
+Milestone 2.0 共 25 个测试方法：原复利页面 12 个、DCA 核心 9 个、DCA 页面 4 个，覆盖零收益率、零月投入、零本金、无效输入、逐年序列、月末投入、图表和双模块运行。
+
+
+## Milestone 3.0：Goal Planner / 目标规划器
+
+启动方式不变，运行 Streamlit 后选择第三个标签页 Goal Planner / 目标规划。输入目标资产、初始本金、年化收益率百分数和投资年限，点击 Calculate。
+
+独立核心函数在 `src/goal_planner.py`：
+
+```python
+result = calculate_goal_plan(1000000, 100000, 0.08, 10)
+```
+
+求解复用 DCA：先计算零月投入下本金的期末资产，再计算每月投入 1 元的期末资产系数。所需月投入 = (目标资产 − 本金期末资产) / 系数。如果本金期末资产已达到目标，则月投入为 0；零收益率时直接按总月数分摊差额。最终将计算出的月投入带回 DCA，生成资产、累计投入和逐年数据，不在 UI 中实现核心公式。
+
+假设与 DCA 相同：月收益率 = 年化收益率 / 12，每月先增长再投入。目标资产必须大于 0，本金非负，年化收益率大于 -100%，年限为 1–1000 整数，所有参数须为有限数值。
+
+结果区显示目标资产、每月所需投入、总投入、投资增长和投资年限。Goal Progress Chart 同时展示累计投入、模拟资产价值及水平目标线。逐年表格从 Year 0 开始，Remaining Gap to Target = max(0, 目标 − 模拟资产)。若本金自身增长已足够，展示真实模拟值，允许超过目标，不截断资产。
+
+标准案例：目标 ¥1,000,000、本金 ¥100,000、年化收益率 8%、10 年：
+
+| 指标 | 结果 |
+|---|---:|
+| Required Monthly Contribution | ¥4,252.82 |
+| Total Contributions | ¥610,338.02 |
+| Investment Growth | ¥389,661.98 |
+| Projected Portfolio Value | ¥1,000,000.00 |
+
+内部月投入约为 4252.816825315485，模拟保留完整精度，金额显示时才保留两位小数；按显示金额投入会产生少量差额。DCA 回算容差为 `max(target × 1e-9, 1e-6)`，标准案例允许误差为 ¥0.001。本金已足够时，期末值允许超过目标。
+
+固定收益率仅为教育模拟，不保证收益率能实现，不考虑税费、通胀、手续费及真实市场波动。Financial Insight 仅描述当前假设下的结果，不提供投资建议。没有新增依赖。
+
+全部测试运行命令不变，当前共 37 个测试方法，其中新增 Goal Planner 核心 8 个、UI 4 个，原两个模块的测试均保留。

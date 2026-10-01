@@ -6,6 +6,7 @@ import streamlit as st
 
 from src.compound_interest import calculate_future_value
 from src.dca import calculate_dca
+from src.goal_planner import calculate_goal_plan
 
 
 def render_compound_interest() -> None:
@@ -185,16 +186,69 @@ def render_dca() -> None:
         st.caption("年化收益率固定，月收益率 = 年化收益率 ÷ 12；每月先增长再投入，每年投入 12 次。累计投入包括初始本金。不计税费、通胀、手续费和真实市场波动。仅用于教育和演示。")
 
 
+def render_goal_planner() -> None:
+    st.caption("Estimate the monthly contribution needed to reach a target.")
+    with st.form("goal_planner"):
+        target = st.number_input("Target Portfolio Value / 目标资产 (¥)", value=1000000.0, step=10000.0, format="%.2f", key="goal_target")
+        principal = st.number_input("Initial Principal / 初始本金 (¥)", value=100000.0, step=1000.0, format="%.2f", key="goal_principal")
+        rate_percent = st.number_input("Annual Return / 年化收益率 (%)", value=8.0, step=0.1, format="%.2f", key="goal_rate")
+        years = st.number_input("Investment Period / 投资年限 (Years)", value=10, step=1, max_value=1000, key="goal_years", help="输入 1–1000 的整数年。")
+        submitted = st.form_submit_button("Calculate", type="primary")
+    if not submitted:
+        return
+    try:
+        result = calculate_goal_plan(target, principal, rate_percent / 100, years)
+    except (ValueError, OverflowError) as error:
+        st.error(str(error))
+        return
+
+    monthly = result["required_monthly_contribution"]
+    st.subheader("Goal Planning Results")
+    left, right = st.columns(2)
+    left.metric("Target Portfolio Value / 目标资产", f"¥{target:,.2f}", border=True)
+    right.metric("Required Monthly Contribution / 每月所需投入", f"¥{monthly:,.2f}", border=True)
+    left.metric("Total Contributions / 总投入", f"¥{result['total_contributions']:,.2f}", border=True)
+    right.metric("Investment Growth / 投资增长", f"¥{result['investment_growth']:,.2f}", border=True)
+    left.metric("Investment Period / 投资年限", f"{years} years", border=True)
+    st.caption("模拟使用未舍入的月投入；显示金额保留两位小数，按显示金额实际投入可能产生少量差额。")
+
+    rows = result["yearly_data"]
+    st.subheader("Goal Progress Chart")
+    st.line_chart({
+        "Year": [row["year"] for row in rows],
+        "Total Contributions": [row["total_contributions"] for row in rows],
+        "Projected Portfolio Value": [row["portfolio_value"] for row in rows],
+        "Target Value": [target for row in rows],
+    }, x="Year", y=["Total Contributions", "Projected Portfolio Value", "Target Value"],
+        x_label="Year", y_label="Value (¥)", height=360)
+    st.subheader("Goal Year-by-Year Table")
+    st.dataframe({
+        "Year": [row["year"] for row in rows],
+        "Total Contributions": [f"¥{row['total_contributions']:,.2f}" for row in rows],
+        "Portfolio Value": [f"¥{row['portfolio_value']:,.2f}" for row in rows],
+        "Remaining Gap to Target": [f"¥{row['remaining_gap']:,.2f}" for row in rows],
+    }, hide_index=True)
+    st.subheader("Financial Insight")
+    if monthly == 0:
+        st.write(f"在当前假设下，初始本金 ¥{principal:,.2f} 在 {years} 年后的模拟资产为 ¥{result['final_portfolio_value']:,.2f}，已达到或超过目标 ¥{target:,.2f}，无需额外月投入。")
+    else:
+        st.write(f"在当前假设下，要在 {years} 年后达到 ¥{target:,.2f}，初始本金 ¥{principal:,.2f} 时，每月大约需要投入 ¥{monthly:,.2f}。")
+    with st.expander("Goal Planner Assumptions / 目标规划假设", expanded=True):
+        st.caption("与 DCA 一致：月收益率 = 固定年化收益率 ÷ 12，每月先增长再投入。不考虑税费、通胀、手续费和真实市场波动。仅为固定收益率下的教育模拟，不保证收益率能够实现，不构成投资建议。")
+
+
 def main() -> None:
     st.set_page_config(page_title="Finance Mini Lab v0.1", page_icon="📈")
     st.title("Finance Mini Lab v0.1")
-    compound_tab, dca_tab = st.tabs([
-        "Compound Interest / 复利计算", "DCA Simulator / 定投模拟",
+    compound_tab, dca_tab, goal_tab = st.tabs([
+        "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
     ])
     with compound_tab:
         render_compound_interest()
     with dca_tab:
         render_dca()
+    with goal_tab:
+        render_goal_planner()
 
 
 if __name__ == "__main__":
