@@ -1,218 +1,187 @@
 # Finance Mini Lab v0.1
 
-Program One 的 Python/Finance 基础项目。从复利计算开始，后续逐步扩展到收益率计算、Sharpe Ratio、金融数据分析、加密资产和投资组合优化。
+A lightweight investment planning and financial education toolkit built with Python and Streamlit.
 
-## 当前核心模块
+一个使用 **Python + Streamlit** 构建的轻量级投资规划与金融教育工具，用于模拟复利增长、定投积累和目标资产规划。当前版本：**v0.1.0**。
 
-1. **Compound Interest / 复利计算**：一次性本金按年复利，包含收益分析、逐年表格和情景对比。
-2. **DCA Simulator / 定投模拟**：DCA（Dollar-Cost Averaging，定期定额投资）指按固定周期投入固定金额。本项目模拟初始本金加每月固定投入，按固定月收益率增长，不使用真实市场价格。
+## Core Modules / 核心模块
 
-3. **Goal Planner / 目标规划**：根据目标资产、初始本金、固定年化收益率和年限，反推所需月末投入。
+| 模块 | 用途 |
+|---|---|
+| **Compound Interest / 复利计算** | 模拟一次性本金按年复利的增长，展示收益、逐年数据、收益构成及 4%、当前收益率、12% 的情景对比。 |
+| **DCA Simulator / 定投模拟** | DCA（Dollar-Cost Averaging）即定期定额投资。本模块模拟初始本金加每月固定投入，对比累计投入与资产价值。 |
+| **Goal Planner / 目标规划** | 根据目标资产、本金、收益率和期限反推每月所需投入，复用 DCA 模拟验证目标，并展示逐年目标差额。 |
 
-网页通过三个标签页切换模块；命令行入口仍运行原复利计算器。
+三个模块通过独立标签页使用。网页之外，还保留了命令行复利计算器。
 
-## Compound Interest Calculator
+## Screenshot / Demo
 
-使用公式 `FV = PV × (1 + r)^n` 计算未来价值：
+Screenshots coming with v0.1.0 release.
 
-- `principal`（PV）：本金，不能为负。
-- `annual_rate`（r）：年化收益率，使用小数形式，例如 `0.08` 表示 8%，必须大于 `-1`。
-- `years`（n）：投资年限，不能为负。
+当前尚无正式截图或在线演示地址；可按下方步骤在本地体验。
 
-假设年化收益率固定、每年复利，不追加投入或取款，不计税费和通胀。允许大于 -100% 的负收益率。当前只做上述三条基础校验，函数接收数值参数。
+## Key Features / 主要功能
 
-## 运行方法
+- Compound growth simulation：年度复利增长模拟。
+- Monthly DCA simulation：月度复利与月末定投模拟。
+- Goal-based contribution planning：目标导向的月投入反推。
+- Growth charts：资产、累计投入与目标参考线。
+- Year-by-year tables：从 Year 0 开始的逐年明细。
+- Scenario analysis：复利模块固定收益率情景对比，自动去重。
+- Financial insights：结果摘要与 Rule of 72 近似翻倍估算。
+- Input validation：友好处理无效输入、非有限数值及计算溢出。
+- Automated tests：核心计算与 Streamlit 页面自动化测试。
 
-命令行版本仅使用 Python 标准库。在项目根目录运行：
+## Tech Stack / 技术栈
 
-```powershell
-python app.py
-```
+- **Python 3.12**：已验证的运行环境。
+- **Streamlit**：网页界面、交互表单、图表和表格。
+- **Python standard library**：金融计算、输入校验及 `unittest` 测试。
+- **Streamlit AppTest**：页面交互测试，包含在 Streamlit 中。
+- **Git**：版本管理。
 
-如果 Windows 使用 Python 启动器，也可以运行 `py app.py`。若命令无法识别，请先安装 Python 并配置 PATH，或使用 Python 解释器的完整路径运行。
+唯一声明的第三方直接依赖为 `streamlit>=1.50,<2`。开发验证使用 Python 3.12.14 / Streamlit 1.64.0。Streamlit 所需的 pandas、Altair 等间接依赖由 pip 自动安装，无需另行手动安装。
 
-Milestone 1.1 支持交互输入。运行后依次输入本金、年化收益率百分比和投资年限。例如分别输入 `10000`、`8`、`10`，每次按回车。收益率输入 `8` 表示 8%，程序自动转换为 `0.08` 传给核心函数，不需要输入 `%` 符号。标题和结果示例：
-
-```text
-## Finance Mini Lab v0.1
-
-Initial Investment: ¥10,000.00
-Annual Return: 8.00%
-Investment Period: 10 years
-Future Value: ¥21,589.25
-```
-
-非数字、负本金、收益率不大于 -100%、负年限都会显示友好错误提示并结束本次运行，请重新运行后输入。也会拦截非有限数值（nan、inf）和计算溢出。按 Ctrl+C 或结束输入会显示取消提示。函数保留计算精度，金额显示时使用千位分隔符和两位小数。核心函数仍是 `calculate_future_value()`，入口通过导入别名 `calculate_compound_interest` 复用它，不重复实现公式。命令行入口仅依赖 Python 标准库，网页入口另需 Streamlit。
-
-## 项目结构
+## Project Structure / 项目结构
 
 ```text
 Finance-Mini-Lab/
 ├─ README.md
 ├─ requirements.txt
-├─ app.py
-├─ streamlit_app.py
 ├─ .gitignore
-├─ src/
+├─ app.py                         # 命令行复利计算器
+├─ streamlit_app.py               # 三模块网页入口
+├─ src/                          # 独立金融计算逻辑
 │  ├─ compound_interest.py
 │  ├─ dca.py
 │  └─ goal_planner.py
-├─ tests/
+├─ tests/                        # 核心计算与页面测试
 │  ├─ test_streamlit_app.py
 │  ├─ test_dca.py
 │  ├─ test_dca_ui.py
 │  ├─ test_goal_planner.py
 │  └─ test_goal_planner_ui.py
-├─ assets/
 └─ docs/
-   └─ project_log.md
+   └─ project_log.md              # 里程碑及验证记录
 ```
 
-`app.py` 是程序入口，`src/compound_interest.py` 存放可复用的金融计算函数。`streamlit_app.py` 是网页入口，`tests/test_streamlit_app.py` 验证网页交互和图表数据。`assets/` 预留给资源文件。`docs/project_log.md` 记录施工过程。
+本地 `assets/` 预留用于截图，目前为空，因此 Git 不追踪该目录。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
 
-## Milestone 1.2：Streamlit 网页界面
+## Installation / 安装
 
-建议使用 Python 3.12。在项目根目录的 PowerShell 中执行：
+先安装 Python 3.12 和 Git。以下命令均在终端执行。
+
+### 1. 获取项目
+
+当前项目尚未配置远程仓库。请将下面的 `YOUR_GITHUB_USERNAME` 替换为实际仓库所有者；仓库发布前，此占位地址不能直接克隆。
+
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/Finance-Mini-Lab.git
+cd Finance-Mini-Lab
+```
+
+如果已经持有本地项目目录，直接进入该目录，跳过克隆步骤。
+
+### 2. 创建虚拟环境并安装依赖
+
+**Windows / PowerShell：**不必激活虚拟环境，直接调用其中的 Python，避免执行策略问题。
 
 ```powershell
-python -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
 ```
 
-启动后打开终端显示的 Local URL，通常为 http://localhost:8501。如果没有自动打开浏览器，可以将该地址复制到浏览器。按 Ctrl+C 停止服务。Windows 若使用 `py` 启动器，可将第一行替换为 `py -3 -m venv .venv`；若都无法识别，请使用已安装 Python 的完整路径。
+如果没有 `py` 启动器，可将第一行改为 `python -m venv .venv`，并确认该 Python 为 3.12；若命令未加入 PATH，可使用解释器的完整路径。
 
-网页输入本金、年化收益率百分比和整数年限，然后点击 **Calculate**。默认参数是 10000 / 8 / 10，Future Value 应为 ¥21,589.25。年限支持 0–1000 年，上限用于限制图表数据量。数字输入框限制非数字输入；空值、越界值请按控件提示修正，提交后的负本金、收益率不大于 -100% 或负年限会显示错误信息。修正后可再次点击 Calculate。
+**macOS / Linux：**
 
-结果区显示 Initial Investment、Annual Return、Investment Period 和 Future Value。Portfolio Growth Over Time 图表横轴为 Year、纵轴为 Portfolio Value (¥)：对第 0 年到最终年逐年调用原 calculate_future_value 函数，0 年从本金开始，未对中间数据舍入。0 年期限用单个散点显示本金。收益率为 0 时为水平线，负收益率时呈下降趋势。
-
-直接依赖只有 `streamlit>=1.50,<2`。图表使用 Python 字典及 Streamlit 内置图表 API，没有直接使用 pandas，所以不单独声明 pandas；安装 Streamlit 时会自动安装它所需的间接依赖。
-
-运行网页自动化测试：
-
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-参考：[Streamlit line_chart 文档](https://docs.streamlit.io/develop/api-reference/charts/st.line_chart)。
+若系统使用 `python3`，请先确认 `python3 --version` 为所需版本。
 
-## Milestone 1.2.1：UI Polish
+## Run Locally / 本地运行
 
-本次仅优化界面与可读性，未修改核心公式、计算结果逻辑或新增金融功能。默认参数继续为 10000 / 8 / 10。
+在项目根目录、已激活虚拟环境的终端中运行：
 
-- 保留 Finance Mini Lab v0.1 标题，增加简短英文副标题：Estimate how an investment grows through annual compounding.
-- 输入标签统一为 Principal / 本金 (¥)、Annual Return / 年化收益率 (%)、Investment Period / 投资年限 (Years)。
-- 结果使用两列带边框的原生指标卡；金额统一使用 ¥、千分位和两位小数，收益率保留两位小数。
-- 图表标题改为 Portfolio Growth Over Time，明确标注 Year 与 Portfolio Value (¥)，使用统一的青绿色和 360 像素高度，保留 Year 0 起点及原有逐年数据。
-- 使用 Streamlit 原生组件，不增加 CSS 或第三方依赖，启动方式保持不变。
+```bash
+python -m streamlit run streamlit_app.py
+```
 
-## Milestone 1.3：Content Enrichment + Financial Insights
-
-在保留输入区与核心复利公式的基础上，增加以下分析内容：
-
-- Calculation Results：初始本金、未来价值、累计收益、总收益率、投资年限和年化收益率。累计收益 = 未来价值 − 初始本金；总收益率 = 累计收益 ÷ 初始本金 × 100%。本金为 0 时，总收益率显示 N/A。
-- Year-by-Year Table：从 Year 0 到最终年，显示 Year、Portfolio Value、Profit vs Initial；金额带 ¥、千分位及两位小数。
-- Growth Breakdown：柱状图对比 Initial Principal 和 Compound Growth；收益为负时明确显示亏损。
-- Scenario Comparison：在相同本金、年限下比较 4%、当前输入收益率和 12%，去除重复收益率。所有曲线均逐年调用原核心函数；超出计算范围的情景会提示并省略，不影响当前结果。
-- Rule of 72：只在收益率为正时展示 72 ÷ 年化收益率百分数的近似翻倍年限，并明确说明不是精确结果，极端收益率下偏差较大。
-- Financial Insight：简短描述资产倍数、累计收益及近似翻倍年限，不提供投资建议。零本金不显示资产倍数，也不声称资产能翻倍。
-- 页面底部的 Assumptions / 假设说明列出固定年化收益率、每年复利、无额外投入或取款、不计税费通胀手续费，以及教育演示用途。
-
-逐年明细、收益构成和情景对比使用标签页组织，不新增第三方依赖。输入 10000 / 8 / 10 时，未来价值为 ¥21,589.25，累计收益为 ¥11,589.25，总收益率为 115.89%，Rule of 72 估算为 9.00 年。实际精确翻倍时间不由本模块计算。
-
-Milestone 1.3 包含 12 个测试方法，覆盖收益汇总、逐年数据、收益构成、Rule of 72、情景去重、零本金及非正收益率等场景。
-
-
-## Milestone 2.0：DCA Simulator
-
-启动方式保持不变：
+Windows 无需激活即可运行：
 
 ```powershell
 .\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
 ```
 
-选择 **DCA Simulator / 定投模拟** 标签页，输入初始本金、每月投入、年化收益率百分数和整数年限，然后点击 Calculate。默认值为 10000 / 1000 / 8 / 10。支持 0–1000 整数年；本金和每月投入必须非负，年化收益率必须大于 -100%，所有输入必须为有限数值。
+打开终端显示的 Local URL，通常是 [http://localhost:8501](http://localhost:8501)。选择模块、填写参数并点击 **Calculate**；终端按 `Ctrl+C` 停止服务。
 
-核心函数位于 `src/dca.py`：
+运行 CLI 复利版本：
 
-```python
-result = calculate_dca(10000, 1000, 0.08, 10)
+```bash
+python app.py
 ```
 
-`annual_rate` 是小数形式。算法设 `monthly_rate = annual_rate / 12`，每月按以下顺序执行：
+Windows 未激活环境时可使用 `.\.venv\Scripts\python.exe app.py`。CLI 年化收益率输入 `8` 表示 8%；三个网页模块也采用百分数输入，而核心函数接收小数 `0.08`。
 
-```text
-当前资产 = 当前资产 × (1 + monthly_rate)
-当前资产 = 当前资产 + 每月投入
+## Testing / 测试
+
+在项目根目录运行完整套件：
+
+```bash
+python -m unittest discover -s tests -v
 ```
 
-这是月末投入假设，最后一笔投入在该月不产生收益。累计投入包括初始本金及所有月末投入。函数返回 final_portfolio_value、total_contributions、investment_growth、total_return 和 yearly_data；其中 total_return 为小数形式，累计投入为零时为 None。逐年数据含 Year 0 以及每个完整年度的累计投入、资产价值和投资收益，中间计算不舍入。
-
-页面显示最终资产、累计投入、投资收益、总收益率、投资年限，以及累计投入与资产价值两条曲线和逐年表格。Total Return = 投资收益 / 累计投入，不是年化收益率或资金加权收益率，不反映每笔投入的持有时间。
-
-标准案例（初始本金 10000、每月投入 1000、年化收益率 8%、10 年）：
-
-| 指标 | 结果 |
-|---|---:|
-| Final Portfolio Value | ¥205,142.44 |
-| Total Contributions | ¥130,000.00 |
-| Investment Growth | ¥75,142.44 |
-| Total Return | 57.80% |
-
-当每月投入为 0 时，DCA 等价于 `PV × (1 + r/12)^(12n)`，并不等于原模块的 `PV × (1 + r)^n`：前者按月复利，后者按年复利。若将月度复利换算为有效年收益率 `(1 + r/12)^12 - 1`，两者结果一致；相关测试已明确验证这一差异。
-
-v0.1 是固定收益率模拟，并非真实市场回报预测。不考虑税费、通胀、手续费或真实市场波动，仅用于教育和演示。未增加新依赖。
-
-运行所有测试：
+Windows 无需激活环境的运行方式：
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Milestone 2.0 共 25 个测试方法：原复利页面 12 个、DCA 核心 9 个、DCA 页面 4 个，覆盖零收益率、零月投入、零本金、无效输入、逐年序列、月末投入、图表和双模块运行。
+当前有 **37 个测试方法**，覆盖核心计算、输入边界、零本金、零收益率、情景去重、图表、表格、目标回算及模块切换。AppTest 在某些环境可能输出 `missing ScriptRunContext` 提示，以最后的测试结果为准。
 
+### 标准验证案例
 
-## Milestone 3.0：Goal Planner / 目标规划器
+| 模块 | 输入 | 预期结果 |
+|---|---|---:|
+| Compound Interest | 本金 10,000；年化 8%；10 年 | 未来价值 ¥21,589.25 |
+| DCA Simulator | 本金 10,000；每月投入 1,000；年化 8%；10 年 | 未来价值 ¥205,142.44 |
+| Goal Planner | 目标 1,000,000；本金 100,000；年化 8%；10 年 | 每月所需投入约 ¥4,252.82 |
 
-启动方式不变，运行 Streamlit 后选择第三个标签页 Goal Planner / 目标规划。输入目标资产、初始本金、年化收益率百分数和投资年限，点击 Calculate。
+## Calculation Notes / 计算口径
 
-独立核心函数在 `src/goal_planner.py`：
+- **Compound Interest**：`FV = PV × (1 + r)^n`，每年复利，无追加投入。
+- **DCA**：月收益率为 `r / 12`，每月先增长、再加入固定投入；累计投入包含初始本金。总收益率为投资增长除以累计投入，不是年化或资金加权收益率。
+- **Goal Planner**：复用 DCA 的本金期末价值与单位月投入系数反推金额，再通过 DCA 回算。本金自身增长已达到目标时，月投入为 0。
+- 月度复利与年度复利在同一名义年化收益率下通常产生不同结果。
+- Compound Interest 与 DCA 支持 0–1000 整数年；Goal Planner 支持 1–1000 整数年，目标必须大于 0。本金和月投入非负，收益率必须大于 -100%。
+- 内部计算保留完整精度，显示时才舍入。目标规划按显示的两位小数金额投入可能产生少量差额；回算允许误差为 `max(target × 1e-9, 1e-6)`。
+- 零本金或零累计投入时，相应收益率显示 N/A。Rule of 72 仅在正收益率下展示，是近似估算。
 
-```python
-result = calculate_goal_plan(1000000, 100000, 0.08, 10)
-```
+## Assumptions / 假设说明
 
-求解复用 DCA：先计算零月投入下本金的期末资产，再计算每月投入 1 元的期末资产系数。所需月投入 = (目标资产 − 本金期末资产) / 系数。如果本金期末资产已达到目标，则月投入为 0；零收益率时直接按总月数分摊差额。最终将计算出的月投入带回 DCA，生成资产、累计投入和逐年数据，不在 UI 中实现核心公式。
+- **Fixed return assumption**：收益率固定，不保证实际收益。
+- **Compounding frequency depends on module**：复利模块按年，DCA 和目标规划按月。
+- **No tax, inflation or fees**：不考虑税费、通胀和手续费。
+- **No real market volatility**：不模拟真实市场波动，也不使用真实行情。
+- **Educational use only**：仅用于金融教育和演示。
+- **Not investment advice**：结果不构成投资建议或市场回报预测。
 
-假设与 DCA 相同：月收益率 = 年化收益率 / 12，每月先增长再投入。目标资产必须大于 0，本金非负，年化收益率大于 -100%，年限为 1–1000 整数，所有参数须为有限数值。
+## Roadmap / 未来方向
 
-结果区显示目标资产、每月所需投入、总投入、投资增长和投资年限。Goal Progress Chart 同时展示累计投入、模拟资产价值及水平目标线。逐年表格从 Year 0 开始，Remaining Gap to Target = max(0, 目标 − 模拟资产)。若本金自身增长已足够，展示真实模拟值，允许超过目标，不截断资产。
+以下为潜在探索方向，**不属于 v0.1，尚未实现或承诺交付**：
 
-标准案例：目标 ¥1,000,000、本金 ¥100,000、年化收益率 8%、10 年：
+- Inflation adjustment / 通胀调整。
+- Real market data / 真实市场数据。
+- Portfolio analytics / 投资组合分析。
+- Sharpe ratio / 夏普比率。
+- Scenario modelling / 更广泛的情景建模，超出现有固定收益率对比。
 
-| 指标 | 结果 |
-|---|---:|
-| Required Monthly Contribution | ¥4,252.82 |
-| Total Contributions | ¥610,338.02 |
-| Investment Growth | ¥389,661.98 |
-| Projected Portfolio Value | ¥1,000,000.00 |
+## Version / 版本
 
-内部月投入约为 4252.816825315485，模拟保留完整精度，金额显示时才保留两位小数；按显示金额投入会产生少量差额。DCA 回算容差为 `max(target × 1e-9, 1e-6)`，标准案例允许误差为 ¥0.001。本金已足够时，期末值允许超过目标。
+当前版本：**v0.1.0**。界面保留 `Finance Mini Lab v0.1` 标题。
 
-固定收益率仅为教育模拟，不保证收益率能实现，不考虑税费、通胀、手续费及真实市场波动。Financial Insight 仅描述当前假设下的结果，不提供投资建议。没有新增依赖。
-
-全部测试运行命令不变，当前共 37 个测试方法，其中新增 Goal Planner 核心 8 个、UI 4 个，原两个模块的测试均保留。
-
-## v0.1 Finalization - UI Consistency
-
-本阶段仅统一展示层，不新增金融功能，不修改三个模块的核心计算或已验证结果。
-
-- 顶部保留 Finance Mini Lab v0.1，增加英文产品介绍和中文说明：用于模拟复利增长、定投积累和目标资产规划。
-- 三个模块保留独立标签页，统一 Investment Inputs / 投资参数、Calculation Results / 计算结果、Portfolio Growth / 资产增长和 Module Assumptions / 模块假设标题。
-- 同一概念采用相同名称：Initial Principal / 初始本金、Future Value / 未来价值、Total Contributions / 累计投入、Investment Growth / 投资增长。
-- 结果继续使用两列带边框指标卡；金额为 ¥ + 千分位 + 两位小数，百分比保留两位小数，期限使用 years。
-- 图表统一为 360 像素高度及自适应宽度，时间轴为 Year，金额轴为 Value (¥)。跨模块统一 Portfolio Value、Total Contributions 图例；目标规划保留 Target Value 水平线。收益构成图保留 Component 分类轴。
-- 保留模块差异说明：年度复利、月度复利、月末投入、总收益率口径、Rule of 72 近似性质和目标规划舍入提示。通用假设集中到页面底部 About / Assumptions，不重复堆叠免责声明。
-- 继续使用 Streamlit 原生组件，没有新增 CSS、前端框架或依赖。启动和测试命令保持不变。
-
-完整测试套件 37 个测试全部通过，展示名称断言已同步，数值预期未改变。标准结果仍为：Compound Interest ¥21,589.25；DCA ¥205,142.44；Goal Planner 每月 ¥4,252.82。
+开发过程与各里程碑验证记录见 [Project Log](docs/project_log.md)。

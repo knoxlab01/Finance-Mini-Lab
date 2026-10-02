@@ -221,3 +221,27 @@ Finance-Mini-Lab/
 - Git 差异确认 src/compound_interest.py、src/dca.py、src/goal_planner.py 和 requirements.txt 无修改。
 - Streamlit 服务健康端点返回 HTTP 200 / ok，页面返回 HTTP 200。
 - 环境仍存在沙箱初始化失败，经授权在沙箱外使用项目 .venv 完成修改与测试。AppTest 的 ScriptRunContext 提示不影响测试；本次未进行真实浏览器视觉验收。
+
+## 2026-10-03 — GitHub Ready / Documentation Finalization
+
+### 文档与结构检查
+
+- 将 README 从里程碑累积记录重写为正式项目首页：项目概览、三个核心模块、功能清单、实际技术栈、目录结构、Windows 和通用安装运行方式、CLI、测试、计算口径、假设、未来路线图及 v0.1.0 版本说明。
+- 未配置 Git 远程地址，因此 git clone 示例明确使用待替换的仓库所有者占位符；未声称存在在线演示或已发布 Release。
+- assets/ 无正式截图，使用 Screenshots coming with v0.1.0 release. 占位，不编造截图文件。
+- requirements.txt 仅含 streamlit>=1.50,<2，无需调整。没有添加新依赖。
+- .gitignore 已覆盖 .venv、__pycache__、.pytest_cache、.idea、.vscode 等，使用 git check-ignore 验证规则生效，无需修改。
+- src/ 三个核心文件独立，tests/ 测试齐全，docs/project_log.md、app.py CLI 与 streamlit_app.py 网页入口均保留；未删除任何必要文件。
+
+### 实际验证
+
+- 完整 37 个测试方法全部通过。
+- 独立启动 Streamlit 于本机测试端口 18501，健康端点和页面均返回 HTTP 200；测试进程随后关闭。
+- 标准案例保持不变：Compound Interest 21589.25，DCA 205142.44，Goal Planner 每月所需投入显示 4252.82。
+- 沙箱初始化问题仍存在，经授权在沙箱外使用项目虚拟环境验证。AppTest 输出可忽略的 ScriptRunContext 提示，无未处理异常。
+- 仅修改 README 和本日志；不修改核心代码、不 commit、不推送、不创建 Release。
+
+### 发布前待办
+
+- 用户确定并创建真实 GitHub 仓库后，替换 README 中的仓库地址占位符。
+- 人工补充正式截图；当前没有虚构截图、在线演示或发布链接。
