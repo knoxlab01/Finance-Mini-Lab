@@ -24,9 +24,9 @@ class DCAUITests(unittest.TestCase):
             app = self.calculate()
         self.assertEqual([tab.label for tab in app.tabs], ["Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划"])
         metrics = {item.label: item.value for item in app.metric}
-        self.assertEqual(metrics["Final Portfolio Value / 最终资产"], "¥205,142.44")
+        self.assertEqual(metrics["Future Value / 未来价值"], "¥205,142.44")
         self.assertEqual(metrics["Total Contributions / 累计投入"], "¥130,000.00")
-        self.assertEqual(metrics["Investment Growth / 投资收益"], "¥75,142.44")
+        self.assertEqual(metrics["Investment Growth / 投资增长"], "¥75,142.44")
         self.assertEqual(metrics["Total Return / 总收益率"], "57.80%")
         data = chart.call_args.args[0]
         self.assertEqual(data["Year"], list(range(11)))
@@ -49,7 +49,7 @@ class DCAUITests(unittest.TestCase):
         app = self.calculate(principal=0.0, contribution=0.0, years=0)
         self.assertFalse(app.error)
         metrics = {item.label: item.value for item in app.metric}
-        self.assertEqual(metrics["Final Portfolio Value / 最终资产"], "¥0.00")
+        self.assertEqual(metrics["Future Value / 未来价值"], "¥0.00")
         self.assertEqual(metrics["Total Return / 总收益率"], "N/A")
         self.assertEqual(len(app.dataframe[0].value), 1)
 

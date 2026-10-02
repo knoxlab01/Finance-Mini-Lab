@@ -23,7 +23,7 @@ class StreamlitAppTests(unittest.TestCase):
             app = self.calculate()
         metrics = {item.label: item.value for item in app.metric}
         self.assertEqual(metrics["Future Value / 未来价值"], "¥21,589.25")
-        self.assertEqual(metrics["Initial Investment / 初始本金"], "¥10,000.00")
+        self.assertEqual(metrics["Initial Principal / 初始本金"], "¥10,000.00")
         self.assertEqual(metrics["Annual Return / 年化收益率"], "8.00%")
         self.assertEqual(metrics["Investment Period / 投资年限"], "10 years")
         data = chart.call_args_list[0].args[0]
@@ -33,7 +33,7 @@ class StreamlitAppTests(unittest.TestCase):
         for previous, current in zip(data["Portfolio Value"], data["Portfolio Value"][1:]):
             self.assertAlmostEqual(current, previous * 1.08)
         self.assertEqual(chart.call_args_list[0].kwargs["x_label"], "Year")
-        self.assertEqual(chart.call_args_list[0].kwargs["y_label"], "Portfolio Value (¥)")
+        self.assertEqual(chart.call_args_list[0].kwargs["y_label"], "Value (¥)")
 
     def test_zero_rate(self):
         app = self.calculate(rate=0.0)
@@ -73,15 +73,15 @@ class StreamlitAppTests(unittest.TestCase):
     def test_profit_return_table_and_rule72(self):
         app = self.calculate()
         metrics = {item.label: item.value for item in app.metric}
-        self.assertEqual(metrics["Total Profit / 累计收益"], "¥11,589.25")
+        self.assertEqual(metrics["Investment Growth / 投资增长"], "¥11,589.25")
         self.assertEqual(metrics["Total Return / 总收益率"], "115.89%")
         self.assertEqual(metrics["Estimated Doubling Time / 估算翻倍年限"], "9.00 years")
         table = app.dataframe[0].value
         self.assertEqual(table["Year"].tolist(), list(range(11)))
         self.assertEqual(table.iloc[0]["Portfolio Value"], "¥10,000.00")
-        self.assertEqual(table.iloc[0]["Profit vs Initial"], "¥0.00")
+        self.assertEqual(table.iloc[0]["Investment Growth"], "¥0.00")
         self.assertEqual(table.iloc[-1]["Portfolio Value"], "¥21,589.25")
-        self.assertEqual(table.iloc[-1]["Profit vs Initial"], "¥11,589.25")
+        self.assertEqual(table.iloc[-1]["Investment Growth"], "¥11,589.25")
         self.assertTrue(any("近似" in item.value and "精确" in item.value for item in app.caption))
 
     def test_scenario_comparison_and_deduplication(self):
@@ -100,7 +100,7 @@ class StreamlitAppTests(unittest.TestCase):
         with patch("streamlit.bar_chart", wraps=st.bar_chart) as chart:
             self.calculate()
         data = chart.call_args.args[0]
-        self.assertEqual(data["Component"], ["Initial Principal", "Compound Growth"])
+        self.assertEqual(data["Component"], ["Initial Principal", "Investment Growth"])
         self.assertEqual(data["Amount"][0], 10000)
         self.assertAlmostEqual(data["Amount"][1], 11589.24997272788)
 
@@ -108,7 +108,7 @@ class StreamlitAppTests(unittest.TestCase):
         app = self.calculate(principal=0.0)
         metrics = {item.label: item.value for item in app.metric}
         self.assertEqual(metrics["Total Return / 总收益率"], "N/A")
-        self.assertEqual(metrics["Total Profit / 累计收益"], "¥0.00")
+        self.assertEqual(metrics["Investment Growth / 投资增长"], "¥0.00")
         self.assertTrue(any("资产保持为零" in item.value for item in app.markdown))
 
     def test_nonpositive_rate_insights(self):
@@ -116,7 +116,7 @@ class StreamlitAppTests(unittest.TestCase):
             with self.subTest(rate=rate):
                 app = self.calculate(rate=rate, years=1)
                 metrics = {item.label: item.value for item in app.metric}
-                self.assertEqual(metrics["Total Profit / 累计收益"], profit)
+                self.assertEqual(metrics["Investment Growth / 投资增长"], profit)
                 self.assertEqual(metrics["Total Return / 总收益率"], total_return)
                 self.assertNotIn("Estimated Doubling Time / 估算翻倍年限", metrics)
 

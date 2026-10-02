@@ -21,12 +21,12 @@ class GoalPlannerUITests(unittest.TestCase):
         self.assertEqual([t.label for t in app.tabs], ['Compound Interest / 复利计算', 'DCA Simulator / 定投模拟', 'Goal Planner / 目标规划'])
         metrics = {m.label: m.value for m in app.metric}
         self.assertEqual(metrics['Required Monthly Contribution / 每月所需投入'], '¥4,252.82')
-        self.assertEqual(metrics['Total Contributions / 总投入'], '¥610,338.02')
+        self.assertEqual(metrics['Total Contributions / 累计投入'], '¥610,338.02')
         self.assertEqual(metrics['Investment Growth / 投资增长'], '¥389,661.98')
         data = chart.call_args.args[0]
         self.assertEqual(data['Year'], list(range(11)))
         self.assertEqual(data['Target Value'], [1000000] * 11)
-        self.assertAlmostEqual(data['Projected Portfolio Value'][-1], 1000000, delta=0.001)
+        self.assertAlmostEqual(data['Portfolio Value'][-1], 1000000, delta=0.001)
         table = app.dataframe[0].value
         self.assertEqual(table.iloc[0]['Remaining Gap to Target'], '¥900,000.00')
         self.assertEqual(table.iloc[-1]['Remaining Gap to Target'], '¥0.00')
@@ -51,7 +51,7 @@ class GoalPlannerUITests(unittest.TestCase):
         app = self.calculate()
         app.button[1].click().run()
         self.assertFalse(app.exception)
-        self.assertEqual({m.label:m.value for m in app.metric}['Final Portfolio Value / 最终资产'], '¥205,142.44')
+        self.assertEqual({m.label:m.value for m in app.metric}['Future Value / 未来价值'], '¥205,142.44')
         app.button[0].click().run()
         self.assertFalse(app.exception)
         self.assertEqual({m.label:m.value for m in app.metric}['Future Value / 未来价值'], '¥21,589.25')

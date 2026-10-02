@@ -202,3 +202,17 @@ result = calculate_goal_plan(1000000, 100000, 0.08, 10)
 固定收益率仅为教育模拟，不保证收益率能实现，不考虑税费、通胀、手续费及真实市场波动。Financial Insight 仅描述当前假设下的结果，不提供投资建议。没有新增依赖。
 
 全部测试运行命令不变，当前共 37 个测试方法，其中新增 Goal Planner 核心 8 个、UI 4 个，原两个模块的测试均保留。
+
+## v0.1 Finalization - UI Consistency
+
+本阶段仅统一展示层，不新增金融功能，不修改三个模块的核心计算或已验证结果。
+
+- 顶部保留 Finance Mini Lab v0.1，增加英文产品介绍和中文说明：用于模拟复利增长、定投积累和目标资产规划。
+- 三个模块保留独立标签页，统一 Investment Inputs / 投资参数、Calculation Results / 计算结果、Portfolio Growth / 资产增长和 Module Assumptions / 模块假设标题。
+- 同一概念采用相同名称：Initial Principal / 初始本金、Future Value / 未来价值、Total Contributions / 累计投入、Investment Growth / 投资增长。
+- 结果继续使用两列带边框指标卡；金额为 ¥ + 千分位 + 两位小数，百分比保留两位小数，期限使用 years。
+- 图表统一为 360 像素高度及自适应宽度，时间轴为 Year，金额轴为 Value (¥)。跨模块统一 Portfolio Value、Total Contributions 图例；目标规划保留 Target Value 水平线。收益构成图保留 Component 分类轴。
+- 保留模块差异说明：年度复利、月度复利、月末投入、总收益率口径、Rule of 72 近似性质和目标规划舍入提示。通用假设集中到页面底部 About / Assumptions，不重复堆叠免责声明。
+- 继续使用 Streamlit 原生组件，没有新增 CSS、前端框架或依赖。启动和测试命令保持不变。
+
+完整测试套件 37 个测试全部通过，展示名称断言已同步，数值预期未改变。标准结果仍为：Compound Interest ¥21,589.25；DCA ¥205,142.44；Goal Planner 每月 ¥4,252.82。
