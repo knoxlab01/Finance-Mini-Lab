@@ -245,3 +245,11 @@ Finance-Mini-Lab/
 
 - 用户确定并创建真实 GitHub 仓库后，替换 README 中的仓库地址占位符。
 - 人工补充正式截图；当前没有虚构截图、在线演示或发布链接。
+
+## 2026-10-03 — v0.1.0 正式截图补充完成
+
+- 人工提供 assets/compound_interest.png、assets/dca_simulator.png、assets/goal_planner.png 三张正式截图。
+- 三张文件均为可完整解码的 RGB PNG，尺寸分别为 999×1387、936×1386、1021×1379。
+- README Screenshot / Demo 区域包含三个模块图片及简短说明；移除过时的缺图 TODO 和 assets 为空说明。
+- 使用 Markdown 转换器验证产生三个 img 元素，全部 src 相对路径均正确解析到本地 PNG。图片完整性与引用检查通过；图片预览工具因沙箱初始化错误不可用，未进行截图内容的视觉复核。
+- 不修改核心代码，不创建 Release。本次按用户要求提交正式截图、README 和日志。

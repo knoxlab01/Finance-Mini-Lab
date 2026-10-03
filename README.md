@@ -16,9 +16,27 @@ A lightweight investment planning and financial education toolkit built with Pyt
 
 ## Screenshot / Demo
 
-Screenshots coming with v0.1.0 release.
+以下为三个模块计算完成后的实际页面截图。
 
-当前尚无正式截图或在线演示地址；可按下方步骤在本地体验。
+### Compound Interest
+
+![Compound Interest：复利计算结果与资产增长曲线](assets/compound_interest.png)
+
+展示一次性本金的复利增长、收益指标和逐年资产变化。
+
+### DCA Simulator
+
+![DCA Simulator：累计投入与资产价值对比](assets/dca_simulator.png)
+
+展示每月固定投入下的资产积累，以及累计投入与投资增长的差距。
+
+### Goal Planner
+
+![Goal Planner：每月所需投入与目标进度](assets/goal_planner.png)
+
+展示达到目标资产所需的月投入，以及模拟资产与目标线的对比。
+
+当前没有在线 Demo 地址；可按下方 Run Locally 步骤运行项目。
 
 ## Key Features / 主要功能
 
@@ -65,7 +83,7 @@ Finance-Mini-Lab/
    └─ project_log.md              # 里程碑及验证记录
 ```
 
-本地 `assets/` 预留用于截图，目前为空，因此 Git 不追踪该目录。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
+`assets/` 保存下方 Screenshot / Demo 区域引用的三张正式 PNG 截图。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
 
 ## Installation / 安装
 
