@@ -91,10 +91,10 @@ Finance-Mini-Lab/
 
 ### 1. 获取项目
 
-当前项目尚未配置远程仓库。请将下面的 `YOUR_GITHUB_USERNAME` 替换为实际仓库所有者；仓库发布前，此占位地址不能直接克隆。
+从 GitHub 克隆项目，然后进入项目目录：
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/Finance-Mini-Lab.git
+git clone https://github.com/Knox-SijieJiang/Finance-Mini-Lab.git
 cd Finance-Mini-Lab
 ```
 
