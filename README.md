@@ -2,7 +2,15 @@
 
 A lightweight investment planning and financial education toolkit built with Python and Streamlit.
 
-一个使用 **Python + Streamlit** 构建的轻量级投资规划与金融教育工具，用于模拟复利增长、定投积累和目标资产规划。当前版本：**v0.1.0**。
+一个使用 **Python + Streamlit** 构建的轻量级金融规划与金融教育工具，包含 **Compound Interest / 复利计算、DCA Simulator / 定投模拟、Goal Planner / 目标规划** 三个模块。
+
+通过交互输入、增长图表和逐年明细探索不同假设下的资产变化，并以输入校验和自动化测试验证计算行为。项目采用固定收益率模拟，适合教育与演示用途，不构成投资建议。当前版本：**v0.1.0**。
+
+## Live Demo / 在线体验
+
+**[打开 Finance Mini Lab 在线体验](https://finance-mini-lab-knox.streamlit.app/)**
+
+无需本地安装，即可在浏览器中体验三个模块。
 
 ## Core Modules / 核心模块
 
@@ -36,7 +44,7 @@ A lightweight investment planning and financial education toolkit built with Pyt
 
 展示达到目标资产所需的月投入，以及模拟资产与目标线的对比。
 
-当前没有在线 Demo 地址；可按下方 Run Locally 步骤运行项目。
+可通过 [Live Demo](https://finance-mini-lab-knox.streamlit.app/) 体验交互，或按下方 Run Locally 步骤在本地运行。
 
 ## Key Features / 主要功能
 
@@ -83,7 +91,7 @@ Finance-Mini-Lab/
    └─ project_log.md              # 里程碑及验证记录
 ```
 
-`assets/` 保存下方 Screenshot / Demo 区域引用的三张正式 PNG 截图。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
+`assets/` 保存 Screenshot / Demo 区域引用的三张正式 PNG 截图。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
 
 ## Installation / 安装
 
