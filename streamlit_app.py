@@ -9,6 +9,7 @@ from src.dca import calculate_dca
 from src.goal_planner import calculate_goal_plan
 from src.scenario import calculate_scenarios
 from src.inflation import adjust_for_inflation
+from src.sensitivity import calculate_goal_sensitivity
 
 
 def render_inflation(nominal_value: float, inflation_percent: float, years: int) -> None:
@@ -229,6 +230,52 @@ def render_dca() -> None:
         st.caption("Monthly compounding / 月度复利；月收益率 = 年化收益率 ÷ 12，每月先增长再投入。累计投入含初始本金。")
 
 
+def render_goal_sensitivity(target: float, principal: float, annual_rate: float, years: int) -> None:
+    st.subheader("Goal Sensitivity / 目标敏感性分析")
+    st.caption("基于固定收益率假设，仅用于教育和规划模拟，不代表未来收益预测，不构成投资建议。差额 = 情景月投入 − 基准月投入；负值表示所需投入减少。")
+    try:
+        analysis = calculate_goal_sensitivity(target, principal, annual_rate, years)
+    except (ValueError, OverflowError) as error:
+        st.warning(f"敏感性分析暂不可用：{error}")
+        return
+    for title, rows, field, axis_title in [
+        ("Time Sensitivity / 时间敏感性", analysis["time"], "years", "Investment Period (Years)"),
+        ("Return Sensitivity / 收益率敏感性", analysis["return"], "annual_rate", "Annual Return (%)"),
+    ]:
+        st.subheader(title)
+        if field == "years":
+            st.caption("比较当前期限 ±5 年，限制在 1–1000 年并去重；Base 为当前期限。")
+            table = {"Investment Period / 投资年限": [f"{row['years']} years" + (" (Base)" if row["is_base"] else "") for row in rows]}
+        else:
+            st.caption("保守 / 基准 / 乐观：当前年化收益率 −3 / 0 / +3 个百分点。")
+            if rows[0]["adjusted"]:
+                st.info("保守收益率已按 Scenario Analysis 规则调整为基准与 -100% 之间的中点；极近边界时受浮点精度限制。")
+            table = {"Scenario / 情景": [row["name"] for row in rows],
+                     "Annual Return / 年化收益率": [f"{row['annual_rate'] * 100:.2f}%" for row in rows]}
+        table["Required Monthly Contribution / 每月所需投入"] = [f"¥{row['monthly']:,.2f}" if row["monthly"] is not None else "N/A" for row in rows]
+        table["Difference vs Base / 较基准差额"] = [f"¥{row['difference']:+,.2f}" if row["difference"] is not None else "N/A" for row in rows]
+        st.dataframe(table, hide_index=True, width="stretch")
+        points = []
+        for row in rows:
+            if row["error"]:
+                label = f"{row['years']} years" if field == "years" else row["name"]
+                st.warning(f"{label} 不可用：{row['error']}；基准结果不受影响。")
+            points.append({"Assumption": row[field] * (100 if field == "annual_rate" else 1),
+                           "Monthly": row["monthly"]})
+        st.vega_lite_chart(spec={
+            "data": {"values": points}, "mark": {"type": "line", "point": True, "invalid": "break-paths-show-domains"},
+            "encoding": {
+                "x": {"field": "Assumption", "type": "quantitative", "title": axis_title,
+                      "scale": {"zero": False, "nice": False},
+                      "axis": {"values": [p["Assumption"] for p in points], "format": ".2f" if field == "annual_rate" else "d"}},
+                "y": {"field": "Monthly", "type": "quantitative", "title": "Required Monthly Contribution (¥)"},
+                "tooltip": [{"field": "Assumption", "title": axis_title, "format": ".2f"},
+                            {"field": "Monthly", "title": "Monthly Contribution (¥)", "format": ",.2f"}],
+            }, "height": 300,
+        }, width="stretch")
+    st.caption("通常，更长的期限或更高的假设收益率可降低月投入；负收益率、本金已足够等情况下可能出现不同趋势。")
+
+
 def render_goal_planner() -> None:
     st.caption("Estimate the monthly contribution needed to reach a target.")
     st.subheader("Investment Inputs / 投资参数")
@@ -277,6 +324,8 @@ def render_goal_planner() -> None:
         st.write(f"在当前假设下，初始本金 ¥{principal:,.2f} 在 {years} 年后的模拟资产为 ¥{result['final_portfolio_value']:,.2f}，已达到或超过目标 ¥{target:,.2f}，无需额外月投入。")
     else:
         st.write(f"在当前假设下，要在 {years} 年后达到 ¥{target:,.2f}，初始本金 ¥{principal:,.2f} 时，每月大约需要投入 ¥{monthly:,.2f}。")
+    render_goal_sensitivity(target, principal, rate_percent / 100, years)
+
     with st.expander("Module Assumptions / 模块假设", expanded=True):
         st.caption("Monthly compounding / 月度复利；与 DCA 一致，月收益率 = 年化收益率 ÷ 12，每月先增长再投入。")
 
