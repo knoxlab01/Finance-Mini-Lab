@@ -94,7 +94,7 @@ Finance-Mini-Lab/
 从 GitHub 克隆项目，然后进入项目目录：
 
 ```bash
-git clone https://github.com/Knox-SijieJiang/Finance-Mini-Lab.git
+git clone https://github.com/knoxlab01/Finance-Mini-Lab.git
 cd Finance-Mini-Lab
 ```
 
