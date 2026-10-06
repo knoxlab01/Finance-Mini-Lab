@@ -8,6 +8,21 @@ from src.compound_interest import calculate_future_value
 from src.dca import calculate_dca
 from src.goal_planner import calculate_goal_plan
 from src.scenario import calculate_scenarios
+from src.inflation import adjust_for_inflation
+
+
+def render_inflation(nominal_value: float, inflation_percent: float, years: int) -> None:
+    st.subheader("Inflation-adjusted Value / 通胀调整后的实际购买力")
+    st.caption(f"固定年通胀率假设：{inflation_percent:.2f}%。实际购买力以投资起点的货币购买力计价。仅用于教育模拟，不代表未来实际通胀预测，不构成投资建议。")
+    try:
+        adjusted = adjust_for_inflation(nominal_value, inflation_percent / 100, years)
+    except (ValueError, OverflowError) as error:
+        st.error(str(error))
+        return
+    st.metric("Nominal Future Value / 名义未来价值", f"¥{adjusted['nominal_value']:,.2f}", border=True)
+    st.metric("Real Future Value / 实际购买力", f"¥{adjusted['real_value']:,.2f}", border=True)
+    st.metric("Purchasing Power Loss / 购买力损失", f"¥{adjusted['purchasing_power_loss']:,.2f}", border=True)
+    st.caption("购买力损失 = 名义未来价值 − 实际购买力；负值表示通缩下购买力增加。原有收益、图表与表格仍为名义金额。")
 
 
 def render_compound_interest() -> None:
@@ -21,6 +36,7 @@ def render_compound_interest() -> None:
             "Investment Period / 投资年限 (Years)", value=10, step=1, max_value=1000,
             help="输入 0–1000 的整数年；0 年表示尚未开始投资。",
         )
+        inflation_percent = st.number_input("Inflation Rate / 通胀率 (%)", value=2.0, step=0.1, format="%.2f", key="compound_inflation", help="固定年通胀率，须大于 -100%；负值表示通缩。")
         submitted = st.form_submit_button("Calculate", type="primary")
 
     if not submitted:
@@ -65,6 +81,8 @@ def render_compound_interest() -> None:
     right.metric("Annual Return / 年化收益率", f"{rate_percent:.2f}%", border=True)
     if principal == 0:
         st.caption("初始本金为 0，总收益率和资产倍数不适用。")
+
+    render_inflation(future_value, inflation_percent, years)
 
     st.subheader("Portfolio Growth / 资产增长")
     data = {"Year": chart_years, "Portfolio Value": values}
@@ -167,6 +185,7 @@ def render_dca() -> None:
         contribution = st.number_input("Monthly Contribution / 每月投入 (¥)", value=1000.0, step=100.0, format="%.2f", key="dca_contribution")
         rate_percent = st.number_input("Annual Return / 年化收益率 (%)", value=8.0, step=0.1, format="%.2f", key="dca_rate")
         years = st.number_input("Investment Period / 投资年限 (Years)", value=10, step=1, max_value=1000, key="dca_years", help="输入 0–1000 的整数年。每月先增长，再投入。")
+        inflation_percent = st.number_input("Inflation Rate / 通胀率 (%)", value=2.0, step=0.1, format="%.2f", key="dca_inflation", help="固定年通胀率，须大于 -100%；负值表示通缩。")
         submitted = st.form_submit_button("Calculate", type="primary")
     if not submitted:
         return
@@ -186,6 +205,9 @@ def render_dca() -> None:
     right.metric("Total Return / 总收益率", f"{total_return * 100:,.2f}%" if total_return is not None else "N/A", border=True)
     left.metric("Investment Period / 投资年限", f"{years} years", border=True)
     st.caption("Total Return = 投资收益 ÷ 累计投入，不是年化收益率，也未衡量各笔投入的持有时间。累计投入为 0 时不适用。")
+
+    render_inflation(result["final_portfolio_value"], inflation_percent, years)
+    st.caption("每月投入保持固定名义金额；通胀调整仅折现最终资产，不改变定投现金流。")
 
     rows = result["yearly_data"]
     st.subheader("Portfolio Growth / 资产增长")
@@ -293,7 +315,8 @@ def main() -> None:
         st.markdown(
             "- Fixed return assumption / 固定收益率假设，不保证实际收益。\n"
             "- Annual or monthly compounding depends on module / 按模块采用年度或月度复利。\n"
-            "- No tax, inflation, fees or real market volatility / 不计税费、通胀、手续费及真实市场波动。\n"
+            "- No tax, fees or real market volatility / 不计税费、手续费及真实市场波动。\n"
+            "- Inflation adjustment applies to Compound Interest and DCA only / 复利与定投另列通胀调整结果；目标规划保持名义金额。\n"
             "- Educational use only · Not investment advice / 仅用于教育演示，不构成投资建议。"
         )
 

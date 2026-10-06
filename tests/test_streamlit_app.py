@@ -30,7 +30,7 @@ class StreamlitAppTests(unittest.TestCase):
             "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
         ])
         self.assertEqual([item.value for item in app.number_input], [
-            10000.0, 8.0, 10, 10000.0, 1000.0, 8.0, 10, 1000000.0, 100000.0, 8.0, 10,
+            10000.0, 8.0, 10, 2.0, 10000.0, 1000.0, 8.0, 10, 2.0, 1000000.0, 100000.0, 8.0, 10,
         ])
         self.assertEqual(len(app.button), 3)
 
