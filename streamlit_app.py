@@ -240,8 +240,22 @@ def render_goal_planner() -> None:
 def main() -> None:
     st.set_page_config(page_title="Finance Mini Lab v0.1", page_icon="📈")
     st.title("Finance Mini Lab v0.1")
-    st.write("A lightweight investment planning and financial education toolkit built with Python and Streamlit.")
-    st.caption("用于模拟复利增长、定投积累和目标资产规划。")
+    st.write("A lightweight financial planning toolkit for exploring long-term investment growth.")
+    st.caption("探索长期资产增长与投入规划。仅用于教育和模拟，不构成投资建议。")
+
+    st.subheader("Explore the Modules")
+    overview = [
+        ("Compound Interest", "复利计算", "模拟一次性本金增长。"),
+        ("DCA Simulator", "定投模拟", "模拟每月定投积累。"),
+        ("Goal Planner", "目标规划", "反推目标所需月投入。"),
+    ]
+    for column, (title, subtitle, description) in zip(st.columns(3), overview):
+        with column:
+            with st.container(border=True, height=160):
+                st.markdown(f"**{title}**")
+                st.caption(subtitle)
+                st.write(description)
+    st.caption("选择下方标签页开始计算。")
     compound_tab, dca_tab, goal_tab = st.tabs([
         "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
     ])
