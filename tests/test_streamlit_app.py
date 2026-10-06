@@ -100,17 +100,47 @@ class StreamlitAppTests(unittest.TestCase):
         self.assertEqual(table.iloc[-1]["Investment Growth"], "¥11,589.25")
         self.assertTrue(any("近似" in item.value and "精确" in item.value for item in app.caption))
 
-    def test_scenario_comparison_and_deduplication(self):
-        for rate, expected_rates in [(8.0, [4.0, 8.0, 12.0]), (4.0, [4.0, 12.0]), (12.0, [4.0, 12.0])]:
-            with self.subTest(rate=rate), patch("streamlit.line_chart", wraps=st.line_chart) as chart:
-                self.calculate(rate=rate)
-                data = chart.call_args_list[1].args[0]
-                labels = list(data)[1:]
-                self.assertEqual(len(labels), len(expected_rates))
-                self.assertEqual(sum("Current" in label for label in labels), 1)
-                for label, scenario_rate in zip(labels, expected_rates):
-                    self.assertEqual(data[label][0], 10000)
-                    self.assertAlmostEqual(data[label][-1], 10000 * (1 + scenario_rate / 100) ** 10)
+    def test_single_scenario_chart_and_year_domain(self):
+        for years in [0, 1, 10, 37, 1000]:
+            with self.subTest(years=years), patch("streamlit.vega_lite_chart", wraps=st.vega_lite_chart) as chart, patch("streamlit.line_chart", wraps=st.line_chart) as base_chart:
+                self.calculate(years=years, rate=0.0)
+                self.assertEqual(chart.call_count, 1)
+                self.assertEqual(base_chart.call_count, 0 if years == 0 else 1)
+                spec = chart.call_args.kwargs["spec"]
+                axis = spec["encoding"]["x"]
+                self.assertEqual(axis["scale"]["domain"], [0] if years == 0 else [0, years])
+                self.assertFalse(axis["scale"]["nice"])
+                self.assertEqual(axis["axis"]["values"][0], 0)
+                self.assertEqual(axis["axis"]["values"][-1], years)
+                self.assertNotIn("params", spec)
+                self.assertTrue(all(0 <= row["Year"] <= years for row in spec["data"]["values"]))
+                self.assertEqual(spec["mark"]["type"], "point" if years == 0 else "line")
+
+    def test_named_scenario_analysis(self):
+        with patch("streamlit.vega_lite_chart", wraps=st.vega_lite_chart) as chart:
+            app = self.calculate()
+        self.assertIn("Scenario Analysis / 情景分析", [item.value for item in app.subheader])
+        table = app.dataframe[1].value
+        self.assertEqual(table["Scenario / 情景"].tolist(), ["Conservative / 保守", "Base / 基准", "Optimistic / 乐观"])
+        self.assertEqual(table["Annual Return / 年化收益率"].tolist(), ["5.00%", "8.00%", "11.00%"])
+        self.assertEqual(table["Future Value / 未来价值"].tolist(), ["¥16,288.95", "¥21,589.25", "¥28,394.21"])
+        spec = chart.call_args.kwargs["spec"]
+        data = spec["data"]["values"]
+        self.assertEqual(len(set(row["Scenario"] for row in data)), 3)
+        base = [row for row in data if row["Scenario"] == "Base / 基准 (8.00%)"]
+        self.assertEqual([row["Year"] for row in base], list(range(11)))
+        self.assertAlmostEqual(base[-1]["Portfolio Value"], 21589.24997272788)
+        self.assertEqual(spec["encoding"]["y"]["title"], "Portfolio Value (¥)")
+        self.assertTrue(any("不代表未来收益预测" in item.value for item in app.caption))
+
+    def test_named_scenario_boundaries(self):
+        app = self.calculate(rate=-99.0)
+        self.assertFalse(app.error)
+        self.assertTrue(app.info)
+        self.assertEqual(app.dataframe[1].value.iloc[0]["Annual Return / 年化收益率"], "-99.50%")
+        app = self.calculate(principal=1e300, rate=0.0, years=1000)
+        self.assertFalse(app.error)
+        self.assertEqual(app.dataframe[1].value.iloc[2]["Future Value / 未来价值"], "N/A")
 
     def test_breakdown(self):
         with patch("streamlit.bar_chart", wraps=st.bar_chart) as chart:

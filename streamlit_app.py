@@ -7,6 +7,7 @@ import streamlit as st
 from src.compound_interest import calculate_future_value
 from src.dca import calculate_dca
 from src.goal_planner import calculate_goal_plan
+from src.scenario import calculate_scenarios
 
 
 def render_compound_interest() -> None:
@@ -74,7 +75,7 @@ def render_compound_interest() -> None:
         st.line_chart(data, x="Year", y="Portfolio Value", x_label="Year", y_label="Value (¥)", color="#0F766E", height=360, width="stretch")
 
     table_tab, breakdown_tab, scenario_tab = st.tabs([
-        "Year-by-Year Table / 逐年明细", "Growth Breakdown / 增长构成", "Scenario Comparison / 情景对比",
+        "Year-by-Year Table / 逐年明细", "Growth Breakdown / 增长构成", "Scenario Analysis / 情景分析",
     ])
     with table_tab:
         st.dataframe({
@@ -92,26 +93,47 @@ def render_compound_interest() -> None:
             st.caption("Investment Growth 为负，表示相对初始本金的累计亏损。")
 
     with scenario_tab:
-        # 去除重复收益率；各情景仍逐年复用核心函数。
-        scenario_rates = list(dict.fromkeys([4.0, rate_percent, 12.0]))
-        scenario_data = {"Year": chart_years}
-        for scenario_rate in scenario_rates:
-            label = f"{scenario_rate:.2f}%" + (" (Current)" if scenario_rate == rate_percent else "")
-            try:
-                scenario_values = [
-                    calculate_future_value(principal, scenario_rate / 100, year)
-                    for year in chart_years
-                ]
-                if not all(isfinite(value) for value in scenario_values):
-                    raise OverflowError
-            except OverflowError:
-                st.warning(f"{label} 情景超出计算范围，已省略该曲线；当前计算结果不受影响。")
-                continue
-            scenario_data[label] = scenario_values
-        series = list(scenario_data)[1:]
-        chart = st.scatter_chart if years == 0 else st.line_chart
-        chart(scenario_data, x="Year", y=series, x_label="Year", y_label="Value (¥)", height=360, width="stretch")
-        st.caption("相同本金和投资期限下的假设收益率对比，Current 表示当前输入。")
+        st.subheader("Scenario Analysis / 情景分析")
+        st.caption("相同本金与期限：Conservative = Base − 3 个百分点；Optimistic = Base + 3 个百分点。")
+        scenarios = calculate_scenarios(principal, annual_rate, years)
+        if scenarios[0]["adjusted"]:
+            st.info("保守收益率已调整为基准与 -100% 之间的中点，以保持大于 -100%；极近边界时受浮点精度限制。")
+        st.dataframe({
+            "Scenario / 情景": [row["name"] for row in scenarios],
+            "Annual Return / 年化收益率": [f"{row['annual_rate'] * 100:.2f}%" for row in scenarios],
+            "Future Value / 未来价值": [f"¥{row['future_value']:,.2f}" if row["future_value"] is not None else "N/A" for row in scenarios],
+            "Investment Growth / 投资增长": [f"¥{row['investment_growth']:,.2f}" if row["investment_growth"] is not None else "N/A" for row in scenarios],
+        }, hide_index=True, width="stretch")
+        comparison = []
+        for row in scenarios:
+            if row["values"] is None:
+                st.warning(f"{row['name']} 情景超出计算范围，已省略该曲线；基准计算结果不受影响。")
+            else:
+                label = f"{row['name']} ({row['annual_rate'] * 100:.2f}%)"
+                comparison.extend({"Year": year, "Portfolio Value": value, "Scenario": label}
+                                  for year, value in zip(row["years"], row["values"]))
+        # Explicit domain and no scale-bound pan/zoom: never show negative years.
+        # A zero-year horizon uses a single categorical point rather than a
+        # degenerate continuous domain, which renderers can expand below zero.
+        tick_step = max(1, (years + 9) // 10)
+        ticks = sorted(set(range(0, years + 1, tick_step)) | {years})
+        st.vega_lite_chart(spec={
+            "data": {"values": comparison},
+            "mark": {"type": "point" if years == 0 else "line", "clip": True},
+            "encoding": {
+                "x": {"field": "Year", "type": "ordinal" if years == 0 else "quantitative",
+                      "title": "Year", "scale": {"domain": [0] if years == 0 else [0, years], "nice": False},
+                      "axis": {"values": ticks, "format": "d"}},
+                "y": {"field": "Portfolio Value", "type": "quantitative", "title": "Portfolio Value (¥)"},
+                "color": {"field": "Scenario", "type": "nominal", "legend": {"orient": "bottom"}},
+                "tooltip": [{"field": "Scenario", "type": "nominal"},
+                            {"field": "Year", "type": "quantitative", "format": "d"},
+                            {"field": "Portfolio Value", "type": "quantitative", "format": ",.2f"}],
+            },
+            "height": 360,
+        }, width="stretch")
+        st.caption("该情景分析仅用于教育模拟和敏感性比较，不代表未来收益预测。")
+
 
     st.subheader("Rule of 72 / 翻倍估算")
     if doubling_years is not None and isfinite(doubling_years):
