@@ -9,6 +9,7 @@ from src.database import Database
 from src.market_data import get_historical_prices
 from src.portfolio_analysis import parse_config
 from src.benchmark import analyze_portfolio
+from src.future_ui import render_future_outlook
 
 
 def render_portfolio_analytics():
@@ -91,9 +92,11 @@ def render_portfolio_analytics():
     metric_help = {"Cumulative Return": "累计收益率 / Cumulative Return",
                    "Annualized Volatility": "年化波动率 / Annualized Volatility (252 sessions/year)",
                    "Maximum Drawdown": "最大回撤 / Maximum Drawdown"}
-    for column, (metric, value) in zip(st.columns(5), result["metrics"]["Portfolio"].items()):
-        display = "N/A" if pd.isna(value) else (f"{value:.2f}" if metric == "Sharpe Ratio" else f"{value:.2%}")
-        column.metric(metric_labels.get(metric, metric), display, border=True, help=metric_help.get(metric))
+    metrics = list(result["metrics"]["Portfolio"].items())
+    for row in (metrics[:3], metrics[3:]):
+        for column, (metric, value) in zip(st.columns(len(row)), row):
+            display = "N/A" if pd.isna(value) else (f"{value:.2f}" if metric == "Sharpe Ratio" else f"{value:.2%}")
+            column.metric(metric_labels.get(metric, metric), display, border=True, help=metric_help.get(metric))
     st.subheader("Portfolio vs Benchmark / 组合与基准对比")
     st.line_chart(result["growth"], height=360, width="stretch")
     comparison = result["metrics"].copy().astype(object)
@@ -108,3 +111,5 @@ def render_portfolio_analytics():
     st.markdown("**Correlation Matrix / 相关性矩阵**")
     st.dataframe(result["correlation"].style.format("{:.2f}", na_rep="N/A"), width="stretch")
     st.caption("常数收益资产的相关系数未定义，显示 N/A。 / Correlations for constant-return assets are undefined and shown as N/A.")
+
+    render_future_outlook(result)

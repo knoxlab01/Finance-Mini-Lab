@@ -201,9 +201,9 @@ Windows 无需激活环境的运行方式：
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-**136 automated tests passing**（2026-10-07 Phase 1 开发验证）：原有 65 项回归测试与新增 71 项组合计算、数据对齐、基准、相关性、SQLite、缓存、备用源、来源元数据及页面测试。所有测试均不依赖实时互联网，行情通过 mock 隔离，数据库测试使用独立临时文件。AppTest 的 `missing ScriptRunContext` 提示不影响结果。
+**155 automated tests passing**（2026-10-08 Phase 2 最终验证）：原有 65 项回归测试与新增 71 项 Phase 1 组合计算、数据对齐、基准、相关性、SQLite、缓存、备用源、来源元数据及页面测试。所有测试均不依赖实时互联网，行情通过 mock 隔离，数据库测试使用独立临时文件。另有 19 项 Phase 2 模型与 UI 测试。AppTest 的 `missing ScriptRunContext` 提示不影响结果。
 
-**136 tests pass**: 65 existing regression tests plus 71 analytics, retrieval/fallback, provenance, SQLite/cache, and UI tests. Tests use mocked downloads and isolated databases; live network access is not required.
+**155 tests pass**: 65 existing regression tests plus 71 analytics, retrieval/fallback, provenance, SQLite/cache, and UI tests, plus 19 Phase 2 model/UI tests. Tests use mocked downloads and isolated databases; live network access is not required.
 
 ### 标准验证案例
 
@@ -323,11 +323,40 @@ The default database is `data/finance_lab.sqlite3`, configurable through `FINANC
 
 Repeated requests read SQLite; expired requests refresh. Revised adjusted prices replace the range and invalidate overlapping cache markers. Failed/empty downloads are not cached as successful. Database files are ignored by Git. Hosting restarts may discard local SQLite; public instances share saved names without user isolation.
 
+### Future Outlook / 未来展望 — Phase 2 development
+
+Portfolio Analytics 底部新增 Future Outlook，不新增主 Tab。先完成历史分析，再输入当前价值（默认 100000）、1/3/5 年期限及模拟次数（1000–10000，默认 5000），点击 Run Future Outlook。金额为通用单位，不硬编码币种。
+
+Future Outlook extends Portfolio Analytics without another main tab. Run historical analysis first, then enter current value (default 100000), horizon (1/3/5 years) and simulation count (1000–10000, default 5000), and click Run Future Outlook. Values use generic monetary units.
+
+**Method / 方法**
+
+- 复用所选历史区间的组合日简单收益 r，转为 log(1+r)。至少要求 60 个收益观测值；这只是最低样本门槛，不保证估计可靠。无未来数据或新下载。 / Reuses portfolio daily returns from the selected historical period; minimum 60 observations, not a reliability guarantee. No future data or additional downloads.
+- g = 日对数收益平均值 × 252；σ = 日对数收益样本标准差 × √252；GBM 连续漂移 μ = g + σ²/2；模型一年预期简单收益为 exp(μ)−1。σ 是对数收益波动率，与历史 KPI 的简单收益波动率略有区别。 / Annualized log drift and sample volatility use 252 sessions; expected annual simple return is exp(μ)−1. Log volatility differs slightly from Phase 1's simple-return volatility.
+- Conservative / Base / Optimistic 使用连续收益 μ−σ / μ / μ+σ。曲线为 initial × exp(rate × years)，只显示所选期限内的 1/3/5 年节点。Base 是模型平均财富路径，不是 P50；情景不是概率界限。 / Scenarios use volatility-adjusted continuous drift; Base is model mean wealth, not the median, and scenarios are not confidence bounds.
+- Monte Carlo 使用 GBM 的精确月度转移：V(t+1/12) = V(t) × exp(g/12 + σ/√12 × Z)，Z 为独立标准正态。按月输出不需要逐日数值近似；参数仍按 252 个历史交易日年化。 / Exact monthly GBM transitions use independent normal shocks; monthly sampling requires no daily discretization approximation.
+- 固定 seed=20261007，可复现截图与测试；仅画前 50 条样本路径。阴影为每个时间点 P10–P90，橙线为 P50。 / Fixed seed for repeatability; only 50 paths shown. The shaded band is pointwise P10–P90, with an orange P50 line.
+- P10/P50/P90 为模拟终值分位数，不是最坏/最好情况；点态区间不意味着 80% 的整条路径始终处于其中。亏损概率为终值 < 初值的比例，高于初值为严格 >；零收益时两者可同时为 0。 / Percentiles are not worst/best outcomes or simultaneous path coverage. Loss and gain probabilities use strict terminal comparisons; both may be zero for flat paths.
+
+模型假设收益独立、对数正态、参数恒定，无追加投入、税费及通胀调整。保留历史组合的收益口径；不重新模拟每个资产或未来相关性。无风险利率继续用于历史 Sharpe，不作为未来模型的漂移。短期历史估计、缺失交易日、非正态尾部和制度变化会影响可靠性；不额外模拟参数估计误差或崩盘。
+
+Assumes independent normal log returns and constant parameters, with no cashflows, fees or inflation adjustment. This is a portfolio-level model, without separately simulating assets or future correlations. The risk-free rate remains a historical Sharpe input, not a risk-neutral simulation drift. Short samples, missing sessions, heavy tails and regime changes limit reliability; parameter uncertainty and crashes are not separately modeled.
+
+若历史分析使用 Demo Data，未来部分明确显示 Demo-based simulation：完全基于 synthetic 数据，仅用于功能演示。模拟不足样本或遇到数值溢出会给出提示，不截断或伪造结果。输出保留于当前历史分析的 session state，普通页面重跑不重新模拟；重新分析历史数据会清除旧模拟。
+
+Demo historical inputs produce explicitly labeled synthetic demonstrations. Insufficient observations and numerical overflow produce friendly messages rather than fabricated/clipped results. Results persist with the current historical analysis in session state; ordinary reruns do not resimulate, and a new historical analysis clears old simulations.
+
+**Historical performance does not guarantee future results. Monte Carlo results are simulations, not forecasts or guarantees. / 历史表现不保证未来结果，模拟不是预测或保证。**
+
+GBM methodology reference / 方法参考：[Columbia University — Geometric Brownian Motion](https://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf).
+
+人工验收 / Manual validation: AAPL, MSFT, NVDA · 40, 30, 30 · SPY · 2025-01-01 → 2026-01-01 · risk-free 4%; analyze, then initial value 100000 · 5 years · 5000 simulations. Verify three scenarios, checkpoint table, P10/P50/P90, both probabilities, paths/band, terminal histogram and interpretation. Yahoo unavailable is supported through Demo Data. Phase 2 manual acceptance passed (user-confirmed), including the Performance Overview 3+2 KPI layout. This remains v0.3 development, not a public v0.3.0 release.
+
 ### Acceptance Status / 验收状态
 
-Phase 1 主要功能已通过人工浏览器验收（用户确认）：数据源优先级、演示切换及标注、五项 KPI、增长曲线、比较表、回撤和相关性矩阵均正常。公开路径使用 Yahoo 和确定性演示数据。本次收尾缩短 KPI 标题，并保留完整指标说明。**当前仍为 v0.3 development，稳定公开版本保持 v0.2.0；不是 v0.3.0 发布。**未加入未来预测、Monte Carlo、VaR/CVaR、优化、AI 助手或交易功能。
+Phase 1 主要功能已通过人工浏览器验收（用户确认）：数据源优先级、演示切换及标注、五项 KPI、增长曲线、比较表、回撤和相关性矩阵均正常。公开路径使用 Yahoo 和确定性演示数据。Performance Overview 使用 3+2 KPI 布局，并保留完整指标说明。**当前仍为 v0.3 development，稳定公开版本保持 v0.2.0；不是 v0.3.0 发布。**Phase 2 新增假设下的 Monte Carlo 模拟；未加入个股预测、VaR/CVaR、优化、AI 助手或交易功能。
 
-The user confirmed manual browser acceptance of Phase 1: provider priority, labeled demo fallback, five KPIs, growth/comparison, drawdown and correlation. Public runtime uses Yahoo and deterministic synthetic demo data. Final polish shortens KPI labels while retaining full descriptions. **This remains v0.3 development based on stable public v0.2.0, not a v0.3.0 release.** No forecasting, Monte Carlo, VaR/CVaR, optimization, AI assistant, or trading features are included.
+The user confirmed manual browser acceptance of Phase 1: provider priority, labeled demo fallback, five KPIs, growth/comparison, drawdown and correlation. Public runtime uses Yahoo and deterministic synthetic demo data. Performance Overview uses a 3+2 KPI layout with full descriptions. **This remains v0.3 development based on stable public v0.2.0, not a v0.3.0 release.** Phase 2 adds illustrative Monte Carlo simulation; individual-stock forecasting, VaR/CVaR, optimization, AI assistance and trading remain excluded.
 
 仅用于教育和研究，不构成投资建议。**历史表现不保证未来收益。**
 

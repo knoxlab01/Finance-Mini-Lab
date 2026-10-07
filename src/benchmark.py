@@ -15,5 +15,5 @@ def analyze_portfolio(prices, tickers, weights, benchmark="SPY", risk_free_rate=
                            "Benchmark": normalized_growth(benchmark_returns, start)})
     metrics = pd.DataFrame({"Portfolio": calculate_metrics(portfolio, start, end, risk_free_rate),
                             "Benchmark": calculate_metrics(benchmark_returns, start, end, risk_free_rate)})
-    return dict(growth=growth, metrics=metrics, drawdown=growth.apply(drawdown_series),
+    return dict(portfolio_returns=portfolio, growth=growth, metrics=metrics, drawdown=growth.apply(drawdown_series),
                 correlation=correlation_matrix(returns[tickers]), start=start, end=end, observations=len(returns))

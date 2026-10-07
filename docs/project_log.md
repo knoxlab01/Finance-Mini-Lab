@@ -1,3 +1,23 @@
+## 2026-10-08 — Phase 2 Final Acceptance / Phase 2 最终验收
+
+- 用户确认 Future Outlook、三情景、Monte Carlo、P10/P50/P90、亏损概率、分布、解释和 Demo 标注均通过人工视觉验收。 / User confirmed manual and visual acceptance of Phase 2 outputs and demo provenance.
+- Performance Overview 已采用 3+2 KPI 布局；百分比和 Sharpe 均为两位小数。保留现有 Future Outlook 布局，仅补充恒定参数、无通胀或参数误差等简洁假设提示。 / Preserved the accepted 3+2 KPI layout; clarified assumptions without changing the financial model.
+- 方法复核：至少 60 个组合日收益观测、252 日年化对数参数、月度 GBM、μ±σ 情景、P10/P50/P90、终值严格低于初值的亏损概率、固定种子复现。Base 为平均财富，P50 为中位数；未来模拟复用历史收益，不下载行情。 / Confirmed consistent methods, mean/median distinction and no redundant downloads.
+- 模型简化：恒定参数、独立正态对数收益；不计追加投入、税费、通胀或参数估计不确定性。Demo 模拟仅作 synthetic 功能展示，不是预测或保证。 / Simplified model assumptions and synthetic-demo limitations remain explicit.
+- 最终完整离线测试 155/155 通过；git diff --check 通过。提交文件检查与常见密钥模式扫描通过；数据库、缓存、Secrets、测试日志和本地运行文件均未纳入提交。main/origin/main 均保持 2bf94c5d5e07da1564372ede7bb0d741654aa467。 / Final full offline suite: 155/155 passed; formatting and file/secret review passed. Runtime files excluded; both main refs unchanged.
+- 仅在 v0.3-dev 创建本地 Phase 2 commit，不 push、不 merge、不开始 Phase 3；稳定公开版保持 v0.2.0。 / Local development commit only; stable public v0.2.0 remains unchanged.
+
+## 2026-10-07 — Phase 2 Future Outlook / 未来展望（开发中）
+
+- 在 v0.3-dev 实现 Future Outlook，接在 Portfolio Analytics 底部；不新增主 Tab、数据源或依赖。 / Added Future Outlook within Portfolio Analytics on v0.3-dev, without a new tab, provider or dependency.
+- 复用历史组合收益；至少 60 个观测。日对数收益估计 g、σ，252 日年化，GBM 漂移 μ=g+σ²/2；按月精确转移，默认 5000 次、固定 seed=20261007。 / Estimates log-return parameters from history with exact monthly GBM transitions.
+- 三情景使用 μ±σ 和 μ；Base 为模型平均财富，不是 P50。输出期限内节点、三条曲线、P10/P50/P90、严格终值亏损/获利概率、50 条路径、点态区间和分布；规则解释不提供荐股或交易信号。 / Added scenarios, simulated outcomes, probabilities, bounded path rendering, distributions and rule-based interpretation.
+- Demo-based simulation 明确为 synthetic 功能演示；重新历史分析清除模拟，普通重跑复用 session 结果，未来分析不请求行情。 / Preserves demo provenance and avoids redundant downloads or simulations.
+- 完整离线测试 155/155 通过（原有 136 + 新增 19）；git diff --check 通过。包括端到端 Yahoo 失败 → Demo → Future Outlook 的 UI smoke。 / All 155 offline tests and formatting checks passed.
+- 本机纯计算性能（5 次运行中位数，非浏览器渲染）：5 年/5000 次约 0.0114 秒、路径数组 2.33 MiB；10000 次约 0.0219 秒、4.65 MiB。 / Local numerical timings only, excluding browser rendering.
+- 限制：恒定参数、独立正态对数收益、无追加投入/税费；样本和模型误差未纳入，分位数不是保证，60 个观测不代表可靠估计。README 记录方法和人工验收输入。 / Documents model assumptions and manual acceptance steps.
+- Phase 2 等待用户人工验收；未 commit、push 或 merge，未进入 Phase 3。main/origin/main 和稳定公开 v0.2.0 保持不变。 / Awaiting manual acceptance; no commit, push, merge or Phase 3 work.
+
 ## 2026-10-07 — Phase 1 Final Cleanup / Phase 1 最终收尾
 
 - 用户确认人工验收通过：Portfolio Analytics、来源优先级、Demo 标注、五项 KPI、增长比较、表格、回撤和相关性均正常。 / User confirmed manual browser acceptance of the Phase 1 workflow and outputs.
