@@ -28,11 +28,12 @@ class StreamlitAppTests(unittest.TestCase):
             self.assertIn(f"**{name}**", [m.value for m in app.markdown])
         self.assertEqual([tab.label for tab in app.tabs], [
             "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
+            "Portfolio Analytics / 组合分析",
         ])
         self.assertEqual([item.value for item in app.number_input], [
-            10000.0, 8.0, 10, 2.0, 10000.0, 1000.0, 8.0, 10, 2.0, 1000000.0, 100000.0, 8.0, 10,
+            10000.0, 8.0, 10, 2.0, 10000.0, 1000.0, 8.0, 10, 2.0, 1000000.0, 100000.0, 8.0, 10, 4.0,
         ])
-        self.assertEqual(len(app.button), 3)
+        self.assertEqual(len(app.button), 6)
 
     def test_default_result_and_growth_data(self):
         with patch("streamlit.line_chart", wraps=st.line_chart) as chart:

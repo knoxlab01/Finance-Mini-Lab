@@ -10,6 +10,7 @@ from src.goal_planner import calculate_goal_plan
 from src.scenario import calculate_scenarios
 from src.inflation import adjust_for_inflation
 from src.sensitivity import calculate_goal_sensitivity
+from src.portfolio_ui import render_portfolio_analytics
 
 
 def render_inflation(nominal_value: float, inflation_percent: float, years: int) -> None:
@@ -349,8 +350,9 @@ def main() -> None:
                 st.caption(subtitle)
                 st.write(description)
     st.caption("选择下方标签页开始计算。")
-    compound_tab, dca_tab, goal_tab = st.tabs([
+    compound_tab, dca_tab, goal_tab, portfolio_tab = st.tabs([
         "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
+        "Portfolio Analytics / 组合分析",
     ])
     with compound_tab:
         render_compound_interest()
@@ -358,13 +360,15 @@ def main() -> None:
         render_dca()
     with goal_tab:
         render_goal_planner()
+    with portfolio_tab:
+        render_portfolio_analytics()
 
     st.divider()
     with st.expander("About / Assumptions · 关于与假设", expanded=True):
         st.markdown(
             "- Fixed return assumption / 固定收益率假设，不保证实际收益。\n"
             "- Annual or monthly compounding depends on module / 按模块采用年度或月度复利。\n"
-            "- No tax, fees or real market volatility / 不计税费、手续费及真实市场波动。\n"
+            "- No tax or fees; planning modules use fixed returns / 不计税费；规划模块使用固定收益，组合分析使用历史行情。\n"
             "- Inflation adjustment applies to Compound Interest and DCA only / 复利与定投另列通胀调整结果；目标规划保持名义金额。\n"
             "- Educational use only · Not investment advice / 仅用于教育演示，不构成投资建议。"
         )

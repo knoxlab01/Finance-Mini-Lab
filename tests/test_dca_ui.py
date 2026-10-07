@@ -22,7 +22,7 @@ class DCAUITests(unittest.TestCase):
     def test_standard_result_chart_and_table(self):
         with patch("streamlit.line_chart", wraps=st.line_chart) as chart:
             app = self.calculate()
-        self.assertEqual([tab.label for tab in app.tabs], ["Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划"])
+        self.assertEqual([tab.label for tab in app.tabs], ["Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划", "Portfolio Analytics / 组合分析"])
         metrics = {item.label: item.value for item in app.metric}
         self.assertEqual(metrics["Future Value / 未来价值"], "¥205,142.44")
         self.assertEqual(metrics["Total Contributions / 累计投入"], "¥130,000.00")

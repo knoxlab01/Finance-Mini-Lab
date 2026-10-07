@@ -18,7 +18,7 @@ class GoalPlannerUITests(unittest.TestCase):
     def test_standard_chart_table_and_insight(self):
         with patch('streamlit.line_chart', wraps=st.line_chart) as chart:
             app = self.calculate()
-        self.assertEqual([t.label for t in app.tabs], ['Compound Interest / 复利计算', 'DCA Simulator / 定投模拟', 'Goal Planner / 目标规划'])
+        self.assertEqual([t.label for t in app.tabs], ['Compound Interest / 复利计算', 'DCA Simulator / 定投模拟', 'Goal Planner / 目标规划', 'Portfolio Analytics / 组合分析'])
         metrics = {m.label: m.value for m in app.metric}
         self.assertEqual(metrics['Required Monthly Contribution / 每月所需投入'], '¥4,252.82')
         self.assertEqual(metrics['Total Contributions / 累计投入'], '¥610,338.02')

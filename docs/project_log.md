@@ -1,6 +1,46 @@
+## 2026-10-07 — Phase 1 Final Cleanup / Phase 1 最终收尾
+
+- 用户确认人工验收通过：Portfolio Analytics、来源优先级、Demo 标注、五项 KPI、增长比较、表格、回撤和相关性均正常。 / User confirmed manual browser acceptance of the Phase 1 workflow and outputs.
+- 保留五列 KPI 布局；Total Return、Volatility、Max Drawdown 使用短标题，悬浮说明保留完整定义。Demo 提示明确仅用于功能展示，不是真实行情或预测。 / Shortened KPI titles with full help text; clarified demo purpose.
+- Demo Mode 用于应对 Yahoo 不可用，避免外部数据授权流程阻塞演示；整次分析统一使用 synthetic 数据，不混用真实数据。 / Demo mode keeps the public demonstration available without another provider, with consistent synthetic portfolio and benchmark data.
+- 最终完整离线测试 136/136 通过（含原有 v0.2 回归、组合分析、Demo fallback、SQLite 和 UI）；git diff --check 通过。Git 文件与常见密钥模式检查未发现敏感内容；数据库、缓存、Secrets、虚拟环境和测试日志均被忽略。 / Final full offline suite: 136/136 passed; git diff --check passed. File and common secret-pattern review found no sensitive content; runtime databases, caches, secrets, virtual environment and test logs are ignored.
+- 仅 Phase 1 收尾；未进入 Phase 2，未升级公开版本，未 push。 / Phase 1 cleanup only; no Phase 2, public version bump or push.
+
+## 2026-10-07 — Public Demo Data Strategy / 公开演示数据策略
+
+- 完整离线测试 136/136 通过；以演示模式测试替换已移除 Kibot 接口的专用测试。 / Full offline suite: 136/136 passed; demo tests replace removed Kibot-specific tests.
+
+- 公开路径改为 SQLite → Yahoo → deterministic synthetic Demo Data；移除 Kibot 下载代码并排除旧 Kibot 缓存。 / Removed Kibot runtime and excluded its cached data.
+- 在 src/market_data.py 新增生成器：固定种子与起点，四资产合成工作日价格；任一资产 fallback 时整次分析统一演示，不混合真实数据。 / Fixed-seed, fixed-epoch synthetic prices; coherent all-demo analysis on fallback.
+- 演示数据不污染真实行情缓存；分析记录保留 demo 来源、synthetic 口径和版本。UI 明确标注并使用非阻断提示。 / Demo provenance persists in analysis metadata; real cache remains separate.
+- 未新增依赖、未改金融计算、未接入 Alpha Vantage、未 commit。稳定公开版本仍为 v0.2.0。 / No dependencies, calculation changes, Alpha Vantage or commit; stable version remains v0.2.0.
+
 > 当前版本：**v0.2.0**。下方旧版本名称和验证数字属于历史里程碑记录，不代表当前产品状态。
 
 # 项目日志
+
+## 2026-10-07 — Lightweight Market Fallback / 轻量备用行情
+
+- 保留 SQLite → Yahoo 优先级，新增 Kibot 官方 guest 日线作为本地内部评估 fallback；使用内置 urllib，无新增依赖。Stooq 实测为浏览器验证页且 2026 年出现 API key 要求；Nasdaq 条款限制提取/再分发，未采用。 / Preserved cache/Yahoo priority; added documented Kibot guest daily evaluation access with standard-library HTTP.
+- Yahoo 限流、临时网络或空响应会自动切换；格式非法 ticker 不请求网络，合法但无数据的代码经两个来源确认后才提示检查 ticker/date。两个服务故障不误报 ticker 无效。 / Failure categories and fallback decisions distinguish symbol/data availability from outages.
+- Kibot 显式请求拆股/分红复权（unadjusted=0, splitadjusted=0），不混拼同一资产的不同来源价格；提供方收盘定义和精度可能不同。 / Explicit split/dividend adjustment; no within-series provider splicing.
+- SQLite historical_prices.source 真实记录提供方，新增请求/分析来源 JSON 列，采用保留数据的迁移；缓存命中保留原提供方并标记 retrieval=cache。页面仅增加来源 caption 和评估限制提示，未修改指标、基准计算或 UI 结构。 / Persisted origin/retrieval metadata with additive migrations and minimal UI status text.
+- 完整离线测试 140 项通过（此前 124 + 新增 16），使用合成 CSV、mock 和隔离数据库；覆盖主源成功、备用成功/失败、invalid ticker、缓存、来源记录、旧数据库迁移和页面提示。 / All 140 offline tests pass, including 16 new fallback/provenance tests.
+- 真实最小输入 AAPL 100%、SPY、2025-01-01 至 2026-01-01、无风险利率 4%：Yahoo 限流后双资产自动使用 Kibot，获得 250 个共同价格日（2025-01-02 至 2025-12-31），指标和缓存重用验证成功。实际验证使用独立、Git 忽略的 SQLite 文件。 / Live local evaluation succeeded through fallback and then cache.
+- Kibot guest 仅供评估，license 仅授权内部使用，不能据此公开再分发；README 要求公开部署前设置 FINANCE_LAB_FALLBACK=off（同时排除已缓存 Kibot 数据），或取得适用授权。公开数据授权及人工浏览器验收仍待完成。 / Guest/internal evaluation is not a public redistribution license.
+- 不 commit、不推送、不部署、不更改公开 v0.2.0 版本。 / No commit, push, deployment or public-version change.
+
+## 2026-10-07 — v0.3 Phase 1 Development / 历史组合分析开发
+
+- 新增 database、market_data、portfolio_analysis、portfolio_metrics、benchmark、portfolio_ui 六个独立模块；原有六个 v0.2 计算模块未修改，公开版本标题保持 v0.2.0。 / Added six analytics modules; existing v0.2 calculations and version titles are preserved.
+- 新增 Portfolio Analytics 主标签页、多资产权重输入、基准、日期、可编辑无风险利率、配置保存/加载、五个 KPI、增长曲线、回撤与相关矩阵。 / Added setup, persistence, KPIs, comparison growth, drawdown and correlation UI.
+- SQLite 实际保存历史复权价格、24 小时请求缓存、命名配置和成功分析元数据，使用参数化 SQL、UPSERT 和事务。 / SQLite powers historical price caching, named configurations and analysis records through parameterized SQL and transactions.
+- Yahoo Finance / yfinance 使用 auto_adjust=True，结束日包含；共同日期对齐且不填充。组合假设每日恢复目标权重；252 交易日样本波动与 Sharpe，CAGR 使用实际日历期，无税费。 / Adjusted daily prices, common observed dates without fills, daily target-weight rebalancing, 252-session risk and calendar CAGR, without fees.
+- requirements 新增 yfinance 并直接声明 pandas/numpy；数据库与验证日志被 Git 忽略。 / Dependencies and ignore rules updated.
+- 完整离线套件 104 项通过：原有 65 项 + 新增 39 项；行情测试 mock，SQLite 使用隔离临时文件。仅调整现有 UI 测试的新增标签页/控件结构断言。 / All 104 offline tests pass, including 65 existing and 39 new tests.
+- 本地 Streamlit 临时端口 18503 健康检查返回 HTTP 200 / ok，测试服务随后关闭；git diff --check 通过。 / Local Streamlit health returned HTTP 200 / ok; the test server was stopped. Diff whitespace checks pass.
+- 真实 Yahoo 下载遭遇 Too Many Requests 限流；因此真实下载成功与浏览器人工视觉验收尚待确认，不宣称 Phase 1 最终验收完成。 / Live Yahoo retrieval was rate-limited; live success and manual visual acceptance remain pending.
+- 不 commit、不推送、不部署、不创建 v0.3.0 Release。 / No commit, push, deployment or v0.3.0 release.
 
 ## 2026-09-30 — Milestone 1：Compound Interest Calculator
 

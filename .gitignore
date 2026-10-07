@@ -26,3 +26,21 @@ htmlcov/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local SQLite data and verification logs
+data/
+*.sqlite3
+*.sqlite3-journal
+*_tests.log
+
+# SQLite sidecars, alternate databases and runtime caches
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+cache/
+.cache/
+secrets.toml
