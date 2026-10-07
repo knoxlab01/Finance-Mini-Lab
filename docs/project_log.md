@@ -1,3 +1,21 @@
+## 2026-10-08 — Phase 3 Language & Explainability Cleanup / 语言与解释层收尾
+
+- 用户确认 Phase 3 逻辑人工验收通过。Portfolio Analytics 增加默认 English 的语言选择器，覆盖历史分析、未来模拟、Guidance、Demo、表格、帮助和按钮；其他计算器不变。 / User confirmed logic acceptance; added English-default single-language portfolio rendering with Chinese support.
+- 文案集中管理于 i18n helper 与两个 JSON catalogs；保留现有金融模型和评分逻辑，仅转换展示。表单按钮使用稳定 key，语言切换保留输入、分析结果和模拟路径，不请求网络/重跑模型。 / Centralized translations and stable widget keys preserve analytics across language switches.
+- 十类专业指标增加通俗 tooltip/helper/折叠解释；Guidance 详细评分和模型假设默认折叠，主视图保留关键原因。 / Added metric explainability and compact information hierarchy.
+- 完整离线测试 189/189 通过（原有 183 + 新增 6），git diff --check 通过；切换语言保留数值、模拟路径及匹配结果，未触发下载/模拟。Git 文件及常见密钥扫描通过，数据库/缓存/Secrets/日志均排除；main/origin/main 保持 2bf94c5d5e07da1564372ede7bb0d741654aa467。 / All 189 offline tests, formatting and file/secret checks passed; analytics invariance and unchanged main refs verified.
+- 已准备 English/中文视觉验收步骤；本轮创建本地开发 commit，不 push、不 merge、不开始 release packaging，稳定公开版本保持 v0.2.0。 / Language visual acceptance steps prepared; local commit only, with stable main unchanged.
+
+## 2026-10-08 — Phase 3 Portfolio Guidance / 组合建议（开发中）
+
+- 在 v0.3-dev 实现 Portfolio Guidance：三个轻量偏好字段、风险等级、偏好匹配、3–5 条有依据的建议、抽象配置方向和评分明细。无新主 Tab、数据源、依赖或优化器。 / Added modular rule-based guidance within Portfolio Analytics.
+- 复用历史指标、相关性、权重、基准、模拟分位数/亏损率/参数和情景，不下载行情或重算核心结果。新增模拟后建议自动刷新。 / Reuses existing evidence without network or simulation calls.
+- 启发式多指标评分；有效波动率和回撤为必需证据。偏好/期限/目标共同设定风险上限。具体阈值见 README，不是经验证或受监管的适当性模型。 / Documents educational thresholds and profile caps.
+- Demo guidance 明确 synthetic；可在没有未来模拟时运行基础判断；数据不足时披露缺失，不伪造确定结论。 / Supports demo and partial evidence with explicit limitations.
+- 完整离线测试 183/183 通过（原有 155 + 新增 28），git diff --check 通过。覆盖偏好匹配、阈值边界、相关性/回撤/亏损提示、缺失数据、Demo 标签及端到端无重复下载/模拟调用。 / All 183 offline tests and formatting checks passed, including 28 new engine/UI cases.
+- 人工验收待完成。局限：不穿透 ETF、不识别行业/风格，不评估真实资金承受能力；不同模拟期限及缺失可选证据可影响评级。教育性类别方向，不提供具体交易建议。 / Manual acceptance pending; heuristic, data-coverage and profile limitations are explicit.
+- 未 commit、push 或 merge，不做 v0.3 release packaging；稳定公开版本仍为 v0.2.0。 / No commit, push, merge or release packaging.
+
 ## 2026-10-08 — Phase 2 Final Acceptance / Phase 2 最终验收
 
 - 用户确认 Future Outlook、三情景、Monte Carlo、P10/P50/P90、亏损概率、分布、解释和 Demo 标注均通过人工视觉验收。 / User confirmed manual and visual acceptance of Phase 2 outputs and demo provenance.

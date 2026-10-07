@@ -10,21 +10,25 @@ from src.market_data import get_historical_prices
 from src.portfolio_analysis import parse_config
 from src.benchmark import analyze_portfolio
 from src.future_ui import render_future_outlook
+from src.guidance_ui import render_portfolio_guidance
+from src.i18n import tr, localize_message, metric_help
 
 
 def render_portfolio_analytics():
-    st.caption("v0.3 Phase 1 development / 开发中 · Historical performance does not guarantee future results / 历史表现不保证未来收益。")
-    st.subheader("Portfolio Setup / 组合设置")
-    st.caption("仅支持同币种股票/ETF；权重为非负百分比，每日恢复目标权重，不计税费。 / Same-currency stocks/ETFs, daily target-weight rebalancing, no taxes or fees.")
+    language = st.selectbox("Language / 语言", ["English", "中文"], key="pa_language")
+    t = lambda key, **values: tr(key, language, **values)
+    st.caption(t('development'))
+    st.subheader(t('Portfolio Setup'))
+    st.caption(t('setup_note'))
     try:
         database = Database()
         saved = database.list_portfolios()
     except (OSError, sqlite3.Error):
-        st.error("SQLite 无法打开，请检查数据目录权限。 / Cannot open SQLite; check data directory permissions.")
+        st.error(t('db_error'))
         return
-    with st.expander("Saved Portfolios / 已保存组合"):
-        selection = st.selectbox("Load Saved Portfolio / 选择已保存组合", saved, index=None, key="pa_saved")
-        if st.button("Load Portfolio / 加载组合", key="pa_load", disabled=not saved):
+    with st.expander(t('Saved Portfolios')):
+        selection = st.selectbox(t('Load Saved Portfolio'), saved, index=None, key="pa_saved")
+        if st.button(t('Load Portfolio'), key="pa_load", disabled=not saved):
             if selection:
                 try:
                     config = database.load_portfolio(selection)
@@ -36,19 +40,19 @@ def render_portfolio_analytics():
                                             pa_name=selection)
                     st.session_state.pop("pa_result", None)
                 except (ValueError, KeyError, sqlite3.Error):
-                    st.error("无法加载组合。 / Cannot load portfolio.")
+                    st.error(t('load_error'))
     with st.form("portfolio_setup"):
-        tickers = st.text_input("Tickers / 资产代码", "AAPL, MSFT, NVDA", key="pa_tickers")
-        weights = st.text_input("Weights (%) / 权重", "40, 30, 30", key="pa_weights")
+        tickers = st.text_input(t('Tickers'), "AAPL, MSFT, NVDA", key="pa_tickers")
+        weights = st.text_input(t('Weights'), "40, 30, 30", key="pa_weights")
         left, right = st.columns(2)
-        start = left.date_input("Start Date / 开始日期", date(2021, 1, 1), key="pa_start")
-        end = right.date_input("End Date / 结束日期（含）", date.today(), key="pa_end")
-        benchmark = st.text_input("Benchmark / 基准", "SPY", key="pa_benchmark")
-        rf = st.number_input("Risk-free Rate (%) / 无风险年利率", value=4.0, step=0.1, key="pa_rf",
-                             help="可编辑的固定年有效利率假设，并非实时国债报价。 / Editable constant effective annual assumption, not a live Treasury quote.")
-        name = st.text_input("Portfolio Name (optional) / 组合名称（可选）", key="pa_name")
-        analyze = st.form_submit_button("Analyze Portfolio", type="primary")
-        save = st.form_submit_button("Save Portfolio / 保存组合")
+        start = left.date_input(t('Start Date'), date(2021, 1, 1), key="pa_start")
+        end = right.date_input(t('End Date'), date.today(), key="pa_end")
+        benchmark = st.text_input(t('Benchmark'), "SPY", key="pa_benchmark", help=metric_help("benchmark", language))
+        rf = st.number_input(t('Risk-free Rate'), value=4.0, step=0.1, key="pa_rf",
+                             help=t('rf_help'))
+        name = st.text_input(t('Portfolio Name'), key="pa_name")
+        analyze = st.form_submit_button(t('Analyze Portfolio'), type="primary", key="pa_analyze")
+        save = st.form_submit_button(t('Save Portfolio'), key="pa_save")
     if analyze or save:
         st.session_state.pop("pa_result", None)
         try:
@@ -58,58 +62,62 @@ def render_portfolio_analytics():
                 st.session_state["pa_saved_notice"] = True
                 st.rerun()
             else:
-                with st.spinner("获取历史行情并分析 / Loading historical prices…"):
+                with st.spinner(t('loading')):
                     prices = get_historical_prices(config["tickers"] + [config["benchmark"]], start, end, database)
                     result = analyze_portfolio(prices, config["tickers"], config["weights"], config["benchmark"], config["risk_free_rate"])
                     result["source_metadata"] = prices.attrs.get("source_metadata", {})
+                    result["portfolio_config"] = config
                 try:
                     database.record_analysis(config, result["start"], result["end"], result["source_metadata"])
                 except sqlite3.Error:
-                    st.warning("分析完成，但分析记录保存失败。 / Analysis completed; metadata could not be saved.")
+                    st.warning(t('record_error'))
                 st.session_state["pa_result"] = result
         except (ValueError, OverflowError, OSError, sqlite3.Error) as error:
-            st.error(str(error))
+            st.error(localize_message(error, language))
     if st.session_state.pop("pa_saved_notice", False):
-        st.success("组合已保存，同名配置会更新。 / Portfolio saved; an existing name updates its configuration.")
+        st.success(t('saved'))
     result = st.session_state.get("pa_result")
     if result is None:
         return
-    st.subheader("Performance Overview / 表现概览")
+    st.subheader(t('Performance Overview'))
     sources = result.get("source_metadata", {})
     if sources:
-        labels = {"yahoo": "Yahoo Finance", "cache": "SQLite Cache", "demo": "Demo Data / 演示数据"}
-        st.caption("数据源 / Data Source: " + " · ".join(
-            f"{ticker}: {labels.get(meta.get('retrieval'), 'Unknown')} ({meta.get('provider', 'unknown')})"
-            for ticker, meta in sources.items()))
+        labels = {"yahoo": t("Yahoo Finance"), "cache": t("SQLite Cache"), "demo": t("Demo Data")}
+        st.caption(t("Data Source") + ": " + " · ".join(
+            f"{ticker}: {labels.get(meta.get('retrieval'), t('Unknown'))}" for ticker, meta in sources.items()))
     if any(meta.get("provider") == "demo" for meta in sources.values()):
-        st.info("实时行情暂不可用，本次整个分析使用演示数据。 / Live market data is temporarily unavailable. Demo data is being used for analysis.")
-        st.warning("Demo Data / 演示数据：固定可重复的合成价格，不代表 AAPL、MSFT、NVDA 或 SPY 的真实历史或实时行情，也不是预测，仅用于展示组合分析功能。 / Deterministic synthetic prices for demonstrating Portfolio Analytics only; not actual historical/live market data or predictions.")
-    st.caption(f"实际共同区间 / Actual common period: {result['start'].date()} – {result['end'].date()} · {result['observations']} return observations / 收益观测值")
-    st.caption("252 交易日年化；CAGR 按实际日历天数；Sharpe 使用年有效无风险利率换算的日利率。N/A 表示样本不足或零波动。 / 252 sessions/year; calendar CAGR; effective annual risk-free rate converted daily. N/A means insufficient history or zero volatility.")
-    st.caption("仅使用共同观测日，不填补缺失价格；跨市场假日或缺失报价可能使相邻观测覆盖多个交易日，年化风险指标因此是近似值。 / Common observations only, no fills; holidays or missing quotes can span multiple sessions, making annualized risk approximate.")
-    metric_labels = {"Cumulative Return": "Total Return", "Annualized Volatility": "Volatility",
-                     "Maximum Drawdown": "Max Drawdown"}
-    metric_help = {"Cumulative Return": "累计收益率 / Cumulative Return",
-                   "Annualized Volatility": "年化波动率 / Annualized Volatility (252 sessions/year)",
-                   "Maximum Drawdown": "最大回撤 / Maximum Drawdown"}
+        st.info(t('demo_notice'))
+        st.warning(t('demo_warning'))
+    st.caption(t("period", start=result["start"].date(), end=result["end"].date(), count=result["observations"]))
+    st.caption(t('annualization'))
+    st.caption(t('alignment'))
+    explanations = {"Cumulative Return": "return", "CAGR": "cagr", "Annualized Volatility": "volatility",
+                    "Sharpe Ratio": "sharpe", "Maximum Drawdown": "drawdown"}
     metrics = list(result["metrics"]["Portfolio"].items())
     for row in (metrics[:3], metrics[3:]):
         for column, (metric, value) in zip(st.columns(len(row)), row):
             display = "N/A" if pd.isna(value) else (f"{value:.2f}" if metric == "Sharpe Ratio" else f"{value:.2%}")
-            column.metric(metric_labels.get(metric, metric), display, border=True, help=metric_help.get(metric))
-    st.subheader("Portfolio vs Benchmark / 组合与基准对比")
-    st.line_chart(result["growth"], height=360, width="stretch")
+            column.metric(t(metric), display, border=True, help=metric_help(explanations[metric], language))
+    st.subheader(t('Portfolio vs Benchmark'))
+    st.line_chart(result["growth"].rename(columns={"Portfolio": t("Portfolio"), "Benchmark": t("Benchmark")}), height=360, width="stretch")
     comparison = result["metrics"].copy().astype(object)
     for metric in comparison.index:
         for column in comparison.columns:
             value = comparison.loc[metric, column]
             comparison.loc[metric, column] = "N/A" if pd.isna(value) else (f"{value:.2f}" if metric == "Sharpe Ratio" else f"{value:.2%}")
-    st.dataframe(comparison, width="stretch")
-    st.subheader("Risk & Diversification / 风险与分散化")
-    st.line_chart(result["drawdown"], height=300, width="stretch")
-    st.caption("回撤为小数，0 为历史高点。 / Drawdown is a decimal; zero marks a running peak.")
-    st.markdown("**Correlation Matrix / 相关性矩阵**")
+    st.dataframe(comparison.rename(index={key: t(key) for key in explanations}, columns={"Portfolio": t("Portfolio"), "Benchmark": t("Benchmark")}), width="stretch")
+    st.subheader(t('Risk & Diversification'))
+    st.line_chart(result["drawdown"].rename(columns={"Portfolio": t("Portfolio"), "Benchmark": t("Benchmark")}), height=300, width="stretch")
+    st.caption(t('drawdown_note'))
+    st.markdown("**" + t("Correlation Matrix") + "**")
+    st.caption(metric_help("correlation", language))
     st.dataframe(result["correlation"].style.format("{:.2f}", na_rep="N/A"), width="stretch")
-    st.caption("常数收益资产的相关系数未定义，显示 N/A。 / Correlations for constant-return assets are undefined and shown as N/A.")
+    st.caption(t('correlation_na'))
 
-    render_future_outlook(result)
+    with st.expander(t("metric_explanations")):
+        for metric, key in explanations.items():
+            st.write(t(metric) + ": " + metric_help(key, language))
+        for label, key in [("Benchmark", "benchmark"), ("Correlation Matrix", "correlation")]:
+            st.write(t(label) + ": " + metric_help(key, language))
+    render_future_outlook(result, language)
+    render_portfolio_guidance(result, language)

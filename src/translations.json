@@ -1,0 +1,530 @@
+{
+  "development": [
+    "v0.3 development · Historical performance does not guarantee future results.",
+    "v0.3 开发中 · 历史表现不保证未来收益。"
+  ],
+  "Portfolio Setup": [
+    "Portfolio Setup",
+    "组合设置"
+  ],
+  "setup_note": [
+    "Same-currency stocks/ETFs; nonnegative weights, daily target-weight rebalancing, no taxes or fees.",
+    "仅支持同币种股票/ETF；权重非负，每日恢复目标权重，不计税费。"
+  ],
+  "db_error": [
+    "Cannot open SQLite; check data directory permissions.",
+    "SQLite 无法打开，请检查数据目录权限。"
+  ],
+  "Saved Portfolios": [
+    "Saved Portfolios",
+    "已保存组合"
+  ],
+  "Load Saved Portfolio": [
+    "Load Saved Portfolio",
+    "选择已保存组合"
+  ],
+  "Load Portfolio": [
+    "Load Portfolio",
+    "加载组合"
+  ],
+  "load_error": [
+    "Cannot load portfolio.",
+    "无法加载组合。"
+  ],
+  "Tickers": [
+    "Tickers",
+    "资产代码"
+  ],
+  "Weights": [
+    "Weights (%)",
+    "权重（%）"
+  ],
+  "Start Date": [
+    "Start Date",
+    "开始日期"
+  ],
+  "End Date": [
+    "End Date (inclusive)",
+    "结束日期（含）"
+  ],
+  "Benchmark": [
+    "Benchmark",
+    "基准"
+  ],
+  "Risk-free Rate": [
+    "Risk-free Rate (%)",
+    "无风险年利率（%）"
+  ],
+  "rf_help": [
+    "Editable constant effective annual rate, not a live Treasury quote.",
+    "可编辑的固定年有效利率假设，并非实时国债报价。"
+  ],
+  "Portfolio Name": [
+    "Portfolio Name (optional)",
+    "组合名称（可选）"
+  ],
+  "Analyze Portfolio": [
+    "Analyze Portfolio",
+    "分析组合"
+  ],
+  "Save Portfolio": [
+    "Save Portfolio",
+    "保存组合"
+  ],
+  "loading": [
+    "Loading historical prices…",
+    "获取历史行情并分析…"
+  ],
+  "record_error": [
+    "Analysis completed; metadata could not be saved.",
+    "分析完成，但分析记录保存失败。"
+  ],
+  "saved": [
+    "Portfolio saved; an existing name updates its configuration.",
+    "组合已保存，同名配置会更新。"
+  ],
+  "Performance Overview": [
+    "Performance Overview",
+    "表现概览"
+  ],
+  "Data Source": [
+    "Data Source",
+    "数据源"
+  ],
+  "Yahoo Finance": [
+    "Yahoo Finance",
+    "Yahoo Finance"
+  ],
+  "SQLite Cache": [
+    "SQLite Cache",
+    "SQLite 缓存"
+  ],
+  "Demo Data": [
+    "Demo Data",
+    "演示数据"
+  ],
+  "Unknown": [
+    "Unknown",
+    "未知"
+  ],
+  "demo_notice": [
+    "Live market data is temporarily unavailable. Demo data is being used for analysis.",
+    "实时行情暂不可用，本次整个分析使用演示数据。"
+  ],
+  "demo_warning": [
+    "Demo Data: deterministic synthetic prices for feature demonstration, not actual historical/live market data or predictions.",
+    "演示数据：固定可重复的合成价格，仅用于功能展示，不是真实历史或实时行情，也不是预测。"
+  ],
+  "period": [
+    "Actual common period: {start} – {end} · {count} return observations",
+    "实际共同区间：{start} – {end} · {count} 个收益观测值"
+  ],
+  "annualization": [
+    "252 sessions/year; calendar CAGR; daily equivalent of the annual risk-free rate. N/A means insufficient history or zero volatility.",
+    "按 252 交易日年化；CAGR 按日历天数；无风险年利率换算为日利率。N/A 表示样本不足或零波动。"
+  ],
+  "alignment": [
+    "Common observations only, no fills; holidays or missing quotes can make annualized risk approximate.",
+    "仅使用共同观测日，不填补价格；假日或缺失报价可能使年化风险指标成为近似值。"
+  ],
+  "Cumulative Return": [
+    "Total Return",
+    "累计收益率"
+  ],
+  "CAGR": [
+    "CAGR",
+    "年化复合收益率"
+  ],
+  "Annualized Volatility": [
+    "Volatility",
+    "年化波动率"
+  ],
+  "Sharpe Ratio": [
+    "Sharpe Ratio",
+    "夏普比率"
+  ],
+  "Maximum Drawdown": [
+    "Maximum Drawdown",
+    "最大回撤"
+  ],
+  "Portfolio": [
+    "Portfolio",
+    "组合"
+  ],
+  "Portfolio vs Benchmark": [
+    "Portfolio vs Benchmark",
+    "组合与基准对比"
+  ],
+  "Risk & Diversification": [
+    "Risk & Diversification",
+    "风险与分散化"
+  ],
+  "drawdown_note": [
+    "Drawdown is a decimal; zero marks a running peak.",
+    "回撤为小数，0 表示当时的历史高点。"
+  ],
+  "Correlation Matrix": [
+    "Correlation Matrix",
+    "相关性矩阵"
+  ],
+  "correlation_na": [
+    "Correlations for constant-return assets are undefined and shown as N/A.",
+    "常数收益资产的相关系数未定义，显示 N/A。"
+  ],
+  "metric_explanations": [
+    "What do these metrics mean?",
+    "这些指标是什么意思？"
+  ],
+  "help_return": [
+    "The portfolio's total gain or loss over the selected period.",
+    "整个分析期间累计赚了或亏了多少。"
+  ],
+  "help_cagr": [
+    "The compounded annual growth rate over the selected period.",
+    "把整个投资期间折算成平均每年的复合增长速度。"
+  ],
+  "help_volatility": [
+    "Measures how much returns fluctuate; higher volatility generally means larger price swings.",
+    "衡量收益上下波动有多大；越高通常代表价格变化越剧烈。"
+  ],
+  "help_sharpe": [
+    "Measures excess return relative to risk taken; higher values generally indicate better risk-adjusted performance.",
+    "衡量承担风险后获得的超额收益质量；通常越高，风险调整后的表现越好。"
+  ],
+  "help_drawdown": [
+    "The largest historical decline from a portfolio peak to a subsequent trough.",
+    "历史上从阶段高点跌到随后低点的最大跌幅。"
+  ],
+  "help_correlation": [
+    "Measures how closely assets move together; higher correlation generally means less diversification benefit.",
+    "衡量不同资产是不是经常一起涨跌；相关性越高，分散效果通常越弱。"
+  ],
+  "help_benchmark": [
+    "A reference market used to compare portfolio performance, such as SPY.",
+    "用来比较组合表现的参考市场，例如 SPY。"
+  ],
+  "help_percentiles": [
+    "Lower, median and upper simulated percentile outcomes; not guaranteed worst, average or best cases.",
+    "模拟中的较低、中位和较高百分位结果，不代表最差、平均或最好保证值。"
+  ],
+  "help_loss": [
+    "The share of simulations that end below the initial portfolio value.",
+    "模拟期结束时组合价值低于初始价值的模拟比例。"
+  ],
+  "help_scenarios": [
+    "Shows possible portfolio paths under conservative, base and optimistic assumptions.",
+    "在保守、基准和乐观假设下展示未来可能的组合价值路径。"
+  ],
+  "Future Outlook": [
+    "Future Outlook",
+    "未来展望"
+  ],
+  "future_demo": [
+    "Demo-based simulation: synthetic demo data for feature demonstration only, not a real-market prediction.",
+    "基于演示数据的模拟：使用合成数据，仅用于功能展示，不是真实市场预测。"
+  ],
+  "future_live": [
+    "Simulation is based on historical portfolio return and volatility estimates.",
+    "模拟基于所选历史区间的组合收益和波动率估计。"
+  ],
+  "future_disclaimer": [
+    "Historical performance does not guarantee future results; simulations are not forecasts or guarantees.",
+    "历史表现不保证未来结果；模拟不是预测或保证。"
+  ],
+  "Forecast Settings": [
+    "Forecast Settings",
+    "模拟设置"
+  ],
+  "Initial Value": [
+    "Initial Portfolio Value",
+    "当前组合价值"
+  ],
+  "Forecast Horizon": [
+    "Forecast Horizon",
+    "模拟期限"
+  ],
+  "years": [
+    "{years} Years",
+    "{years} 年"
+  ],
+  "Simulations": [
+    "Simulations",
+    "模拟次数"
+  ],
+  "Run Future Outlook": [
+    "Run Future Outlook",
+    "运行未来模拟"
+  ],
+  "simulating": [
+    "Simulating…",
+    "计算模拟…"
+  ],
+  "current_result": [
+    "Current result: {years} years · {count} simulations · initial {initial} · seed {seed} · {observations} historical returns",
+    "本次结果：{years} 年 · {count} 次模拟 · 初值 {initial} · 种子 {seed} · {observations} 个历史收益"
+  ],
+  "parameters": [
+    "Model expected annual return: {expected} · Annualized log volatility: {volatility}",
+    "模型年预期收益：{expected} · 年化对数波动率：{volatility}"
+  ],
+  "model_help": [
+    "Model assumptions",
+    "模型假设"
+  ],
+  "model_note": [
+    "GBM with constant parameters and exact monthly steps; fixed seed. No contributions, taxes, fees, inflation or parameter uncertainty. Base is mean wealth, not P50.",
+    "采用恒定参数 GBM 和精确月度转移，固定种子；不计追加投入、税费、通胀或参数估计误差。基准情景为平均财富，不是 P50。"
+  ],
+  "Scenario Projection": [
+    "Scenario Projection",
+    "情景投影"
+  ],
+  "Conservative": [
+    "Conservative",
+    "保守"
+  ],
+  "Base": [
+    "Base",
+    "基准"
+  ],
+  "Optimistic": [
+    "Optimistic",
+    "乐观"
+  ],
+  "Year": [
+    "Year",
+    "年"
+  ],
+  "Years": [
+    "Years",
+    "年"
+  ],
+  "Future Outcome Summary": [
+    "Future Outcome Summary",
+    "未来结果摘要"
+  ],
+  "P10 Ending Value": [
+    "P10 Ending Value",
+    "P10 期末价值"
+  ],
+  "Median / P50": [
+    "Median / P50",
+    "P50 中位期末价值"
+  ],
+  "P90 Ending Value": [
+    "P90 Ending Value",
+    "P90 期末价值"
+  ],
+  "Loss Probability": [
+    "Loss Probability",
+    "亏损概率"
+  ],
+  "Above Initial": [
+    "Above Initial",
+    "高于初始价值"
+  ],
+  "above_help": [
+    "Share of simulations ending strictly above initial value; unchanged outcomes count as neither gains nor losses.",
+    "期末价值严格高于初值的模拟比例；持平不计入获利或亏损。"
+  ],
+  "Monte Carlo Simulation": [
+    "Monte Carlo Simulation",
+    "蒙特卡洛模拟"
+  ],
+  "monte_help": [
+    "Simulates many possible future paths to show uncertainty rather than a single forecast.",
+    "通过大量随机路径展示未来结果的不确定性，而不是给出单一预测。"
+  ],
+  "Portfolio Value": [
+    "Portfolio Value",
+    "组合价值"
+  ],
+  "band_note": [
+    "50 sample paths; pointwise P10–P90 band and P50 line, not simultaneous path coverage.",
+    "显示 50 条样本路径；阴影为各时点 P10–P90，橙线为 P50，不表示整条路径始终处于区间内。"
+  ],
+  "Ending Value Distribution": [
+    "Ending Value Distribution",
+    "期末价值分布"
+  ],
+  "Ending Value": [
+    "Ending Value",
+    "期末价值"
+  ],
+  "Count": [
+    "Count",
+    "次数"
+  ],
+  "Initial": [
+    "Initial",
+    "初值"
+  ],
+  "What This Means": [
+    "What This Means",
+    "结果解读"
+  ],
+  "Portfolio Guidance": [
+    "Portfolio Guidance",
+    "组合建议"
+  ],
+  "guidance_disclaimer": [
+    "Illustrative educational decision support, not personalized, fiduciary or regulated investment advice. Consider personal circumstances; no performance guarantee.",
+    "教育性决策辅助，非个性化、受托或受监管投资建议；请结合个人情况，不保证未来表现。"
+  ],
+  "run_history": [
+    "Run historical portfolio analysis first.",
+    "请先运行历史组合分析。"
+  ],
+  "guidance_demo": [
+    "Demo-based guidance: synthetic demo analysis for feature demonstration only, not real stock history.",
+    "基于演示数据的建议：使用合成分析，仅用于功能展示，不基于真实股票历史行情。"
+  ],
+  "Your Profile": [
+    "Your Profile",
+    "你的偏好"
+  ],
+  "Risk Preference": [
+    "Risk Preference",
+    "风险偏好"
+  ],
+  "Investment Horizon": [
+    "Investment Horizon",
+    "投资期限"
+  ],
+  "Primary Goal": [
+    "Primary Goal",
+    "主要目标"
+  ],
+  "Balanced": [
+    "Balanced",
+    "平衡"
+  ],
+  "Aggressive": [
+    "Aggressive",
+    "进取"
+  ],
+  "Short Term": [
+    "Short Term (1–3 years)",
+    "短期（1–3 年）"
+  ],
+  "Medium Term": [
+    "Medium Term (3–5 years)",
+    "中期（3–5 年）"
+  ],
+  "Long Term": [
+    "Long Term (5+ years)",
+    "长期（5+ 年）"
+  ],
+  "Capital Preservation": [
+    "Capital Preservation",
+    "资本保值"
+  ],
+  "Steady Growth": [
+    "Steady Growth",
+    "稳健增长"
+  ],
+  "Growth Priority": [
+    "Growth Priority",
+    "增长优先"
+  ],
+  "Generate Guidance": [
+    "Generate Guidance",
+    "生成组合建议"
+  ],
+  "Applied profile": [
+    "Applied profile",
+    "本次偏好"
+  ],
+  "Current Portfolio Assessment": [
+    "Current Portfolio Assessment",
+    "当前组合判断"
+  ],
+  "Fit with Your Profile": [
+    "Fit with Your Profile",
+    "与你的偏好匹配度"
+  ],
+  "heuristic": [
+    "Educational heuristic, not a validated risk rating; missing evidence is not evidence of safety.",
+    "启发式教育规则，不是经验证风险评级；缺失证据不代表安全。"
+  ],
+  "run_future": [
+    "Run Future Outlook for a fuller risk assessment.",
+    "运行未来展望可补充风险判断。"
+  ],
+  "evidence_horizon": [
+    "Simulation evidence horizon: {years} years; not necessarily your investment horizon.",
+    "模拟证据期限：{years} 年，与偏好投资期限不一定相同。"
+  ],
+  "Key Guidance": [
+    "Key Guidance",
+    "核心建议"
+  ],
+  "Recommendation": [
+    "Recommendation",
+    "建议"
+  ],
+  "Why": [
+    "Why",
+    "原因"
+  ],
+  "Illustrative Allocation Direction": [
+    "Illustrative Allocation Direction",
+    "示例配置方向"
+  ],
+  "Why These Suggestions": [
+    "Why These Suggestions",
+    "为什么给出这些建议"
+  ],
+  "Score": [
+    "Score",
+    "评分"
+  ],
+  "missing": [
+    "Missing or limited evidence",
+    "缺失或有限证据"
+  ],
+  "rule_note": [
+    "Thresholds and profile caps are documented in README; income, liabilities, taxes and financial capacity are not assessed.",
+    "完整阈值和偏好约束见 README；不评估收入、负债、税务或实际损失承受能力。"
+  ],
+  "Diversification": [
+    "Diversification",
+    "分散化"
+  ],
+  "Concentration": [
+    "Concentration",
+    "集中度"
+  ],
+  "Drawdown": [
+    "Drawdown",
+    "回撤"
+  ],
+  "Downside Risk": [
+    "Downside Risk",
+    "下行风险"
+  ],
+  "Benchmark Risk": [
+    "Benchmark Risk",
+    "基准风险"
+  ],
+  "Risk Budget": [
+    "Risk Budget",
+    "风险承受"
+  ],
+  "Profile Alignment": [
+    "Profile Alignment",
+    "偏好一致性"
+  ],
+  "Risk-adjusted Quality": [
+    "Risk-adjusted Quality",
+    "风险调整收益"
+  ],
+  "Outcome Uncertainty": [
+    "Outcome Uncertainty",
+    "结果不确定性"
+  ],
+  "Evidence Coverage": [
+    "Evidence Coverage",
+    "证据完整性"
+  ]
+}

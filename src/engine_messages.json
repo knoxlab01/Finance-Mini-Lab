@@ -1,0 +1,358 @@
+{
+  "较低风险 / Lower Risk": [
+    "Lower Risk",
+    "较低风险"
+  ],
+  "中等风险 / Moderate Risk": [
+    "Moderate Risk",
+    "中等风险"
+  ],
+  "较高风险 / Higher Risk": [
+    "Higher Risk",
+    "较高风险"
+  ],
+  "风险明显偏高 / Too Aggressive": [
+    "Too Aggressive",
+    "风险明显偏高"
+  ],
+  "将临近用途与长期投资分开，按偏好和目标复核风险敞口。 / Separate near-term needs from long-term investing and review exposure against your preference and goal.": [
+    "Separate near-term needs from long-term investing and review exposure against your preference and goal.",
+    "将临近用途与长期投资分开，按偏好和目标复核风险敞口。"
+  ],
+  "年化波动率 / Annualized volatility": [
+    "Annualized volatility",
+    "年化波动率"
+  ],
+  "最大回撤 / Maximum drawdown": [
+    "Maximum drawdown",
+    "最大回撤"
+  ],
+  "有效模拟亏损概率 / Valid simulated loss probability": [
+    "Valid simulated loss probability",
+    "有效模拟亏损概率"
+  ],
+  "相关性 / Correlation": [
+    "Correlation",
+    "相关性"
+  ],
+  "持仓权重 / Holding weights": [
+    "Holding weights",
+    "持仓权重"
+  ],
+  "基准波动比较 / Benchmark volatility comparison": [
+    "Benchmark volatility comparison",
+    "基准波动比较"
+  ],
+  "略高于偏好 / Slightly Aggressive": [
+    "Slightly Aggressive",
+    "略高于偏好"
+  ],
+  "运行 Future Outlook 可补充风险判断。 / Run Future Outlook for a fuller risk assessment.": [
+    "Run Future Outlook for a fuller risk assessment.",
+    "运行 Future Outlook 可补充风险判断。"
+  ],
+  "研究相关性更低的资产类别，检验分散效果。 / Explore less-correlated asset categories and evaluate diversification.": [
+    "Explore less-correlated asset categories and evaluate diversification.",
+    "研究相关性更低的资产类别，检验分散效果。"
+  ],
+  "复核最大单项配置及底层风险重叠；单只 ETF 不等于单只股票。 / Review the largest allocation and overlapping underlying exposures; one ETF is not one stock.": [
+    "Review the largest allocation and overlapping underlying exposures; one ETF is not one stock.",
+    "复核最大单项配置及底层风险重叠；单只 ETF 不等于单只股票。"
+  ],
+  "检查是否能承受历史量级回撤及资金需求。 / Review capacity for drawdowns of the observed magnitude and funding needs.": [
+    "Review capacity for drawdowns of the observed magnitude and funding needs.",
+    "检查是否能承受历史量级回撤及资金需求。"
+  ],
+  "对照所选模拟期限复核可承受损失。 / Review tolerable losses at the selected simulation horizon.": [
+    "Review tolerable losses at the selected simulation horizon.",
+    "对照所选模拟期限复核可承受损失。"
+  ],
+  "比较承担额外波动是否符合你的目标。 / Compare the additional variability with your objective.": [
+    "Compare the additional variability with your objective.",
+    "比较承担额外波动是否符合你的目标。"
+  ],
+  "以已观察到的波动和回撤检查风险承受能力，不把低评级理解为安全保证。 / Check risk capacity against observed volatility and drawdown; a lower tier is not a safety guarantee.": [
+    "Check risk capacity against observed volatility and drawdown; a lower tier is not a safety guarantee.",
+    "以已观察到的波动和回撤检查风险承受能力，不把低评级理解为安全保证。"
+  ],
+  "风险偏好/期限/目标 / Preference/horizon/goal: ": [
+    "Preference/horizon/goal: ",
+    "风险偏好/期限/目标"
+  ],
+  "复核所承担波动对应的历史超额收益；不据此推断未来表现。 / Review historical excess return per unit of risk without extrapolating future performance.": [
+    "Review historical excess return per unit of risk without extrapolating future performance.",
+    "复核所承担波动对应的历史超额收益；不据此推断未来表现。"
+  ],
+  "同时查看模拟下行情景和结果分布，不只关注中位数。 / Review the simulated downside and distribution rather than the median alone.": [
+    "Review the simulated downside and distribution rather than the median alone.",
+    "同时查看模拟下行情景和结果分布，不只关注中位数。"
+  ],
+  "补充缺失证据并定期对照同一口径，避免把历史风险评级外推为未来保证。 / Fill evidence gaps and compare consistent measures rather than treating this historical tier as a future guarantee.": [
+    "Fill evidence gaps and compare consistent measures rather than treating this historical tier as a future guarantee.",
+    "补充缺失证据并定期对照同一口径，避免把历史风险评级外推为未来保证。"
+  ],
+  "历史年化波动率 / Historical annualized volatility: ": [
+    "Historical annualized volatility: ",
+    "历史年化波动率"
+  ],
+  "历史最大回撤 / Historical maximum drawdown: ": [
+    "Historical maximum drawdown: ",
+    "历史最大回撤"
+  ],
+  " 年模拟期末亏损概率 / Simulated terminal loss probability (": [
+    "Simulated terminal loss probability (",
+    " 年模拟期末亏损概率"
+  ],
+  "最大单项配置权重 / Largest holding allocation: ": [
+    "Largest holding allocation: ",
+    "最大单项配置权重"
+  ],
+  "（不穿透 ETF / no ETF look-through）": [
+    "no ETF look-through）",
+    "（不穿透 ETF"
+  ],
+  "组合/基准波动率比 / Portfolio-to-benchmark volatility: ": [
+    "Portfolio-to-benchmark volatility: ",
+    "组合/基准波动率比"
+  ],
+  "数据不足 / Insufficient data": [
+    "Insufficient data",
+    "数据不足"
+  ],
+  "基准 CAGR / Benchmark CAGR: ": [
+    "Benchmark CAGR: ",
+    "基准 CAGR"
+  ],
+  "模型年预期收益/对数波动 / Model annual expected return/log volatility: ": [
+    "Model annual expected return/log volatility: ",
+    "模型年预期收益/对数波动"
+  ],
+  "（非保证 / not guaranteed）": [
+    "not guaranteed）",
+    "（非保证"
+  ],
+  "请完善偏好 / Complete your profile": [
+    "Complete your profile",
+    "请完善偏好"
+  ],
+  "数据不足，暂不判断 / Insufficient data for fit": [
+    "Insufficient data for fit",
+    "数据不足，暂不判断"
+  ],
+  "匹配良好 / Good Fit": [
+    "Good Fit",
+    "匹配良好"
+  ],
+  "风险低于目标取向 / Too Conservative (risk only, not a return forecast)": [
+    "Too Conservative (risk only, not a return forecast)",
+    "风险低于目标取向"
+  ],
+  "可研究以现金/短期储备及防御性类别满足近期用途，再评估股票敞口；这些类别也有通胀、利率或信用风险。 / Explore near-term reserves and defensive categories before equity exposure; these still carry inflation, rate or credit risk.": [
+    "Explore near-term reserves and defensive categories before equity exposure; these still carry inflation, rate or credit risk.",
+    "可研究以现金/短期储备及防御性类别满足近期用途，再评估股票敞口；这些类别也有通胀、利率或信用风险。"
+  ],
+  "可研究宽基敞口与防御性类别的平衡，增长资产作为补充；不指定比例或证券。 / Explore a balance of broad-market and defensive exposure, with growth assets as a complement; no weights or securities specified.": [
+    "Explore a balance of broad-market and defensive exposure, with growth assets as a complement; no weights or securities specified.",
+    "可研究宽基敞口与防御性类别的平衡，增长资产作为补充；不指定比例或证券。"
+  ],
+  "可研究分散化股票/宽基敞口与增长类别，并区分长期投资和短期资金用途。 / Explore diversified equity/broad-market and growth categories while separating near-term funding needs.": [
+    "Explore diversified equity/broad-market and growth categories while separating near-term funding needs.",
+    "可研究分散化股票/宽基敞口与增长类别，并区分长期投资和短期资金用途。"
+  ],
+  "历史 Sharpe / Historical Sharpe: ": [
+    "Historical Sharpe: ",
+    "历史 Sharpe"
+  ],
+  "模拟 P10/P50/P90 / Simulated percentiles: ": [
+    "Simulated percentiles: ",
+    "模拟 P10/P50/P90"
+  ],
+  "; P10–P90 宽度/初值 / width-to-initial: ": [
+    "width-to-initial: ",
+    "; P10–P90 宽度/初值"
+  ],
+  "部分相关系数缺失 / Partial correlation coverage": [
+    "Partial correlation coverage",
+    "部分相关系数缺失"
+  ],
+  "可用资产对平均相关系数 / Mean available pairwise correlation: ": [
+    "Mean available pairwise correlation: ",
+    "可用资产对平均相关系数"
+  ],
+  "（非分位数 / not percentiles）": [
+    "not percentiles）",
+    "（非分位数"
+  ],
+  "未提供 / Unavailable: ": [
+    "Unavailable: ",
+    "未提供"
+  ],
+  "规则评分 / Rule score: ": [
+    "Rule score: ",
+    "规则评分"
+  ],
+  "; 波动率 / volatility: ": [
+    "volatility: ",
+    "; 波动率"
+  ],
+  " 年情景终值 / Scenario values: ": [
+    "Scenario values: ",
+    " 年情景终值"
+  ],
+  "较宽 / wide": [
+    "wide",
+    "较宽"
+  ],
+  "较窄 / relatively narrow": [
+    "relatively narrow",
+    "较窄"
+  ],
+  "历史表现不保证未来结果；P10/P90 是模拟分位数，不是最好/最坏结果或保证。 / Historical performance does not guarantee future results; percentiles are not best/worst cases or guarantees.": [
+    "Historical performance does not guarantee future results; percentiles are not best/worst cases or guarantees.",
+    "历史表现不保证未来结果；P10/P90 是模拟分位数，不是最好/最坏结果或保证。"
+  ],
+  "至少需要 60 个历史收益观测值。 / At least 60 historical return observations are required.": [
+    "At least 60 historical return observations are required.",
+    "至少需要 60 个历史收益观测值。"
+  ],
+  "历史参数超出计算范围。 / Historical parameter overflow.": [
+    "Historical parameter overflow.",
+    "历史参数超出计算范围。"
+  ],
+  "组合价值须为有限正数。 / Initial value must be finite and positive.": [
+    "Initial value must be finite and positive.",
+    "组合价值须为有限正数。"
+  ],
+  "期限须为 1、3 或 5 年。 / Horizon must be 1, 3 or 5 years.": [
+    "Horizon must be 1, 3 or 5 years.",
+    "期限须为 1、3 或 5 年。"
+  ],
+  "模拟次数须为 1000–10000 的整数。 / Simulations must be an integer from 1000 to 10000.": [
+    "Simulations must be an integer from 1000 to 10000.",
+    "模拟次数须为 1000–10000 的整数。"
+  ],
+  "模拟参数无效。 / Invalid simulation parameters.": [
+    "Invalid simulation parameters.",
+    "模拟参数无效。"
+  ],
+  "参数导致数值溢出，请使用较短期限或更合理的历史区间。 / Numerical overflow; shorten horizon or use a more representative historical period.": [
+    "Numerical overflow; shorten horizon or use a more representative historical period.",
+    "参数导致数值溢出，请使用较短期限或更合理的历史区间。"
+  ],
+  "）；仅反映模型内的不确定性。 / The interval reflects uncertainty within this model only.": [
+    "The interval reflects uncertainty within this model only.",
+    "）；仅反映模型内的不确定性。"
+  ],
+  " 年后低于初始价值。 / Under these assumptions, this fraction of simulations ends below initial value.": [
+    "Under these assumptions, this fraction of simulations ends below initial value.",
+    " 年后低于初始价值。"
+  ],
+  "请输入有效的逗号分隔 ticker。 / Enter valid comma-separated tickers.": [
+    "Enter valid comma-separated tickers.",
+    "请输入有效的逗号分隔 ticker。"
+  ],
+  "Ticker 不能重复。 / Duplicate tickers are not allowed.": [
+    "Duplicate tickers are not allowed.",
+    "Ticker 不能重复。"
+  ],
+  "开始日期必须早于结束日期。 / Start date must precede end date.": [
+    "Start date must precede end date.",
+    "开始日期必须早于结束日期。"
+  ],
+  "无风险利率必须大于 -100%。 / Risk-free rate must exceed -100%.": [
+    "Risk-free rate must exceed -100%.",
+    "无风险利率必须大于 -100%。"
+  ],
+  "Ticker 与权重数量必须一致且非空。 / Ticker and weight counts must match and be nonempty.": [
+    "Ticker and weight counts must match and be nonempty.",
+    "Ticker 与权重数量必须一致且非空。"
+  ],
+  "权重须非负且合计约 100%（容差 0.01 个百分点）。 / Nonnegative weights must total 100% (0.01 percentage-point tolerance).": [
+    "Nonnegative weights must total 100% (0.01 percentage-point tolerance).",
+    "权重须非负且合计约 100%（容差 0.01 个百分点）。"
+  ],
+  "价格数据或日期索引无效。 / Invalid prices or date index.": [
+    "Invalid prices or date index.",
+    "价格数据或日期索引无效。"
+  ],
+  "价格必须为有限正值。 / Prices must be finite and positive.": [
+    "Prices must be finite and positive.",
+    "价格必须为有限正值。"
+  ],
+  "共同历史数据不足，至少需要三个价格观测值。 / At least three common price observations are required.": [
+    "At least three common price observations are required.",
+    "共同历史数据不足，至少需要三个价格观测值。"
+  ],
+  "历史数据存在超过七天的空缺，请缩短区间或更换资产。 / History has a gap over seven days; change the period or assets.": [
+    "History has a gap over seven days; change the period or assets.",
+    "历史数据存在超过七天的空缺，请缩短区间或更换资产。"
+  ],
+  "增长曲线起点无效。 / Invalid growth baseline.": [
+    "Invalid growth baseline.",
+    "增长曲线起点无效。"
+  ],
+  "增长曲线超出计算范围。 / Growth overflow.": [
+    "Growth overflow.",
+    "增长曲线超出计算范围。"
+  ],
+  "权重必须为数字百分比。 / Weights must be numeric percentages.": [
+    "Weights must be numeric percentages.",
+    "权重必须为数字百分比。"
+  ],
+  "Yahoo Finance 限流，不能据此判断 ticker 无效；请至少等待 60 秒后重试，持续限流请稍后再试。 / Yahoo Finance rate limit; this does not mean an invalid ticker. Wait at least 60 seconds; persistent limits may take longer.": [
+    "Yahoo Finance rate limit; this does not mean an invalid ticker. Wait at least 60 seconds; persistent limits may take longer.",
+    "Yahoo Finance 限流，不能据此判断 ticker 无效；请至少等待 60 秒后重试，持续限流请稍后再试。"
+  ],
+  "行情服务暂时无法连接或响应异常，请稍后重试。 / Temporary network/provider connection failure; retry later.": [
+    "Temporary network/provider connection failure; retry later.",
+    "行情服务暂时无法连接或响应异常，请稍后重试。"
+  ],
+  "资产代码格式无效或 Yahoo 未识别该代码，请检查拼写及交易所后缀。 / Invalid ticker format or Yahoo did not recognize this symbol; check spelling and exchange suffix.": [
+    "Invalid ticker format or Yahoo did not recognize this symbol; check spelling and exchange suffix.",
+    "资产代码格式无效或 Yahoo 未识别该代码，请检查拼写及交易所后缀。"
+  ],
+  "Yahoo 未提供该资产的市场信息，代码可能无效、已退市或服务暂时异常，不能确定代码无效。 / Yahoo could not identify the market; symbol may be invalid, delisted or temporarily unavailable.": [
+    "Yahoo could not identify the market; symbol may be invalid, delisted or temporarily unavailable.",
+    "Yahoo 未提供该资产的市场信息，代码可能无效、已退市或服务暂时异常，不能确定代码无效。"
+  ],
+  "所选日期区间没有可用价格，不代表 ticker 无效；请调整区间。 / No prices in the selected date range; this does not establish an invalid ticker. Change the date range.": [
+    "No prices in the selected date range; this does not establish an invalid ticker. Change the date range.",
+    "所选日期区间没有可用价格，不代表 ticker 无效；请调整区间。"
+  ],
+  "有效历史价格不足或异常，至少需要三个价格观测值。 / Insufficient or invalid history; at least three valid prices are required.": [
+    "Insufficient or invalid history; at least three valid prices are required.",
+    "有效历史价格不足或异常，至少需要三个价格观测值。"
+  ],
+  "行情服务返回了无法使用的响应，请稍后重试。 / Market provider returned an unusable response; retry later.": [
+    "Market provider returned an unusable response; retry later.",
+    "行情服务返回了无法使用的响应，请稍后重试。"
+  ],
+  "演示数据仅支持 AAPL, MSFT, NVDA, SPY；请调整代码后重试。 / Demo data supports AAPL, MSFT, NVDA, SPY only; change symbols and retry.": [
+    "Demo data supports AAPL, MSFT, NVDA, SPY only; change symbols and retry.",
+    "演示数据仅支持 AAPL, MSFT, NVDA, SPY；请调整代码后重试。"
+  ],
+  "演示日期须在 2000–2100 年内。 / Demo dates must be within 2000–2100.": [
+    "Demo dates must be within 2000–2100.",
+    "演示日期须在 2000–2100 年内。"
+  ],
+  "日期区间无效。 / Invalid date range.": [
+    "Invalid date range.",
+    "日期区间无效。"
+  ],
+  "至少输入一个 ticker。 / Enter at least one ticker.": [
+    "Enter at least one ticker.",
+    "至少输入一个 ticker。"
+  ],
+  ": 实时行情不可用，演示数据也无法支持该输入。 / Live data unavailable and demo cannot support this input. Yahoo=": [
+    "Live data unavailable and demo cannot support this input. Yahoo=",
+    ": 实时行情不可用，演示数据也无法支持该输入。"
+  ],
+  "请输入组合名称。 / Enter a portfolio name.": [
+    "Enter a portfolio name.",
+    "请输入组合名称。"
+  ],
+  "组合不存在。 / Portfolio not found.": [
+    "Portfolio not found.",
+    "组合不存在。"
+  ]
+}

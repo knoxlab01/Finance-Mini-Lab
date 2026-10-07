@@ -201,9 +201,9 @@ Windows 无需激活环境的运行方式：
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-**155 automated tests passing**（2026-10-08 Phase 2 最终验证）：原有 65 项回归测试与新增 71 项 Phase 1 组合计算、数据对齐、基准、相关性、SQLite、缓存、备用源、来源元数据及页面测试。所有测试均不依赖实时互联网，行情通过 mock 隔离，数据库测试使用独立临时文件。另有 19 项 Phase 2 模型与 UI 测试。AppTest 的 `missing ScriptRunContext` 提示不影响结果。
+**189 automated tests passing**（2026-10-08 Phase 3 开发验证）：原有 65 项回归测试与新增 71 项 Phase 1 组合计算、数据对齐、基准、相关性、SQLite、缓存、备用源、来源元数据及页面测试。所有测试均不依赖实时互联网，行情通过 mock 隔离，数据库测试使用独立临时文件。另有 19 项 Phase 2 模型与 UI 测试和 28 项 Phase 3 guidance/UI 测试，以及 6 项语言与解释层测试。AppTest 的 `missing ScriptRunContext` 提示不影响结果。
 
-**155 tests pass**: 65 existing regression tests plus 71 analytics, retrieval/fallback, provenance, SQLite/cache, and UI tests, plus 19 Phase 2 model/UI tests. Tests use mocked downloads and isolated databases; live network access is not required.
+**189 tests pass**: 65 existing regression tests plus 71 analytics, retrieval/fallback, provenance, SQLite/cache, and UI tests, plus 19 Phase 2 model/UI tests and 28 Phase 3 guidance/UI tests, plus 6 localization/explainability tests. Tests use mocked downloads and isolated databases; live network access is not required.
 
 ### 标准验证案例
 
@@ -351,6 +351,52 @@ Demo historical inputs produce explicitly labeled synthetic demonstrations. Insu
 GBM methodology reference / 方法参考：[Columbia University — Geometric Brownian Motion](https://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf).
 
 人工验收 / Manual validation: AAPL, MSFT, NVDA · 40, 30, 30 · SPY · 2025-01-01 → 2026-01-01 · risk-free 4%; analyze, then initial value 100000 · 5 years · 5000 simulations. Verify three scenarios, checkpoint table, P10/P50/P90, both probabilities, paths/band, terminal histogram and interpretation. Yahoo unavailable is supported through Demo Data. Phase 2 manual acceptance passed (user-confirmed), including the Performance Overview 3+2 KPI layout. This remains v0.3 development, not a public v0.3.0 release.
+
+### Portfolio Guidance / 组合建议 — Phase 3 development
+
+Future Outlook 下方新增三个偏好字段：Conservative / Balanced / Aggressive、Short / Medium / Long Term、Capital Preservation / Steady Growth / Growth Priority。点击 Generate Guidance 后，复用当前历史分析与可用模拟输出；不下载数据、不重新运行核心指标或 Monte Carlo。新增模拟结果后，已有建议自动根据最新证据刷新；重新历史分析会清除旧偏好结果。
+
+Below Future Outlook, choose risk preference, horizon and primary goal, then Generate Guidance. The engine reads existing historical and available simulation outputs without downloads, core metric recalculation or Monte Carlo reruns. New simulation evidence refreshes guidance; a new historical analysis clears old results.
+
+**Educational rules / 教育性规则**
+
+- 年化简单收益波动率 <12% / 12–25% / ≥25%，最大回撤绝对值 <15% / 15–30% / ≥30%，模拟亏损概率 <15% / 15–35% / ≥35%，分别计 0/1/2 分。 / Volatility, drawdown magnitude and available terminal loss probability contribute 0/1/2 points at these thresholds.
+- 可用资产对平均相关系数 ≥0.75、最大单项权重 ≥50%、组合波动 ≥正基准波动的 1.25 倍各加 1 分。单项权重不穿透 ETF 底层持仓，不等同于个股集中风险。 / Correlation, allocation concentration and benchmark-relative volatility add one point each. Holding weights do not measure ETF underlying concentration.
+- 总分 0–1 / 2–3 / ≥4 对应 Lower / Moderate / Higher Risk。必须有有效波动率和最大回撤才能评级；缺失模拟、相关性或基准会披露，不代表风险为零。 / Core volatility and drawdown are required; missing optional evidence is disclosed rather than treated as safety.
+- 这些阈值是本项目可解释的启发式规则，不是学术标定、行业标准、监管评级或投资适当性测评。历史收益/CAGR、基准和模型预期收益只提供上下文，不抵消风险分。模拟亏损率取决于其 1/3/5 年期限，不能直接等同于用户投资期限。 / Thresholds are uncalibrated project heuristics. Return context does not cancel risk points; simulation horizon may differ from investment horizon.
+- 偏好、期限和目标分别映射 0/1/2；匹配目标取三者最小值，长期限不覆盖保守偏好，资本保值和短期用途限制为较低风险。实际风险高两档为 Too Aggressive、高一档为 Slightly Aggressive、相同为 Good Fit、低于目标为 Too Conservative（仅风险取向，不推断收益潜力）。 / Profile fit uses the minimum of preference/horizon/goal tiers as a risk ceiling; fit labels describe risk alignment, not likely returns.
+
+输出 3–5 条带指标数值和原因的建议，类别包括分散化、集中度、回撤、下行风险、基准风险、风险调整收益和偏好一致性。解释区列出评分证据，并引用历史回报、模拟参数和情景表。配置方向仅为抽象资产类别，不给证券、权重、目标价或交易时点；没有 optimizer。
+
+Outputs include 3–5 traceable suggestions, evidence and asset-class directions without securities, allocation weights, price targets, timing or optimization. Categories include diversification, concentration, drawdown, downside, benchmark risk, risk-adjusted quality and profile alignment.
+
+缺少 Future Outlook 时可生成基础建议，并提示补充模拟；关键历史数据或偏好不足时不输出确定评级/配置。Demo 模式明确显示 synthetic demo guidance，仅用于功能演示，不是真实 AAPL/MSFT/NVDA 历史建议。该工具不评估收入、负债、税务、流动性或实际损失承受能力，也不推断资产行业/风格。
+
+Historical-only guidance is supported, with a prompt to run Future Outlook. Missing core data or profile fields withhold definitive guidance. Demo-based guidance is explicitly synthetic and illustrative. Income, liabilities, tax position, liquidity, actual loss capacity and asset sector/style are not assessed.
+
+建议是教育性决策辅助，不是个性化、受托或受监管投资建议；应结合个人情况，不保证未来表现。通用分散化与期限概念参考 [Investor.gov](https://www.investor.gov/introduction-investing/getting-started/asset-allocation)；本项目具体评分阈值并非其制定或认可。
+
+Illustrative educational decision support, not personalized, fiduciary or regulated investment advice. Consider personal circumstances; no performance guarantee. General diversification/horizon concepts reference Investor.gov; the project's scoring thresholds are not issued or endorsed by it.
+
+人工验收 / Manual acceptance: run the existing AAPL/MSFT/NVDA example and Future Outlook, then Balanced / Long Term / Steady Growth → Generate Guidance. Check classification, fit, 3–5 recommendations, metric reasons, allocation direction and demo label. Also generate before Future Outlook, and compare Conservative + Short Term with Aggressive + Long Term + Growth Priority. Phase 3 manual logic acceptance passed; language-mode visual acceptance steps are documented below. No push, merge or release packaging.
+
+### Portfolio Language & Explainability / 组合页面语言与指标解释
+
+Portfolio Analytics 顶部 Language / 语言 默认 English，可随时切换中文。历史分析、Future Outlook、Guidance、数据源和 Demo 提示、按钮、表格及解释按选择单语言显示；其他三个计算器保持原有双语结构。语言只改变展示，保留同一组合、偏好、KPI、模拟路径和规则判断，不触发下载或重新模拟。
+
+Portfolio Analytics defaults to English and supports Chinese through its top language selector. Historical analytics, Future Outlook, Guidance, source/demo notices, controls and explanations render in the selected language. Other calculators retain their existing bilingual structure. Switching language preserves portfolio/profile inputs, KPIs, paths and classifications without downloading or resimulating.
+
+文案集中于 src/translations.json，src/i18n.py 提供轻量查询和格式化。src/engine_messages.json 及显式证据模板负责现有引擎消息的展示适配，保留经过测试的引擎输出与业务逻辑；无机器翻译或新依赖。新增文案应补齐两种语言及测试。
+
+Copy is centralized in translations.json with a lightweight i18n helper. The engine-message catalog and explicit evidence templates adapt existing engine output for presentation, preserving tested business rules without machine translation or dependencies. New copy should include both languages and coverage.
+
+指标层保留正式名称，并通过 tooltip/简短 helper 或折叠解释提供 Total Return、CAGR、Volatility、Sharpe Ratio、Maximum Drawdown、Correlation、Benchmark、P10/P50/P90、Loss Probability、Scenario Projection 的通俗解释。主视图保留建议及关键原因，详细证据默认折叠；未来模拟的数学细节放入模型假设折叠区与 README。
+
+Professional metric names remain, with short explanations in tooltips, helper text or a collapsed glossary. All ten metric groups above are covered. Guidance keeps recommendations and key reasons visible, with detailed evidence collapsed by default; model details stay in an assumptions expander and this README.
+
+Phase 3 逻辑人工验收已通过（用户确认）。语言模式的验收步骤：先用相同组合和偏好完成历史分析、模拟和建议，再在 English/中文之间切换，核对文案单语言、tooltip 和数值完全一致。本轮只建立本地开发提交，不发布 v0.3.0。
+
+The user confirmed Phase 3 logic acceptance. For language-mode visual acceptance, run one portfolio/profile through history, simulation and guidance, then switch English/Chinese and verify single-language copy, tooltips and identical values. This is a local development milestone, not a v0.3.0 release.
 
 ### Acceptance Status / 验收状态
 

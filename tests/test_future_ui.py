@@ -59,9 +59,9 @@ class FutureUITests(unittest.TestCase):
             with patch.dict(os.environ, {"FINANCE_LAB_DB": str(Path(folder) / "test.sqlite3")}):
                 app = AppTest.from_file(str(root / "streamlit_app.py"), default_timeout=30).run()
                 with patch("src.market_data.download_prices", side_effect=TimeoutError()):
-                    app.button(key="FormSubmitter:portfolio_setup-Analyze Portfolio").click().run()
+                    app.button(key="pa_analyze").click().run()
                 with patch("src.portfolio_ui.get_historical_prices") as download:
-                    app.button(key="FormSubmitter:future_settings-Run Future Outlook / 运行未来模拟").click().run()
+                    app.button(key="fo_run").click().run()
                 download.assert_not_called()
                 self.assertFalse(app.exception)
                 self.assertFalse(app.error)
