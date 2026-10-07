@@ -21,8 +21,8 @@ class StreamlitAppTests(unittest.TestCase):
     def test_product_intro_and_module_overview(self):
         app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "streamlit_app.py"), default_timeout=15).run()
         self.assertFalse(app.exception)
-        self.assertEqual(app.title[0].value, "Finance Mini Lab v0.1")
-        self.assertIn("A lightweight financial planning toolkit for exploring long-term investment growth.", [m.value for m in app.markdown])
+        self.assertEqual(app.title[0].value, "Finance Mini Lab v0.2.0")
+        self.assertIn("A lightweight financial planning and scenario analysis toolkit built with Python and Streamlit.", [m.value for m in app.markdown])
         self.assertTrue(any("仅用于教育和模拟，不构成投资建议" in c.value for c in app.caption))
         for name in ["Compound Interest", "DCA Simulator", "Goal Planner"]:
             self.assertIn(f"**{name}**", [m.value for m in app.markdown])

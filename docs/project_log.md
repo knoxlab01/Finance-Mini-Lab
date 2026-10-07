@@ -1,3 +1,5 @@
+> 当前版本：**v0.2.0**。下方旧版本名称和验证数字属于历史里程碑记录，不代表当前产品状态。
+
 # 项目日志
 
 ## 2026-09-30 — Milestone 1：Compound Interest Calculator
@@ -253,3 +255,26 @@ Finance-Mini-Lab/
 - README Screenshot / Demo 区域包含三个模块图片及简短说明；移除过时的缺图 TODO 和 assets 为空说明。
 - 使用 Markdown 转换器验证产生三个 img 元素，全部 src 相对路径均正确解析到本地 PNG。图片完整性与引用检查通过；图片预览工具因沙箱初始化错误不可用，未进行截图内容的视觉复核。
 - 不修改核心代码，不创建 Release。本次按用户要求提交正式截图、README 和日志。
+
+
+## 2026-10-07 — v0.2.0 Final Packaging
+
+- 当前 README、网页标题、CLI 标题和版本测试统一为 v0.2.0；DCA 文件说明中的版本文字同步，不改金融计算。
+- README 更新三个模块定位及 Scenario Analysis、Inflation-adjusted Value、Goal Sensitivity，补充版本亮点、计算口径、真实技术栈和简洁未来方向。
+- 保留 Live Demo、knoxlab01 仓库地址、安装与运行命令、安全规则、固定假设和非投资建议说明。
+- 三张旧截图保留且可解码，README 分别标记重拍情景分析、通胀结果与目标敏感性区域。
+- 发布前仍需更新截图、提交推送并确认线上部署版本；本轮不创建 tag 或 Release，不重写历史。
+
+### 本轮验证
+
+- 完整测试 65 项全部通过，README 如实标记 65 automated tests passing；git diff --check 通过。
+- 核对 Python diff 仅涉及版本及产品介绍字符串，无金融计算变化。
+- README 本地图片与日志链接均存在，三张 PNG 完整解码；GitHub knoxlab01 仓库页面可访问，未发现旧用户名。localhost:8501 为本地启动示例，不是公共在线地址。
+- Live Demo 地址保持不变；初次自动读取遇到重定向问题，加入 Cookie 支持后返回 HTTP 200。已确认地址可达，但发布前仍需浏览器确认线上部署版本与交互功能。
+
+## 2026-10-07 — v0.2.0 新版截图与最终检查
+
+- 人工提供三张新版 PNG，修正文件名中多余的 assets 前缀，恢复 README 约定路径；未修改图片内容。
+- 三张 PNG 完整解码，尺寸分别为 987×1345、940×1239、926×1365；README 图片引用存在，截图更新 TODO 已清除。
+- 当前公开版本文案统一 v0.2.0，旧版本名称仅保留于历史里程碑记录。
+- 完整 65 项测试通过；本轮按要求提交发布包装，不创建 tag 或 Release。

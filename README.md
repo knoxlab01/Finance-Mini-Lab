@@ -1,10 +1,10 @@
-# Finance Mini Lab v0.1
+# Finance Mini Lab v0.2.0
 
-A lightweight investment planning and financial education toolkit built with Python and Streamlit.
+A lightweight financial planning and scenario analysis toolkit built with Python and Streamlit.
 
-一个使用 **Python + Streamlit** 构建的轻量级金融规划与金融教育工具，包含 **Compound Interest / 复利计算、DCA Simulator / 定投模拟、Goal Planner / 目标规划** 三个模块。
+一个使用 **Python + Streamlit** 构建的轻量级投资规划与情景分析工具，用于理解时间、投入、收益率和通胀如何影响长期财富结果。
 
-通过交互输入、增长图表和逐年明细探索不同假设下的资产变化，并以输入校验和自动化测试验证计算行为。项目采用固定收益率模拟，适合教育与演示用途，不构成投资建议。当前版本：**v0.1.0**。
+包含复利计算、定投模拟和目标规划三个模块，支持交互输入、增长图表、逐年明细、输入校验与自动化测试。采用固定假设，适合教育和规划模拟，不构成投资建议。当前版本：**v0.2.0**。
 
 ## Live Demo / 在线体验
 
@@ -16,15 +16,26 @@ A lightweight investment planning and financial education toolkit built with Pyt
 
 | 模块 | 用途 |
 |---|---|
-| **Compound Interest / 复利计算** | 模拟一次性本金按年复利的增长，展示收益、逐年数据、收益构成及 4%、当前收益率、12% 的情景对比。 |
-| **DCA Simulator / 定投模拟** | DCA（Dollar-Cost Averaging）即定期定额投资。本模块模拟初始本金加每月固定投入，对比累计投入与资产价值。 |
-| **Goal Planner / 目标规划** | 根据目标资产、本金、收益率和期限反推每月所需投入，复用 DCA 模拟验证目标，并展示逐年目标差额。 |
+| **Compound Interest / 复利计算** | 模拟一次性本金按年复利的增长，展示收益、逐年数据、收益构成、Conservative / Base / Optimistic 情景分析及通胀调整后的实际购买力。 |
+| **DCA Simulator / 定投模拟** | DCA（Dollar-Cost Averaging）即定期定额投资。本模块模拟初始本金加每月固定投入，对比累计投入与资产价值，并展示最终资产的通胀调整结果。 |
+| **Goal Planner / 目标规划** | 根据目标资产、本金、收益率和期限反推每月所需投入，复用 DCA 模拟验证目标，并展示逐年目标差额、时间敏感性和收益率敏感性。 |
 
 三个模块通过独立标签页使用。网页之外，还保留了命令行复利计算器。
 
+## v0.2.0 Highlights / 版本亮点
+
+- **Scenario Analysis**：Conservative / Base / Optimistic 三档收益率比较。
+- **Inflation-adjusted Value**：复利与定投的名义金额、实际购买力及购买力损失。
+- **Goal Sensitivity**：时间敏感性与收益率敏感性，比较所需月投入及较基准差额。
+- Interactive growth charts / 交互增长图表。
+- Year-by-year projections / 逐年模拟明细。
+- Input validation / 输入校验与数值异常处理。
+- **65 automated tests passing** / 核心计算与页面测试。
+- Public Streamlit deployment / 公开在线体验。
+
 ## Screenshot / Demo
 
-以下为三个模块计算完成后的实际页面截图。
+以下为 v0.2.0 三个模块的实际产品截图。
 
 ### Compound Interest
 
@@ -53,7 +64,9 @@ A lightweight investment planning and financial education toolkit built with Pyt
 - Goal-based contribution planning：目标导向的月投入反推。
 - Growth charts：资产、累计投入与目标参考线。
 - Year-by-year tables：从 Year 0 开始的逐年明细。
-- Scenario analysis：复利模块固定收益率情景对比，自动去重。
+- Scenario analysis：保守、基准、乐观情景对比及收益率边界处理。
+- Inflation adjustment：默认 2% 固定通胀假设，可调节；复利与定投的终值折现。
+- Goal sensitivity：期限与收益率变化下的月投入比较。
 - Financial insights：结果摘要与 Rule of 72 近似翻倍估算。
 - Input validation：友好处理无效输入、非有限数值及计算溢出。
 - Automated tests：核心计算与 Streamlit 页面自动化测试。
@@ -64,7 +77,8 @@ A lightweight investment planning and financial education toolkit built with Pyt
 - **Streamlit**：网页界面、交互表单、图表和表格。
 - **Python standard library**：金融计算、输入校验及 `unittest` 测试。
 - **Streamlit AppTest**：页面交互测试，包含在 Streamlit 中。
-- **Git**：版本管理。
+- **Git / GitHub**：版本管理与公开代码托管。
+- **Streamlit Community Cloud**：公开应用部署。
 
 唯一声明的第三方直接依赖为 `streamlit>=1.50,<2`。开发验证使用 Python 3.12.14 / Streamlit 1.64.0。Streamlit 所需的 pandas、Altair 等间接依赖由 pip 自动安装，无需另行手动安装。
 
@@ -80,13 +94,22 @@ Finance-Mini-Lab/
 ├─ src/                          # 独立金融计算逻辑
 │  ├─ compound_interest.py
 │  ├─ dca.py
-│  └─ goal_planner.py
+│  ├─ goal_planner.py
+│  ├─ scenario.py                 # 三档情景
+│  ├─ inflation.py                # 通胀折现
+│  └─ sensitivity.py              # 目标敏感性
 ├─ tests/                        # 核心计算与页面测试
 │  ├─ test_streamlit_app.py
 │  ├─ test_dca.py
 │  ├─ test_dca_ui.py
 │  ├─ test_goal_planner.py
-│  └─ test_goal_planner_ui.py
+│  ├─ test_goal_planner_ui.py
+│  ├─ test_scenario.py
+│  ├─ test_inflation.py
+│  ├─ test_inflation_ui.py
+│  ├─ test_sensitivity.py
+│  └─ test_sensitivity_ui.py
+├─ assets/                       # README 截图
 └─ docs/
    └─ project_log.md              # 里程碑及验证记录
 ```
@@ -167,7 +190,7 @@ Windows 无需激活环境的运行方式：
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-当前有 **37 个测试方法**，覆盖核心计算、输入边界、零本金、零收益率、情景去重、图表、表格、目标回算及模块切换。AppTest 在某些环境可能输出 `missing ScriptRunContext` 提示，以最后的测试结果为准。
+**65 automated tests passing**（2026-10-07 本地完整验证）。覆盖核心计算、输入边界、零本金、零收益率、情景分析、通胀折现、目标敏感性、图表、表格、目标回算及模块切换。AppTest 在某些环境可能输出 `missing ScriptRunContext` 提示，以最后的测试结果为准。
 
 ### 标准验证案例
 
@@ -182,6 +205,9 @@ Windows 无需激活环境的运行方式：
 - **Compound Interest**：`FV = PV × (1 + r)^n`，每年复利，无追加投入。
 - **DCA**：月收益率为 `r / 12`，每月先增长、再加入固定投入；累计投入包含初始本金。总收益率为投资增长除以累计投入，不是年化或资金加权收益率。
 - **Goal Planner**：复用 DCA 的本金期末价值与单位月投入系数反推金额，再通过 DCA 回算。本金自身增长已达到目标时，月投入为 0。
+- **Scenario Analysis**：基准收益率 ±3 个百分点；保守值触及 -100% 时改取基准与 -100% 的中点，极近边界受浮点精度限制。
+- **Inflation-adjusted Value**：`Real Value = Nominal Value / (1 + inflation_rate)^years`；购买力损失为名义金额减实际购买力，以投资起点计价。固定通胀率默认 2%，须大于 -100%；负值表示通缩。DCA 月投入保持固定名义金额。
+- **Goal Sensitivity**：复用 Goal Planner 比较当前期限 ±5 年（限制为 1–1000 并去重）以及三档收益率；差额为情景月投入减基准月投入。异常情景显示 N/A，不改变基准结果。
 - 月度复利与年度复利在同一名义年化收益率下通常产生不同结果。
 - Compound Interest 与 DCA 支持 0–1000 整数年；Goal Planner 支持 1–1000 整数年，目标必须大于 0。本金和月投入非负，收益率必须大于 -100%。
 - 内部计算保留完整精度，显示时才舍入。目标规划按显示的两位小数金额投入可能产生少量差额；回算允许误差为 `max(target × 1e-9, 1e-6)`。
@@ -191,23 +217,26 @@ Windows 无需激活环境的运行方式：
 
 - **Fixed return assumption**：收益率固定，不保证实际收益。
 - **Compounding frequency depends on module**：复利模块按年，DCA 和目标规划按月。
-- **No tax, inflation or fees**：不考虑税费、通胀和手续费。
+- **No tax or fees**：不考虑税费和手续费。
+- **Fixed inflation assumption**：仅复利与定投另列通胀折现结果，不预测真实通胀；原有收益与图表保持名义金额，Goal Planner 不做通胀调整。
 - **No real market volatility**：不模拟真实市场波动，也不使用真实行情。
 - **Educational use only**：仅用于金融教育和演示。
 - **Not investment advice**：结果不构成投资建议或市场回报预测。
 
 ## Roadmap / 未来方向
 
-以下为潜在探索方向，**不属于 v0.1，尚未实现或承诺交付**：
+以下为潜在探索方向，**不属于 v0.2.0，尚未实现或承诺交付**：
 
-- Inflation adjustment / 通胀调整。
-- Real market data / 真实市场数据。
-- Portfolio analytics / 投资组合分析。
-- Sharpe ratio / 夏普比率。
-- Scenario modelling / 更广泛的情景建模，超出现有固定收益率对比。
+- Historical market reference / 历史市场参考。
+- Export/report functionality / 导出与报告。
+- Additional financial insight tools / 更多金融解读工具。
+
+## Security / 安全
+
+不要提交密码、API key 或凭据。`.gitignore` 排除 `.env`、`.env.*` 和 `.streamlit/secrets.toml`；私密配置不应纳入公开仓库。
 
 ## Version / 版本
 
-当前版本：**v0.1.0**。界面保留 `Finance Mini Lab v0.1` 标题。
+当前版本：**v0.2.0**。网页与 CLI 均显示 `Finance Mini Lab v0.2.0`。
 
 开发过程与各里程碑验证记录见 [Project Log](docs/project_log.md)。

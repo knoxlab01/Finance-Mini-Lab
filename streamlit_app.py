@@ -331,9 +331,9 @@ def render_goal_planner() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Finance Mini Lab v0.1", page_icon="📈")
-    st.title("Finance Mini Lab v0.1")
-    st.write("A lightweight financial planning toolkit for exploring long-term investment growth.")
+    st.set_page_config(page_title="Finance Mini Lab v0.2.0", page_icon="📈")
+    st.title("Finance Mini Lab v0.2.0")
+    st.write("A lightweight financial planning and scenario analysis toolkit built with Python and Streamlit.")
     st.caption("探索长期资产增长与投入规划。仅用于教育和模拟，不构成投资建议。")
 
     st.subheader("Explore the Modules")
