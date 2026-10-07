@@ -1,4 +1,4 @@
-"""DCA 固定收益率模拟：Finance Mini Lab v0.2.0，并非真实市场回报预测。"""
+"""DCA 固定收益率模拟：Finance Mini Lab v0.3.0，并非真实市场回报预测。"""
 
 from math import isfinite
 

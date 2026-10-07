@@ -1,419 +1,182 @@
-# Finance Mini Lab v0.2.0
+# Finance Mini Lab v0.3.0
 
-A lightweight financial planning and scenario analysis toolkit built with Python and Streamlit.
+一个基于 Python 与 Streamlit 构建的轻量级金融规划、投资组合分析与情景模拟工具。
 
-一个使用 **Python + Streamlit** 构建的轻量级投资规划与情景分析工具，用于理解时间、投入、收益率和通胀如何影响长期财富结果。
-
-包含复利计算、定投模拟和目标规划三个模块，支持交互输入、增长图表、逐年明细、输入校验与自动化测试。采用固定假设，适合教育和规划模拟，不构成投资建议。当前版本：**v0.2.0**。
+A lightweight financial planning, portfolio analytics, and scenario simulation toolkit built with Python and Streamlit.
 
 ## Live Demo / 在线体验
 
-**[打开 Finance Mini Lab 在线体验](https://finance-mini-lab-knox.streamlit.app/)**
+[Finance Mini Lab](https://finance-mini-lab-knox.streamlit.app/)
 
-无需本地安装，即可在浏览器中体验三个模块。
+此链接指向现有公开部署；本次仅完成本地发布准备，尚未更新线上版本。
+This link points to the existing deployment; this release preparation has not been deployed.
+
+## Overview / 项目概览
+
+从长期投入规划，到历史风险收益分析、未来情景模拟和可解释的组合建议，帮助理解假设与结果的关系。用于教育、研究与作品集展示，不是交易平台或受监管投资顾问。
+
+Explore how contributions, historical returns, risk and simulation assumptions shape portfolio outcomes. Built for education, research and portfolio demonstration, with transparent calculations and automated tests.
 
 ## Core Modules / 核心模块
 
-| 模块 | 用途 |
+| Module / 模块 | Capabilities / 功能 |
 |---|---|
-| **Compound Interest / 复利计算** | 模拟一次性本金按年复利的增长，展示收益、逐年数据、收益构成、Conservative / Base / Optimistic 情景分析及通胀调整后的实际购买力。 |
-| **DCA Simulator / 定投模拟** | DCA（Dollar-Cost Averaging）即定期定额投资。本模块模拟初始本金加每月固定投入，对比累计投入与资产价值，并展示最终资产的通胀调整结果。 |
-| **Goal Planner / 目标规划** | 根据目标资产、本金、收益率和期限反推每月所需投入，复用 DCA 模拟验证目标，并展示逐年目标差额、时间敏感性和收益率敏感性。 |
+| Compound Interest / 复利计算 | 一次性本金增长、情景分析、通胀调整 / Lump-sum growth, scenarios and inflation adjustment |
+| DCA Simulator / 定投模拟 | 月度定投、累计投入与资产对比、实际购买力 / Monthly contributions, growth versus contributions and purchasing power |
+| Goal Planner / 目标规划 | 所需月投入、目标进度、时间与收益率敏感性 / Required contributions, progress and sensitivity |
+| Portfolio Analytics / 组合分析 | 历史表现、基准、风险分散化、未来模拟、组合建议 / Historical performance, benchmarks, diversification, simulation and guidance |
 
-三个模块通过独立标签页使用。网页之外，还保留了命令行复利计算器。
+Portfolio Analytics 包含 / includes:
 
-## v0.2.0 Highlights / 版本亮点
+- Total Return, CAGR, Annualized Volatility, Sharpe Ratio and Maximum Drawdown；标准化组合/基准曲线、回撤与相关性矩阵 / normalized portfolio/benchmark growth, drawdowns and correlation.
+- SQLite 行情缓存、组合保存/加载与分析元数据 / price caching, portfolio save/load and analysis metadata.
+- Future Outlook：情景投影、GBM Monte Carlo、P10/P50/P90、亏损概率 / scenario projections, outcome percentiles and loss probability.
+- Portfolio Guidance：规则风险分类、偏好/期限/目标匹配、指标理由 / rule-based risk classification, profile fit and metric-based reasons.
+- 指标说明与假设；默认 English，可切换中文，保留计算结果 / explainability and assumptions, with English/Chinese selection preserving results.
 
-- **Scenario Analysis**：Conservative / Base / Optimistic 三档收益率比较。
-- **Inflation-adjusted Value**：复利与定投的名义金额、实际购买力及购买力损失。
-- **Goal Sensitivity**：时间敏感性与收益率敏感性，比较所需月投入及较基准差额。
-- Interactive growth charts / 交互增长图表。
-- Year-by-year projections / 逐年模拟明细。
-- Input validation / 输入校验与数值异常处理。
-- **65 automated tests passing** / 核心计算与页面测试。
-- Public Streamlit deployment / 公开在线体验。
+## v0.3.0 Highlights / 版本亮点
 
-## Screenshot / Demo
+- 从规划计算器扩展为历史组合分析与情景模拟应用 / Extends planning tools with historical portfolio analytics and scenario simulation.
+- 真实行情与确定性演示兜底；透明标记数据来源 / Live-data support with clearly labeled deterministic demo fallback.
+- SQLite/SQL 实际参与缓存、配置保存及运行记录 / SQL-backed caching, configuration persistence and run records.
+- 可解释组合建议与双语组合分析 / Explainable guidance and bilingual portfolio analytics.
+- 保留原有规划功能，完整自动化回归验证 / Preserves planning tools with full automated regression coverage.
 
-以下为 v0.2.0 三个模块的实际产品截图。
+## Technical Architecture / 技术架构
 
-### Compound Interest
+Python + Streamlit；pandas/NumPy 数据计算；内置 sqlite3；yfinance 实时来源；pytest 收集并运行 unittest 与 Streamlit AppTest 测试；Git/GitHub 版本管理；Streamlit Community Cloud 部署。
 
-![Compound Interest：复利计算结果与资产增长曲线](assets/compound_interest.png)
+Python and Streamlit, pandas/NumPy, built-in SQLite, yfinance, pytest running unittest and Streamlit AppTest, Git/GitHub, and Streamlit Community Cloud.
 
-展示一次性本金的复利增长、收益指标和逐年资产变化。
+| Layer / 层 | Files / 文件 |
+|---|---|
+| Entry points / 入口 | `streamlit_app.py`, `app.py` (CLI compound calculator) |
+| Planning / 规划 | `src/compound_interest.py`, `dca.py`, `goal_planner.py`, `scenario.py`, `inflation.py`, `sensitivity.py` |
+| Data / 数据 | `src/market_data.py`, `src/database.py` |
+| Analytics / 分析 | `src/portfolio_analysis.py`, `src/portfolio_metrics.py`, `src/benchmark.py` |
+| Simulation & guidance / 模拟与建议 | `src/future_simulation.py`, `src/portfolio_guidance.py` |
+| Presentation / 展示 | `src/portfolio_ui.py`, `src/future_ui.py`, `src/guidance_ui.py`, `src/i18n.py`, translation catalogs |
+| Verification / 验证 | `tests/`, `requirements-dev.txt` |
 
-### DCA Simulator
+SQLite tables: `historical_prices` stores downloaded prices; `portfolio_configs` stores named configurations; `analysis_runs` stores analysis metadata and provenance. Parameterized SELECT/INSERT and UPSERT operations provide actual persistence. Runtime databases under `data/` are ignored by Git; cloud local storage is not durable or private account storage.
 
-![DCA Simulator：累计投入与资产价值对比](assets/dca_simulator.png)
+SQLite 三类表分别保存行情、组合配置和运行来源记录；使用参数化查询和 UPSERT。`data/` 不进入 Git；云端本地文件不保证持久保存，也不是用户账号隔离存储。
 
-展示每月固定投入下的资产积累，以及累计投入与投资增长的差距。
+## Data Strategy / 数据策略
 
-### Goal Planner
+**SQLite Cache → Yahoo Finance → Demo Data**
 
-![Goal Planner：每月所需投入与目标进度](assets/goal_planner.png)
+缓存有效时复用 Yahoo 行情；否则尝试 yfinance 日线 `auto_adjust=True` Close。结束日期按包含处理，转换为 Yahoo 的不包含结束日期接口。存在重试与短暂冷却，失败则整组资产及基准统一使用演示数据，避免混合真实与合成数据。
 
-展示达到目标资产所需的月投入，以及模拟资产与目标线的对比。
+Valid cached Yahoo prices are reused first. Otherwise yfinance retrieves adjusted daily Close prices, with inclusive user end dates converted to the provider's exclusive boundary. Retries and a short cooldown reduce repeated failures. If retrieval fails, the whole analysis uses synthetic assets and benchmark consistently.
 
-可通过 [Live Demo](https://finance-mini-lab-knox.streamlit.app/) 体验交互，或按下方 Run Locally 步骤在本地运行。
+**Demo Data / 演示数据** 是固定种子生成的 deterministic synthetic time series，支持 AAPL/MSFT/NVDA/SPY 标签、2000–2100 年工作日，不是真实历史行情，不代表这些证券实际表现，不依赖 API，也不再分发第三方行情。相同输入产生相同结果。合成行情不写入真实行情缓存；运行记录保留来源。UI 显示实际来源与非阻断提示。
 
-## Key Features / 主要功能
+Demo Data is deterministic synthetic data using fixed seeds, covering weekday dates in 2000–2100 for AAPL/MSFT/NVDA/SPY labels. It is not actual market history, does not represent those securities' performance, and uses no external API. Identical inputs reproduce results; synthetic prices are kept out of the real-price cache. Provenance is retained in run metadata and displayed in the UI.
 
-- Compound growth simulation：年度复利增长模拟。
-- Monthly DCA simulation：月度复利与月末定投模拟。
-- Goal-based contribution planning：目标导向的月投入反推。
-- Growth charts：资产、累计投入与目标参考线。
-- Year-by-year tables：从 Year 0 开始的逐年明细。
-- Scenario analysis：保守、基准、乐观情景对比及收益率边界处理。
-- Inflation adjustment：默认 2% 固定通胀假设，可调节；复利与定投的终值折现。
-- Goal sensitivity：期限与收益率变化下的月投入比较。
-- Financial insights：结果摘要与 Rule of 72 近似翻倍估算。
-- Input validation：友好处理无效输入、非有限数值及计算溢出。
-- Automated tests：核心计算与 Streamlit 页面自动化测试。
+Kibot 不在公开运行路径；未接入 Alpha Vantage 或其他授权备用源。
+Kibot is excluded from public runtime; no Alpha Vantage or other licensed fallback is integrated.
 
-## Tech Stack / 技术栈
+## Methodology / 计算方法
 
-- **Python 3.12**：已验证的运行环境。
-- **Streamlit**：网页界面、交互表单、图表和表格。
-- **Python standard library**：金融计算、输入校验及 `unittest` 测试。
-- **Streamlit AppTest**：页面交互测试，包含在 Streamlit 中。
-- **Git / GitHub**：版本管理与公开代码托管。
-- **Streamlit Community Cloud**：公开应用部署。
+- **Historical analytics / 历史分析**：共同观测交易日对齐，不前向填充；简单日收益按目标权重每日再平衡汇总，非买入持有模型。组合与基准从同一基值开始。
+  Align observed dates without forward filling; aggregate simple daily returns with daily target-weight rebalancing. Both growth curves share a starting base.
+- **Metrics / 指标**：累计收益为复合增长减一；CAGR 使用共同价格首末日期的实际天数（365.25 天/年）；波动率为样本标准差 × √252；Sharpe 将年有效无风险利率转换为日利率，日超额收益均值/收益标准差 × √252。最大回撤包含初始基值；相关性为共同日收益的 Pearson correlation。未定义指标明确显示不可用。
+  Cumulative return compounds daily returns. CAGR uses elapsed calendar days; volatility and Sharpe annualize over 252 trading days. Sharpe converts the effective annual risk-free rate to daily. Drawdown includes the initial baseline; correlation uses aligned daily returns. Undefined metrics are marked unavailable.
+- **GBM Monte Carlo / 蒙特卡洛**：至少 60 个历史日收益估计对数收益参数；`g = mean(log1p(r)) × 252`, `sigma = std(log1p(r), ddof=1) × sqrt(252)`, `mu = g + sigma²/2`。月度精确转移 `V_next = V × exp(g/12 + sigma/sqrt(12) × Z)`。固定种子、1/3/5 年、1,000–10,000 路径；最多展示 50 条路径。
+  At least 60 daily observations calibrate log-return drift and volatility. Exact monthly GBM transitions use independent normal shocks and a fixed seed, with 1/3/5-year horizons and 1,000–10,000 paths; charts show up to 50 paths.
+- **Outcomes / 结果**：P10/P50/P90 是模拟分位数，不是保证或置信承诺；亏损概率指期末低于初始本金的路径比例。Base 情景使用模型期望值，不等于中位数；保守/乐观漂移调整是说明性假设。
+  Percentiles describe simulated outcomes. Loss probability counts endings below initial capital. Base projections use model expectation rather than the median; scenario drift adjustments are illustrative.
+- **Guidance / 建议**：规则评分而非 AI、优化或下单。波动率 <12% / 12–25% / ≥25%、回撤幅度 <15% / 15–30% / ≥30%、可用亏损概率 <15% / 15–35% / ≥35%，分别计 0/1/2；平均相关性 ≥0.75、最大单项权重 ≥50%、组合波动率 ≥基准的 1.25 倍，各加 1。总分 0–1/2–3/≥4 为 Lower/Moderate/Higher。缺失核心证据不作确定评级；可选证据缺失会披露。
+  Transparent rules score volatility, drawdown, available loss probability, correlation, concentration and benchmark-relative volatility. Missing core evidence withholds classification; missing optional evidence is disclosed.
+- **Profile fit / 偏好匹配**：偏好、期限与目标映射为三档风险容量，取最谨慎档与组合风险比较；只提供定性匹配与抽象资产类别方向，不评估实际财务适当性，不推荐个股交易。
+  Preference, horizon and goal map to three risk levels; the most cautious level determines the comparison. Qualitative fit and broad asset-class directions do not assess personal suitability or recommend trades.
 
-公开 v0.2.0 原有依赖为 Streamlit。当前 v0.3 Phase 1 开发新增 yfinance，并直接声明用于历史数据计算的 pandas、numpy；SQLite 使用 Python 内置 `sqlite3`。开发验证使用 Python 3.12 / Streamlit 1.64.0。
-
-The public v0.2.0 release used Streamlit. Phase 1 development adds yfinance and declares pandas/numpy directly for analytics; SQLite uses built-in `sqlite3`.
-
-## Project Structure / 项目结构
-
-```text
-Finance-Mini-Lab/
-├─ README.md
-├─ requirements.txt
-├─ .gitignore
-├─ app.py                         # 命令行复利计算器
-├─ streamlit_app.py               # 原有三个模块 + 开发中的组合分析
-├─ src/                          # 独立金融计算逻辑
-│  ├─ compound_interest.py
-│  ├─ dca.py
-│  ├─ goal_planner.py
-│  ├─ scenario.py                 # 三档情景
-│  ├─ inflation.py                # 通胀折现
-│  ├─ sensitivity.py              # 目标敏感性
-│  ├─ database.py                 # SQLite 缓存、配置、分析记录
-│  ├─ market_data.py              # Yahoo 历史复权行情
-│  ├─ portfolio_analysis.py       # 权重、日期对齐、收益与相关性
-│  ├─ portfolio_metrics.py        # 历史风险收益指标
-│  ├─ benchmark.py                # 同期基准比较
-│  └─ portfolio_ui.py             # 独立组合分析页面
-├─ tests/                        # 核心计算与页面测试
-│  ├─ test_streamlit_app.py
-│  ├─ test_dca.py
-│  ├─ test_dca_ui.py
-│  ├─ test_goal_planner.py
-│  ├─ test_goal_planner_ui.py
-│  ├─ test_scenario.py
-│  ├─ test_inflation.py
-│  ├─ test_inflation_ui.py
-│  ├─ test_sensitivity.py
-│  ├─ test_sensitivity_ui.py
-│  ├─ test_portfolio.py
-│  └─ test_portfolio_ui.py
-├─ data/                         # 本地 SQLite（自动创建，不提交）
-├─ assets/                       # README 截图
-└─ docs/
-   └─ project_log.md              # 里程碑及验证记录
-```
-
-`assets/` 保存 Screenshot / Demo 区域引用的三张正式 PNG 截图。`.venv/`、缓存及 IDE 临时文件由 `.gitignore` 排除。
-
-## Installation / 安装
-
-先安装 Python 3.12 和 Git。以下命令均在终端执行。
-
-### 1. 获取项目
-
-从 GitHub 克隆项目，然后进入项目目录：
-
-```bash
-git clone https://github.com/knoxlab01/Finance-Mini-Lab.git
-cd Finance-Mini-Lab
-```
-
-如果已经持有本地项目目录，直接进入该目录，跳过克隆步骤。
-
-### 2. 创建虚拟环境并安装依赖
-
-**Windows / PowerShell：**不必激活虚拟环境，直接调用其中的 Python，避免执行策略问题。
-
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-如果没有 `py` 启动器，可将第一行改为 `python -m venv .venv`，并确认该 Python 为 3.12；若命令未加入 PATH，可使用解释器的完整路径。
-
-**macOS / Linux：**
-
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-若系统使用 `python3`，请先确认 `python3 --version` 为所需版本。
+[GBM methodology reference / 方法参考](https://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf)
 
 ## Run Locally / 本地运行
 
-在项目根目录、已激活虚拟环境的终端中运行：
-
-```bash
-python -m streamlit run streamlit_app.py
-```
-
-Windows 无需激活即可运行：
-
 ```powershell
+git clone https://github.com/knoxlab01/Finance-Mini-Lab.git
+cd Finance-Mini-Lab
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
 ```
 
-打开终端显示的 Local URL，通常是 [http://localhost:8501](http://localhost:8501)。选择模块、填写参数并点击 **Calculate**；终端按 `Ctrl+C` 停止服务。
-
-运行 CLI 复利版本：
-
-```bash
-python app.py
-```
-
-Windows 未激活环境时可使用 `.\.venv\Scripts\python.exe app.py`。CLI 年化收益率输入 `8` 表示 8%；三个网页模块也采用百分数输入，而核心函数接收小数 `0.08`。
-
-## Testing / 测试
-
-在项目根目录运行完整套件：
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-Windows 无需激活环境的运行方式：
+开发验证 / Development checks:
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe app.py
 ```
 
-**189 automated tests passing**（2026-10-08 Phase 3 开发验证）：原有 65 项回归测试与新增 71 项 Phase 1 组合计算、数据对齐、基准、相关性、SQLite、缓存、备用源、来源元数据及页面测试。所有测试均不依赖实时互联网，行情通过 mock 隔离，数据库测试使用独立临时文件。另有 19 项 Phase 2 模型与 UI 测试和 28 项 Phase 3 guidance/UI 测试，以及 6 项语言与解释层测试。AppTest 的 `missing ScriptRunContext` 提示不影响结果。
+macOS/Linux 使用 `.venv/bin/python` 替换 Windows 路径。数据库自动创建；不需要 API key。
+On macOS/Linux use `.venv/bin/python`. SQLite initializes automatically; no API key is required.
 
-**189 tests pass**: 65 existing regression tests plus 71 analytics, retrieval/fallback, provenance, SQLite/cache, and UI tests, plus 19 Phase 2 model/UI tests and 28 Phase 3 guidance/UI tests, plus 6 localization/explainability tests. Tests use mocked downloads and isolated databases; live network access is not required.
+## Testing / 自动化测试
 
-### 标准验证案例
+**189 tests passing** in the complete pytest suite (2026-10-08). Existing unittest cases and Streamlit AppTest are collected by pytest. Coverage includes planning regression, analytics and edge cases, SQLite CRUD/cache, mocked retrieval/fallback/provenance, simulation, guidance, localization and explainability. Tests require no live market API and use isolated databases.
 
-| 模块 | 输入 | 预期结果 |
-|---|---|---:|
-| Compound Interest | 本金 10,000；年化 8%；10 年 | 未来价值 ¥21,589.25 |
-| DCA Simulator | 本金 10,000；每月投入 1,000；年化 8%；10 年 | 未来价值 ¥205,142.44 |
-| Goal Planner | 目标 1,000,000；本金 100,000；年化 8%；10 年 | 每月所需投入约 ¥4,252.82 |
+**完整 pytest 套件 189 项通过**（2026-10-08）；涵盖原规划回归、历史指标与边界、SQLite 读写及缓存、mock 行情与来源、模拟、建议、语言与解释层。测试不依赖实时行情，数据库隔离。
 
-## Calculation Notes / 计算口径
+## Limitations / 已知限制
 
-- **Compound Interest**：`FV = PV × (1 + r)^n`，每年复利，无追加投入。
-- **DCA**：月收益率为 `r / 12`，每月先增长、再加入固定投入；累计投入包含初始本金。总收益率为投资增长除以累计投入，不是年化或资金加权收益率。
-- **Goal Planner**：复用 DCA 的本金期末价值与单位月投入系数反推金额，再通过 DCA 回算。本金自身增长已达到目标时，月投入为 0。
-- **Scenario Analysis**：基准收益率 ±3 个百分点；保守值触及 -100% 时改取基准与 -100% 的中点，极近边界受浮点精度限制。
-- **Inflation-adjusted Value**：`Real Value = Nominal Value / (1 + inflation_rate)^years`；购买力损失为名义金额减实际购买力，以投资起点计价。固定通胀率默认 2%，须大于 -100%；负值表示通缩。DCA 月投入保持固定名义金额。
-- **Goal Sensitivity**：复用 Goal Planner 比较当前期限 ±5 年（限制为 1–1000 并去重）以及三档收益率；差额为情景月投入减基准月投入。异常情景显示 N/A，不改变基准结果。
-- 月度复利与年度复利在同一名义年化收益率下通常产生不同结果。
-- Compound Interest 与 DCA 支持 0–1000 整数年；Goal Planner 支持 1–1000 整数年，目标必须大于 0。本金和月投入非负，收益率必须大于 -100%。
-- 内部计算保留完整精度，显示时才舍入。目标规划按显示的两位小数金额投入可能产生少量差额；回算允许误差为 `max(target × 1e-9, 1e-6)`。
-- 零本金或零累计投入时，相应收益率显示 N/A。Rule of 72 仅在正收益率下展示，是近似估算。
+- 历史表现不保证未来收益；Yahoo 可能限流或暂时不可用，其数据准确性、调整及使用条款由提供方决定。公开部署者应遵守提供方条款；本项目不授予行情再分发权。
+  Historical performance does not guarantee future results. Yahoo availability, accuracy, adjustments and terms remain provider-dependent; this project grants no market-data redistribution rights.
+- Demo Data 是合成演示；只支持列出的标签和日期范围，不能用于真实投资判断。
+  Synthetic Demo Data supports only the documented labels/date range and cannot support actual investment decisions.
+- GBM 假设固定参数、正态独立冲击，不包含尾部风险、制度变化或参数不确定性；月度路径不是日内风险模型。
+  Simplified GBM excludes regime shifts, fat tails and parameter uncertainty; monthly paths are not an intraday risk model.
+- 除规划模块单列通胀调整外，不计税费、交易成本或通胀；历史组合假设每日再平衡，无现金流，要求同币种且无外汇转换。
+  Taxes, fees and transaction costs are omitted. Inflation adjustments apply only where explicitly shown. Historical portfolios assume daily rebalancing, no cash flows and a common currency.
+- Guidance 是教育性决策辅助，不是受监管、受托或个性化投资建议；不评估收入、负债、流动性、真实承受能力，也不穿透 ETF 持仓。
+  Guidance is educational support, not regulated or personalized advice; it omits finances, liquidity, actual loss capacity and ETF look-through.
+- Portfolio Analytics 可选 English/中文；其他规划页面保留原双语风格。云端 SQLite 可能随重部署重置，保存配置对同一应用实例访客共享，避免输入个人信息。
+  Language selection covers Portfolio Analytics; planning pages retain bilingual copy. Cloud SQLite can reset on redeploy and saved configurations are shared within the app instance; avoid personal information.
 
-## Assumptions / 假设说明
+## Screenshots / 截图
 
-- **Fixed return assumption**：收益率固定，不保证实际收益。
-- **Compounding frequency depends on module**：复利模块按年，DCA 和目标规划按月。
-- **No tax or fees**：不考虑税费和手续费。
-- **Fixed inflation assumption**：仅复利与定投另列通胀折现结果，不预测真实通胀；原有收益与图表保持名义金额，Goal Planner 不做通胀调整。
-- **Planning modules**：原有三个规划模块使用固定收益假设，不使用真实行情；开发中的 Portfolio Analytics 使用真实历史行情。 / The three planning modules use fixed assumptions; Portfolio Analytics uses historical market data.
-- **Educational use only**：仅用于金融教育和演示。
-- **Not investment advice**：结果不构成投资建议或市场回报预测。
+### v0.3.0 capture plan / 待人工截图
 
-## Roadmap / 未来方向
+尚未生成新截图；以下为计划位置，不是缺失图片链接。
+No new screenshots have been generated; these are planned filenames, not image links.
 
-以下为潜在探索方向，**不属于 v0.2.0，尚未实现或承诺交付**：
-
-- v0.3 Phase 1 Historical Portfolio Analytics / 历史组合分析正在本地开发，详见下节。
-- Export/report functionality / 导出与报告。
-- Additional financial insight tools / 更多金融解读工具。
-
-## v0.3 Phase 1 Development / 历史组合分析开发中
-
-公开稳定版本仍为 **v0.2.0**；以下功能为本地开发，尚未发布 v0.3.0。
-
-The stable public release remains **v0.2.0**. These are local development features, not a v0.3.0 release.
-
-- **组合设置 / Setup**：输入 `AAPL, MSFT, NVDA` 和 `40, 30, 30` 等百分比权重；权重非负且合计 100%（容差 0.01 个百分点，随后标准化），结束日包含在请求中。默认基准 SPY，无风险年有效利率 4% 可编辑，是固定假设而非实时国债报价。
-- **历史分析 / Analytics**：Analyze Portfolio 展示五个 KPI、组合与基准增长曲线（共同起点 100）、指标对照表、回撤图和相关性矩阵。
-- **保存加载 / Persistence**：填写名称后 Save Portfolio；在 Saved Portfolios 中选择并 Load Portfolio。同名保存更新配置、保留创建时间，保存不需要下载行情。支持同币种股票/ETF，不进行外汇转换。
-
-Enter comma-separated tickers and percentage weights, dates, benchmark, and effective annual risk-free rate. Click **Analyze Portfolio** for KPIs, normalized growth, comparison metrics, drawdown and correlations. Save a named configuration and load it from Saved Portfolios; saving the same name updates it. Use same-currency stocks/ETFs; no FX conversion is performed.
-
-### Market Data / 数据与对齐
-
-行情来自 Yahoo Finance，经 [yfinance.download](https://ranaroussi.github.io/yfinance/reference/api/yfinance.download.html) 获取 `auto_adjust=True` 的日频 Close，采用提供方拆股/分红复权口径，是历史总收益的实用近似，并非经审计的精确可交易总收益。应用将结束日加一天，适配提供方结束日不包含规则。
-
-Daily prices come from Yahoo Finance through yfinance with `auto_adjust=True`, using provider-adjusted close for splits/dividends as a practical return proxy. This is not an audited investable total-return series. The UI end date is inclusive; the download accounts for the provider's exclusive end date.
-
-资产和基准先取共同有效价格日，不前填/后填，再计算 `P[t] / P[t-1] - 1`。至少需要三个共同价格观测值。页面显示实际区间和收益观测数；上市时间等情况可能缩短区间。超过七个日历日的缺口被拒绝；较短报价缺失或跨市场假日可能产生跨交易日收益，年化风险因此为近似值。建议使用同市场、同币种资产，核对实际区间。
-
-Prices are intersected on common observed dates before calculating returns, with no fills. At least three common prices are required. Actual dates and observation counts are displayed; listings and missing data may narrow the period. Gaps over seven calendar days are rejected. Shorter missing quotes or differing holidays can span multiple sessions, making annualized risk approximate. Prefer assets in the same market and currency.
-
-### Public Data Strategy / 公开数据策略
-
-优先级：**有效 SQLite Cache → Yahoo Finance / yfinance → Demo Data / 演示数据**。Kibot 下载代码已移除；旧 Kibot 缓存被排除，旧 FINANCE_LAB_FALLBACK 设置不会重新启用它。没有接入 Alpha Vantage。
-
-Priority: **fresh SQLite cache → Yahoo Finance / yfinance → Demo Data**. Kibot download code is removed, existing Kibot cache is excluded, and the old FINANCE_LAB_FALLBACK variable cannot enable it. Alpha Vantage is not integrated.
-
-Yahoo 使用 auto_adjust=True 的拆股/分红复权日线；有效缓存保留来源，重复请求可直接复用。限流、临时网络或空行情响应可触发演示模式。若任一资产需要演示数据，整个组合及基准统一改用演示数据，避免混合真实和合成收益。
-
-Yahoo uses split/dividend-adjusted daily prices (auto_adjust=True). Cache metadata preserves origin. Rate limits, network failures or empty prices can trigger demo mode. If any asset needs demo data, all assets and the benchmark use synthetic prices for a consistent comparison.
-
-演示数据完全由本项目程序生成，不含第三方真实行情：支持 AAPL、MSFT、NVDA、SPY，2000–2100 年工作日日历。固定随机种子、固定起点和公共/独立冲击生成正价格，包含波动、回撤及相关性。同 ticker 同日期的结果保持一致，不随请求区间变化。它不是真实历史、实时行情、预测或经校准的市场模型；工作日不排除交易所假日。
-
-Demo data is generated entirely by this project, without third-party market prices. It supports AAPL, MSFT, NVDA and SPY over business days in 2000–2100. Fixed seeds, a fixed epoch and shared/individual shocks produce repeatable positive prices, volatility, drawdowns and correlation. Values are stable across overlapping requests. This is neither historical/live market data, a prediction nor a calibrated market model; exchange holidays are not excluded.
-
-页面显示 Yahoo Finance、SQLite Cache 或 Demo Data；演示时显示非阻断提示和合成数据说明。演示价格不写入真实行情缓存，因此不会掩盖下一次 Yahoo 恢复；analysis_runs 仍记录 demo、synthetic 和数据集版本。其他 ticker 可使用 Yahoo，但不在演示目录内时会给出清晰提示。
-
-The UI identifies Yahoo Finance, SQLite Cache or Demo Data and displays non-blocking synthetic-data notices. Demo prices are not stored in the real-price cache, so later requests can recover to Yahoo. Analysis metadata records demo provenance, synthetic price type and dataset version. Other tickers can use Yahoo but are unavailable in the demo catalog.
-
-本地验收：AAPL / 100 / SPY / 2025-01-01 → 2026-01-01 / 无风险利率 4%；或 AAPL, MSFT, NVDA / 40, 30, 30 / 相同基准和日期。Yahoo 不可用时仍应显示五项 KPI、增长曲线、比较表、回撤和相关性矩阵，并明确标注演示数据。公开版仍是 v0.3 Phase 1 开发，稳定公开版本保持 v0.2.0。
-
-Manual validation: AAPL / 100 / SPY / 2025-01-01 → 2026-01-01 / risk-free 4%; alternatively AAPL, MSFT, NVDA / 40, 30, 30. Yahoo failures should yield five KPIs, growth, comparison, drawdown and correlation, clearly labeled as Demo Data. This remains v0.3 Phase 1 development; the stable public release remains v0.2.0.
-
-### Metrics / 计算口径
-
-组合日收益为 `sum(weight[i] * return[i])`；假设每日恢复目标权重、无出入金、不计税费/交易成本，不是权重自然漂移的 buy-and-hold。
-
-Portfolio returns are weighted daily asset returns assuming daily target-weight rebalancing, no cash flows, and no taxes or transaction costs.
-
-| Metric / 指标 | Definition / 定义 |
+| Capture / 内容 | Planned file / 计划文件 |
 |---|---|
-| Cumulative Return / 累计收益 | `product(1 + r) - 1` |
-| CAGR / 年化复合收益 | `product(1 + r) ** (365.25 / elapsed_calendar_days) - 1`，使用实际共同价格首末日期 / actual common price dates |
-| Annualized Volatility / 年化波动 | 样本标准差 / sample `std(r, ddof=1) * sqrt(252)` |
-| Sharpe Ratio | `mean(r - daily_rf) / std(r, ddof=1) * sqrt(252)`；`daily_rf = (1 + annual_rf) ** (1/252) - 1` |
-| Maximum Drawdown / 最大回撤 | `min(wealth / running_peak - 1)`，含初始本金，返回非正值 / includes initial capital, nonpositive |
+| Portfolio Analytics — Performance Overview + Benchmark | `assets/portfolio_analytics_v0.3.0.png` |
+| Future Outlook — Scenario + Monte Carlo | `assets/future_outlook_v0.3.0.png` |
+| Portfolio Guidance — Profile Fit + Guidance | `assets/portfolio_guidance_v0.3.0.png` |
+| Compound Interest — current hero + planning results | `assets/compound_interest_v0.3.0.png` |
 
-空值、NaN、无穷和非法价格/日期明确报错。不足两项收益时波动/Sharpe 不适用；零波动 Sharpe 和常数收益相关性显示 N/A。短区间 CAGR 可能极端，不代表未来预期。
+建议正常桌面宽度截图、显示真实数据源或 Demo 标签，避免标题与数值裁切；可补一张中文组合分析。
+Capture at desktop width, keeping source/Demo labels and complete values visible; optionally add a Chinese analytics screenshot.
 
-Invalid/empty/nonfinite data and invalid periods raise errors. Risk metrics require at least two returns; zero-volatility Sharpe and constant-series correlations show N/A. Short-period CAGR can be extreme and is not a forecast.
+### Historical planning screenshots / 历史规划截图 — v0.2.0
 
-### SQLite / 实际 SQL 存储
+以下文件保留。复利截图图例略截断、目标规划右侧列和下方图表裁切，建议人工重拍；DCA 可保留为补充。这些截图未展示当前 Hero 或新增组合模块。
+These files are retained. Compound Interest has a clipped legend and Goal Planner has cropped columns/chart; retake those for the main showcase. DCA remains useful supplementary material. None shows the new hero or portfolio modules.
 
-默认路径 `data/finance_lab.sqlite3`，可通过 `FINANCE_LAB_DB` 环境变量覆盖。内置 sqlite3 实际执行参数化 `SELECT`、`INSERT`、`DELETE`、`INSERT OR REPLACE`、`ON CONFLICT ... DO UPDATE`，并使用建表、事务提交与回滚。
+![Compound Interest — scenario analysis](assets/compound_interest.png)
 
-The default database is `data/finance_lab.sqlite3`, configurable through `FINANCE_LAB_DB`. Built-in sqlite3 runs real parameterized SQL reads, inserts, updates, deletes, and transactional commits/rollbacks.
+![DCA Simulator — inflation-adjusted growth](assets/dca_simulator.png)
 
-| Table / 表 | Purpose / 用途 |
-|---|---|
-| `historical_prices` | `(ticker, date)` 主键，复权价格、来源、更新时间 / adjusted prices, source and timestamp |
-| `price_requests` | 成功区间请求、来源元数据、24 小时有效期；可复用覆盖请求 / successful range markers and provenance, covering-cache reuse, 24-hour TTL |
-| `portfolio_configs` | 名称主键、JSON 配置（资产、权重、基准、日期、利率）、创建及更新时间 / named configuration snapshots and timestamps |
-| `analysis_runs` | 自增 run_id、配置、时间戳、基准、实际区间、每个 ticker 实际来源 / completed-analysis metadata, actual dates and provider provenance |
+![Goal Planner — sensitivity analysis](assets/goal_planner.png)
 
-重复请求通过 SQL 读取缓存，过期后重新获取。复权数据刷新替换对应区间，使重叠请求标记失效；失败/空下载不标记成功。数据库不纳入 Git。部署平台重启可能丢失 SQLite；公共实例的保存名称空间共享、无用户隔离，请勿保存敏感信息。
+## Roadmap / 后续方向
 
-Repeated requests read SQLite; expired requests refresh. Revised adjusted prices replace the range and invalidate overlapping cache markers. Failed/empty downloads are not cached as successful. Database files are ignored by Git. Hosting restarts may discard local SQLite; public instances share saved names without user isolation.
+- 全站语言一致性 / Global language consistency
+- 可选合规行情来源 / Optional additional market-data providers
+- 组合优化研究 / Portfolio optimization research
+- 报告导出 / Report export
 
-### Future Outlook / 未来展望 — Phase 2 development
+无具体发布时间承诺。No release dates are promised.
 
-Portfolio Analytics 底部新增 Future Outlook，不新增主 Tab。先完成历史分析，再输入当前价值（默认 100000）、1/3/5 年期限及模拟次数（1000–10000，默认 5000），点击 Run Future Outlook。金额为通用单位，不硬编码币种。
+## Release History / 版本历史
 
-Future Outlook extends Portfolio Analytics without another main tab. Run historical analysis first, then enter current value (default 100000), horizon (1/3/5 years) and simulation count (1000–10000, default 5000), and click Run Future Outlook. Values use generic monetary units.
+- **v0.3.0** — 本地发布包装准备：历史组合分析、未来模拟、规则建议及语言/解释层；尚未发布。Local release preparation; not yet published.
+- **v0.2.0** — 稳定公开规划版本：Scenario Analysis、Inflation-adjusted Value、Goal Sensitivity；本轮 main/origin/main 保持此版本。Stable public planning release; main/origin/main remain unchanged during this preparation.
+- **v0.1.0** — 初始复利、定投与目标规划 / Initial planning modules.
 
-**Method / 方法**
-
-- 复用所选历史区间的组合日简单收益 r，转为 log(1+r)。至少要求 60 个收益观测值；这只是最低样本门槛，不保证估计可靠。无未来数据或新下载。 / Reuses portfolio daily returns from the selected historical period; minimum 60 observations, not a reliability guarantee. No future data or additional downloads.
-- g = 日对数收益平均值 × 252；σ = 日对数收益样本标准差 × √252；GBM 连续漂移 μ = g + σ²/2；模型一年预期简单收益为 exp(μ)−1。σ 是对数收益波动率，与历史 KPI 的简单收益波动率略有区别。 / Annualized log drift and sample volatility use 252 sessions; expected annual simple return is exp(μ)−1. Log volatility differs slightly from Phase 1's simple-return volatility.
-- Conservative / Base / Optimistic 使用连续收益 μ−σ / μ / μ+σ。曲线为 initial × exp(rate × years)，只显示所选期限内的 1/3/5 年节点。Base 是模型平均财富路径，不是 P50；情景不是概率界限。 / Scenarios use volatility-adjusted continuous drift; Base is model mean wealth, not the median, and scenarios are not confidence bounds.
-- Monte Carlo 使用 GBM 的精确月度转移：V(t+1/12) = V(t) × exp(g/12 + σ/√12 × Z)，Z 为独立标准正态。按月输出不需要逐日数值近似；参数仍按 252 个历史交易日年化。 / Exact monthly GBM transitions use independent normal shocks; monthly sampling requires no daily discretization approximation.
-- 固定 seed=20261007，可复现截图与测试；仅画前 50 条样本路径。阴影为每个时间点 P10–P90，橙线为 P50。 / Fixed seed for repeatability; only 50 paths shown. The shaded band is pointwise P10–P90, with an orange P50 line.
-- P10/P50/P90 为模拟终值分位数，不是最坏/最好情况；点态区间不意味着 80% 的整条路径始终处于其中。亏损概率为终值 < 初值的比例，高于初值为严格 >；零收益时两者可同时为 0。 / Percentiles are not worst/best outcomes or simultaneous path coverage. Loss and gain probabilities use strict terminal comparisons; both may be zero for flat paths.
-
-模型假设收益独立、对数正态、参数恒定，无追加投入、税费及通胀调整。保留历史组合的收益口径；不重新模拟每个资产或未来相关性。无风险利率继续用于历史 Sharpe，不作为未来模型的漂移。短期历史估计、缺失交易日、非正态尾部和制度变化会影响可靠性；不额外模拟参数估计误差或崩盘。
-
-Assumes independent normal log returns and constant parameters, with no cashflows, fees or inflation adjustment. This is a portfolio-level model, without separately simulating assets or future correlations. The risk-free rate remains a historical Sharpe input, not a risk-neutral simulation drift. Short samples, missing sessions, heavy tails and regime changes limit reliability; parameter uncertainty and crashes are not separately modeled.
-
-若历史分析使用 Demo Data，未来部分明确显示 Demo-based simulation：完全基于 synthetic 数据，仅用于功能演示。模拟不足样本或遇到数值溢出会给出提示，不截断或伪造结果。输出保留于当前历史分析的 session state，普通页面重跑不重新模拟；重新分析历史数据会清除旧模拟。
-
-Demo historical inputs produce explicitly labeled synthetic demonstrations. Insufficient observations and numerical overflow produce friendly messages rather than fabricated/clipped results. Results persist with the current historical analysis in session state; ordinary reruns do not resimulate, and a new historical analysis clears old simulations.
-
-**Historical performance does not guarantee future results. Monte Carlo results are simulations, not forecasts or guarantees. / 历史表现不保证未来结果，模拟不是预测或保证。**
-
-GBM methodology reference / 方法参考：[Columbia University — Geometric Brownian Motion](https://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf).
-
-人工验收 / Manual validation: AAPL, MSFT, NVDA · 40, 30, 30 · SPY · 2025-01-01 → 2026-01-01 · risk-free 4%; analyze, then initial value 100000 · 5 years · 5000 simulations. Verify three scenarios, checkpoint table, P10/P50/P90, both probabilities, paths/band, terminal histogram and interpretation. Yahoo unavailable is supported through Demo Data. Phase 2 manual acceptance passed (user-confirmed), including the Performance Overview 3+2 KPI layout. This remains v0.3 development, not a public v0.3.0 release.
-
-### Portfolio Guidance / 组合建议 — Phase 3 development
-
-Future Outlook 下方新增三个偏好字段：Conservative / Balanced / Aggressive、Short / Medium / Long Term、Capital Preservation / Steady Growth / Growth Priority。点击 Generate Guidance 后，复用当前历史分析与可用模拟输出；不下载数据、不重新运行核心指标或 Monte Carlo。新增模拟结果后，已有建议自动根据最新证据刷新；重新历史分析会清除旧偏好结果。
-
-Below Future Outlook, choose risk preference, horizon and primary goal, then Generate Guidance. The engine reads existing historical and available simulation outputs without downloads, core metric recalculation or Monte Carlo reruns. New simulation evidence refreshes guidance; a new historical analysis clears old results.
-
-**Educational rules / 教育性规则**
-
-- 年化简单收益波动率 <12% / 12–25% / ≥25%，最大回撤绝对值 <15% / 15–30% / ≥30%，模拟亏损概率 <15% / 15–35% / ≥35%，分别计 0/1/2 分。 / Volatility, drawdown magnitude and available terminal loss probability contribute 0/1/2 points at these thresholds.
-- 可用资产对平均相关系数 ≥0.75、最大单项权重 ≥50%、组合波动 ≥正基准波动的 1.25 倍各加 1 分。单项权重不穿透 ETF 底层持仓，不等同于个股集中风险。 / Correlation, allocation concentration and benchmark-relative volatility add one point each. Holding weights do not measure ETF underlying concentration.
-- 总分 0–1 / 2–3 / ≥4 对应 Lower / Moderate / Higher Risk。必须有有效波动率和最大回撤才能评级；缺失模拟、相关性或基准会披露，不代表风险为零。 / Core volatility and drawdown are required; missing optional evidence is disclosed rather than treated as safety.
-- 这些阈值是本项目可解释的启发式规则，不是学术标定、行业标准、监管评级或投资适当性测评。历史收益/CAGR、基准和模型预期收益只提供上下文，不抵消风险分。模拟亏损率取决于其 1/3/5 年期限，不能直接等同于用户投资期限。 / Thresholds are uncalibrated project heuristics. Return context does not cancel risk points; simulation horizon may differ from investment horizon.
-- 偏好、期限和目标分别映射 0/1/2；匹配目标取三者最小值，长期限不覆盖保守偏好，资本保值和短期用途限制为较低风险。实际风险高两档为 Too Aggressive、高一档为 Slightly Aggressive、相同为 Good Fit、低于目标为 Too Conservative（仅风险取向，不推断收益潜力）。 / Profile fit uses the minimum of preference/horizon/goal tiers as a risk ceiling; fit labels describe risk alignment, not likely returns.
-
-输出 3–5 条带指标数值和原因的建议，类别包括分散化、集中度、回撤、下行风险、基准风险、风险调整收益和偏好一致性。解释区列出评分证据，并引用历史回报、模拟参数和情景表。配置方向仅为抽象资产类别，不给证券、权重、目标价或交易时点；没有 optimizer。
-
-Outputs include 3–5 traceable suggestions, evidence and asset-class directions without securities, allocation weights, price targets, timing or optimization. Categories include diversification, concentration, drawdown, downside, benchmark risk, risk-adjusted quality and profile alignment.
-
-缺少 Future Outlook 时可生成基础建议，并提示补充模拟；关键历史数据或偏好不足时不输出确定评级/配置。Demo 模式明确显示 synthetic demo guidance，仅用于功能演示，不是真实 AAPL/MSFT/NVDA 历史建议。该工具不评估收入、负债、税务、流动性或实际损失承受能力，也不推断资产行业/风格。
-
-Historical-only guidance is supported, with a prompt to run Future Outlook. Missing core data or profile fields withhold definitive guidance. Demo-based guidance is explicitly synthetic and illustrative. Income, liabilities, tax position, liquidity, actual loss capacity and asset sector/style are not assessed.
-
-建议是教育性决策辅助，不是个性化、受托或受监管投资建议；应结合个人情况，不保证未来表现。通用分散化与期限概念参考 [Investor.gov](https://www.investor.gov/introduction-investing/getting-started/asset-allocation)；本项目具体评分阈值并非其制定或认可。
-
-Illustrative educational decision support, not personalized, fiduciary or regulated investment advice. Consider personal circumstances; no performance guarantee. General diversification/horizon concepts reference Investor.gov; the project's scoring thresholds are not issued or endorsed by it.
-
-人工验收 / Manual acceptance: run the existing AAPL/MSFT/NVDA example and Future Outlook, then Balanced / Long Term / Steady Growth → Generate Guidance. Check classification, fit, 3–5 recommendations, metric reasons, allocation direction and demo label. Also generate before Future Outlook, and compare Conservative + Short Term with Aggressive + Long Term + Growth Priority. Phase 3 manual logic acceptance passed; language-mode visual acceptance steps are documented below. No push, merge or release packaging.
-
-### Portfolio Language & Explainability / 组合页面语言与指标解释
-
-Portfolio Analytics 顶部 Language / 语言 默认 English，可随时切换中文。历史分析、Future Outlook、Guidance、数据源和 Demo 提示、按钮、表格及解释按选择单语言显示；其他三个计算器保持原有双语结构。语言只改变展示，保留同一组合、偏好、KPI、模拟路径和规则判断，不触发下载或重新模拟。
-
-Portfolio Analytics defaults to English and supports Chinese through its top language selector. Historical analytics, Future Outlook, Guidance, source/demo notices, controls and explanations render in the selected language. Other calculators retain their existing bilingual structure. Switching language preserves portfolio/profile inputs, KPIs, paths and classifications without downloading or resimulating.
-
-文案集中于 src/translations.json，src/i18n.py 提供轻量查询和格式化。src/engine_messages.json 及显式证据模板负责现有引擎消息的展示适配，保留经过测试的引擎输出与业务逻辑；无机器翻译或新依赖。新增文案应补齐两种语言及测试。
-
-Copy is centralized in translations.json with a lightweight i18n helper. The engine-message catalog and explicit evidence templates adapt existing engine output for presentation, preserving tested business rules without machine translation or dependencies. New copy should include both languages and coverage.
-
-指标层保留正式名称，并通过 tooltip/简短 helper 或折叠解释提供 Total Return、CAGR、Volatility、Sharpe Ratio、Maximum Drawdown、Correlation、Benchmark、P10/P50/P90、Loss Probability、Scenario Projection 的通俗解释。主视图保留建议及关键原因，详细证据默认折叠；未来模拟的数学细节放入模型假设折叠区与 README。
-
-Professional metric names remain, with short explanations in tooltips, helper text or a collapsed glossary. All ten metric groups above are covered. Guidance keeps recommendations and key reasons visible, with detailed evidence collapsed by default; model details stay in an assumptions expander and this README.
-
-Phase 3 逻辑人工验收已通过（用户确认）。语言模式的验收步骤：先用相同组合和偏好完成历史分析、模拟和建议，再在 English/中文之间切换，核对文案单语言、tooltip 和数值完全一致。本轮只建立本地开发提交，不发布 v0.3.0。
-
-The user confirmed Phase 3 logic acceptance. For language-mode visual acceptance, run one portfolio/profile through history, simulation and guidance, then switch English/Chinese and verify single-language copy, tooltips and identical values. This is a local development milestone, not a v0.3.0 release.
-
-### Acceptance Status / 验收状态
-
-Phase 1 主要功能已通过人工浏览器验收（用户确认）：数据源优先级、演示切换及标注、五项 KPI、增长曲线、比较表、回撤和相关性矩阵均正常。公开路径使用 Yahoo 和确定性演示数据。Performance Overview 使用 3+2 KPI 布局，并保留完整指标说明。**当前仍为 v0.3 development，稳定公开版本保持 v0.2.0；不是 v0.3.0 发布。**Phase 2 新增假设下的 Monte Carlo 模拟；未加入个股预测、VaR/CVaR、优化、AI 助手或交易功能。
-
-The user confirmed manual browser acceptance of Phase 1: provider priority, labeled demo fallback, five KPIs, growth/comparison, drawdown and correlation. Public runtime uses Yahoo and deterministic synthetic demo data. Performance Overview uses a 3+2 KPI layout with full descriptions. **This remains v0.3 development based on stable public v0.2.0, not a v0.3.0 release.** Phase 2 adds illustrative Monte Carlo simulation; individual-stock forecasting, VaR/CVaR, optimization, AI assistance and trading remain excluded.
-
-仅用于教育和研究，不构成投资建议。**历史表现不保证未来收益。**
-
-For education and research only, not investment advice. **Historical performance does not guarantee future results.**
-
-## Security / 安全
-
-不要提交密码、API key 或凭据。`.gitignore` 排除 `.env`、`.env.*` 和 `.streamlit/secrets.toml`；私密配置不应纳入公开仓库。
-
-## Version / 版本
-
-当前版本：**v0.2.0**。网页与 CLI 均显示 `Finance Mini Lab v0.2.0`。
-
-开发过程与各里程碑验证记录见 [Project Log](docs/project_log.md)。
+[Project log / 项目日志](docs/project_log.md) · [v0.3.0 release notes draft / 发布说明草稿](docs/release_notes_v0.3.0.md)

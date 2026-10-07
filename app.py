@@ -19,7 +19,7 @@ def read_number(prompt: str) -> float:
 
 
 def main() -> None:
-    print("## Finance Mini Lab v0.2.0")
+    print("## Finance Mini Lab v0.3.0")
     print()
     try:
         principal = read_number("principal（本金）: ")

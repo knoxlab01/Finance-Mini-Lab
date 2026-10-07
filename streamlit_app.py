@@ -332,24 +332,26 @@ def render_goal_planner() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Finance Mini Lab v0.2.0", page_icon="📈")
-    st.title("Finance Mini Lab v0.2.0")
-    st.write("A lightweight financial planning and scenario analysis toolkit built with Python and Streamlit.")
-    st.caption("探索长期资产增长与投入规划。仅用于教育和模拟，不构成投资建议。")
+    st.set_page_config(page_title="Finance Mini Lab v0.3.0", page_icon="📈")
+    st.title("Finance Mini Lab v0.3.0")
+    st.write("A lightweight financial planning, portfolio analytics, and scenario simulation toolkit built with Python and Streamlit.")
+    st.caption("一个基于 Python 与 Streamlit 构建的轻量级金融规划、投资组合分析与情景模拟工具。仅用于教育和模拟，不构成投资建议。")
 
     st.subheader("Explore the Modules")
     overview = [
         ("Compound Interest", "复利计算", "模拟一次性本金增长。"),
         ("DCA Simulator", "定投模拟", "模拟每月定投积累。"),
         ("Goal Planner", "目标规划", "反推目标所需月投入。"),
+        ("Portfolio Analytics", "组合分析", "历史表现与基准对比、风险分散化、未来情景与组合建议。"),
     ]
-    for column, (title, subtitle, description) in zip(st.columns(3), overview):
-        with column:
-            with st.container(border=True, height=160):
-                st.markdown(f"**{title}**")
-                st.caption(subtitle)
-                st.write(description)
-    st.caption("选择下方标签页开始计算。")
+    for offset in (0, 2):
+        for column, (title, subtitle, description) in zip(st.columns(2), overview[offset:offset + 2]):
+            with column:
+                with st.container(border=True, height=160):
+                    st.markdown(f"**{title}**")
+                    st.caption(subtitle)
+                    st.write(description)
+    st.caption("Portfolio Analytics: Monte Carlo · Explainable analytics · SQLite cache & persistence · English / 中文。选择下方标签页开始。")
     compound_tab, dca_tab, goal_tab, portfolio_tab = st.tabs([
         "Compound Interest / 复利计算", "DCA Simulator / 定投模拟", "Goal Planner / 目标规划",
         "Portfolio Analytics / 组合分析",

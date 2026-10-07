@@ -1,3 +1,16 @@
+## 2026-10-08 — v0.3.0 Release Packaging / 发布包装准备
+
+- Phase 1 Historical Portfolio Analytics、Phase 2 Future Outlook + Monte Carlo、Phase 3 Portfolio Guidance 已完成；用户确认主要功能、语言切换与指标解释层人工验收通过。保留下面各阶段历史记录，包括当时的待验收状态。 / All three phases are complete with user-confirmed manual acceptance, including language selection and explainability; earlier milestone records are preserved.
+- 网页/browser/CLI 当前版本统一 v0.3.0；Hero 定位为 financial planning, portfolio analytics, and scenario simulation toolkit。模块概览以两行展示四个现有模块，不新增功能或修改金融模型。 / Unified current version and positioning; the overview represents all four existing modules without model changes.
+- README 重整产品概览、核心模块、亮点、架构、数据流、方法、测试、限制、截图计划与路线图。保留现有 Live Demo 和截图；旧版本引用仅保留在历史章节。线上部署未更新。 / Reorganized portfolio-facing README; retained demo link, screenshots and historical version references without deploying.
+- 新增双语 docs/release_notes_v0.3.0.md 草稿；新增独立 requirements-dev.txt 安装 pytest，不增加运行依赖。 / Added bilingual release notes draft and separate pytest development requirements.
+- 最终完整 pytest：189 passed，132 subtests passed。入口导入、Streamlit 临时端口健康及页面 HTTP 200、静态翻译 key/catalog 检查、README 本地引用及三项外部链接 HTTP 200、git diff --check 均通过。 / Complete suite and import/startup, translation, links and whitespace checks passed.
+- 安全复核：Git 跟踪/非忽略文件及 origin/main 之后开发历史新增文本的常见密钥模式未发现问题；未发现个人本地路径、运行数据库、缓存、Secrets 或日志进入提交范围，无超过 5 MB 的候选文件。验证 .env、secrets.toml、SQLite/sidecars、缓存、测试日志、虚拟环境忽略规则有效；不重写历史。此为范围内扫描，并非穷尽性安全审计。 / Scoped secret/history and artifact review found no issues; ignore rules verified, with no history rewrite.
+- 数据优先级仍为 SQLite → Yahoo → 明确标注的 deterministic synthetic Demo；无 Kibot 运行调用。已知限制：Yahoo 限流/提供方条款；合成数据范围；GBM 固定参数和简化冲击；税费/交易成本省略；启发式建议非投资顾问服务；云端 SQLite 非持久/非账号隔离；全站语言一致性尚未重构。 / Data flow unchanged; provider, demo, model, guidance, storage and language limitations are explicit.
+- 截图只检查、不生成或删除：保留三张规划截图；复利图例和 Goal Planner 裁切建议人工重拍。计划补 Portfolio Analytics overview/benchmark、Future Outlook scenario/Monte Carlo、Guidance profile/results，以及一个当前 planning module。 / Screenshots retained; manual replacements and new captures planned.
+- 本轮仅创建本地 release-packaging commit；不 push、merge、tag、部署或创建 GitHub Release。v0.3-dev 保留完整开发成果；main == origin/main == 2bf94c5d5e07da1564372ede7bb0d741654aa467，保持稳定公开历史版本 v0.2.0。 / Local packaging commit only; stable main refs remain unchanged.
+- 下一步：人工补截图并复核当前版本视觉效果，再单独决定推送、合并、部署、tag 与 Release；本记录不授权任何远端发布操作。 / Next: manual captures and visual review, followed by separately authorized publication steps.
+
 ## 2026-10-08 — Phase 3 Language & Explainability Cleanup / 语言与解释层收尾
 
 - 用户确认 Phase 3 逻辑人工验收通过。Portfolio Analytics 增加默认 English 的语言选择器，覆盖历史分析、未来模拟、Guidance、Demo、表格、帮助和按钮；其他计算器不变。 / User confirmed logic acceptance; added English-default single-language portfolio rendering with Chinese support.
