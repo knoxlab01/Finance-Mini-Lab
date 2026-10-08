@@ -138,31 +138,29 @@ On macOS/Linux use `.venv/bin/python`. SQLite initializes automatically; no API 
 
 ## Screenshots / 截图
 
-### v0.3.0 capture plan / 待人工截图
+### Portfolio Analytics
 
-尚未生成新截图；以下为计划位置，不是缺失图片链接。
-No new screenshots have been generated; these are planned filenames, not image links.
+历史组合表现、基准比较、风险指标与分散化分析。 / Historical portfolio performance, benchmark comparison, risk metrics, and diversification analysis.
 
-| Capture / 内容 | Planned file / 计划文件 |
-|---|---|
-| Portfolio Analytics — Performance Overview + Benchmark | `assets/portfolio_analytics_v0.3.0.png` |
-| Future Outlook — Scenario + Monte Carlo | `assets/future_outlook_v0.3.0.png` |
-| Portfolio Guidance — Profile Fit + Guidance | `assets/portfolio_guidance_v0.3.0.png` |
-| Compound Interest — current hero + planning results | `assets/compound_interest_v0.3.0.png` |
+![Portfolio Analytics](assets/portfolio_analytics.png)
 
-建议正常桌面宽度截图、显示真实数据源或 Demo 标签，避免标题与数值裁切；可补一张中文组合分析。
-Capture at desktop width, keeping source/Demo labels and complete values visible; optionally add a Chinese analytics screenshot.
+### Future Outlook
 
-### Historical planning screenshots / 历史规划截图 — v0.2.0
+通过情景投影与蒙特卡洛模拟展示可能的组合结果。 / Scenario projection and Monte Carlo simulation for possible future portfolio outcomes.
 
-以下文件保留。复利截图图例略截断、目标规划右侧列和下方图表裁切，建议人工重拍；DCA 可保留为补充。这些截图未展示当前 Hero 或新增组合模块。
-These files are retained. Compound Interest has a clipped legend and Goal Planner has cropped columns/chart; retake those for the main showcase. DCA remains useful supplementary material. None shows the new hero or portfolio modules.
+![Future Outlook](assets/future_outlook.png)
 
-![Compound Interest — scenario analysis](assets/compound_interest.png)
+### Portfolio Guidance
 
-![DCA Simulator — inflation-adjusted growth](assets/dca_simulator.png)
+根据历史与模拟风险证据，提供规则驱动的偏好匹配与可解释建议。 / Rule-based profile fit and explainable portfolio guidance based on historical and simulated risk evidence.
 
-![Goal Planner — sensitivity analysis](assets/goal_planner.png)
+![Portfolio Guidance](assets/portfolio_guidance.png)
+
+### Goal Planner
+
+目标导向的月投入规划与资产增长模拟。 / Goal-based financial planning with required monthly contribution and portfolio growth projection.
+
+![Goal Planner](assets/goal_planner.png)
 
 ## Roadmap / 后续方向
 
