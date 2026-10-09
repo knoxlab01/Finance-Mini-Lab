@@ -91,7 +91,8 @@ class LanguageUITests(unittest.TestCase):
         text = "\n".join(self.portfolio_strings(app))
         for english in ["Recommendation:", "Historical maximum drawdown", "Simulated terminal loss", "The interval reflects", "Under these assumptions", "feature demonstration", "Share of simulations"]:
             self.assertNotIn(english, text)
-        self.assertFalse(re.search(r"[A-Za-z]{3,}(?: [A-Za-z]{3,}){2,}", text), text)
+        # The product-positioning copy intentionally retains the project brand.
+        self.assertFalse(re.search(r"[A-Za-z]{3,}(?: [A-Za-z]{3,}){2,}", text.replace("Finance Mini Lab", "")), text)
         self.assertIn("合成", text)
         self.assertEqual(app.metric[0].label, "累计收益率")
         self.assertEqual(app.button(key="pa_analyze").label, "分析组合")

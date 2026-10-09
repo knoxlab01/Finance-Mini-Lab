@@ -11,6 +11,7 @@ from src.portfolio_analysis import parse_config
 from src.benchmark import analyze_portfolio
 from src.future_ui import render_future_outlook
 from src.guidance_ui import render_portfolio_guidance
+from src.evolance_ui import render_evolance_comparison
 from src.i18n import tr, localize_message, metric_help
 
 
@@ -67,6 +68,7 @@ def render_portfolio_analytics():
                     result = analyze_portfolio(prices, config["tickers"], config["weights"], config["benchmark"], config["risk_free_rate"])
                     result["source_metadata"] = prices.attrs.get("source_metadata", {})
                     result["portfolio_config"] = config
+                    result["evolance_prices"] = prices.copy()
                 try:
                     database.record_analysis(config, result["start"], result["end"], result["source_metadata"])
                 except sqlite3.Error:
@@ -86,8 +88,7 @@ def render_portfolio_analytics():
         st.caption(t("Data Source") + ": " + " · ".join(
             f"{ticker}: {labels.get(meta.get('retrieval'), t('Unknown'))}" for ticker, meta in sources.items()))
     if any(meta.get("provider") == "demo" for meta in sources.values()):
-        st.info(t('demo_notice'))
-        st.warning(t('demo_warning'))
+        st.warning(t('demo_combined'))
     st.caption(t("period", start=result["start"].date(), end=result["end"].date(), count=result["observations"]))
     st.caption(t('annualization'))
     st.caption(t('alignment'))
@@ -120,4 +121,5 @@ def render_portfolio_analytics():
         for label, key in [("Benchmark", "benchmark"), ("Correlation Matrix", "correlation")]:
             st.write(t(label) + ": " + metric_help(key, language))
     render_future_outlook(result, language)
+    render_evolance_comparison(result, language)
     render_portfolio_guidance(result, language)

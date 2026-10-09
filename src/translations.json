@@ -526,5 +526,361 @@
   "Evidence Coverage": [
     "Evidence Coverage",
     "证据完整性"
+  ],
+  "ev_title": [
+    "Traditional Analytics vs Evolance",
+    "传统分析 vs Evolance"
+  ],
+  "ev_why_both": [
+    "Traditional analytics measure return and risk directly. Evolance does not replace those metrics; it organizes them into an interpretable view of portfolio state, structural pressure, transition and forward uncertainty.",
+    "传统分析直接衡量收益与风险。Evolance 并不取代这些指标，而是在其基础上进一步组织组合状态、结构压力、状态转化与未来不确定性。"
+  ],
+  "ev_demo": [
+    "Demo Data — structural interpretation and outlook are based on deterministic synthetic data, not current market history.",
+    "演示数据 — 当前结构判断与未来展望基于确定性合成数据，并非真实市场历史。"
+  ],
+  "ev_traditional_subtitle": [
+    "What the conventional metrics show",
+    "常规指标反映了什么"
+  ],
+  "ev_selected_period": [
+    "Uses the full selected historical period.",
+    "使用所选的完整历史区间。"
+  ],
+  "ev_structural_subtitle": [
+    "What the portfolio structure means",
+    "组合结构意味着什么"
+  ],
+  "ev_relative": [
+    "**Benchmark-relative return:** {value} pp",
+    "**相对基准收益：** {value} 个百分点"
+  ],
+  "ev_asof": [
+    "Latest completed month: {date}; trailing 252 sessions. Outlook starts at this historical date, not today.",
+    "最近完成月份：{date}；回溯 252 个交易日。展望从该历史时点开始，并非从今天开始。"
+  ],
+  "ev_state": [
+    "Primary State",
+    "主状态"
+  ],
+  "ev_transition": [
+    "Transition",
+    "转化状态"
+  ],
+  "ev_12m": [
+    "12-Month Outlook",
+    "12 个月展望"
+  ],
+  "ev_6m": [
+    "6-Month Outlook",
+    "6 个月展望"
+  ],
+  "ev_confidence": [
+    "Confidence",
+    "置信度"
+  ],
+  "ev_flags": [
+    "Active structural flags",
+    "当前结构提示"
+  ],
+  "ev_confidence_help": [
+    "Confidence is an ordinal evidence-strength label, not a guaranteed probability of success.",
+    "置信度用于表示当前证据强弱，并非预测成功率或保证概率。"
+  ],
+  "ev_no_flags": [
+    "No major structural warnings",
+    "无明显结构警示"
+  ],
+  "ev_warmup": [
+    "State confirmation or transition history is still warming up; Stable does not establish structural stability.",
+    "状态确认或转化历史仍在积累；暂定稳定不代表已证实结构稳定。"
+  ],
+  "ev_insufficient": [
+    "Insufficient historical evidence for Evolance analysis.",
+    "历史数据不足，暂无法生成 Evolance 分析。"
+  ],
+  "ev_quality": [
+    "Historical data does not meet the frozen quality requirements.",
+    "历史数据未满足冻结规则的数据质量要求。"
+  ],
+  "ev_required": [
+    "Requires 253 valid aligned prices at a completed month-end; structural change needs four eligible monthly observations. Traditional analytics remains available.",
+    "需在已完成月末拥有 253 个有效对齐价格；结构变化需四次有效月度观察。传统分析仍可使用。"
+  ],
+  "ev_unavailable": [
+    "Unavailable",
+    "暂不可用"
+  ],
+  "ev_conclusion": [
+    "At this historical snapshot, structure is {state} and transition is {transition}; active evidence: {flags}. The {direction} outlook comes from the simulation, with structural evidence informing confidence.",
+    "在该历史快照中，结构为{state}，转变为{transition}；当前证据：{flags}。{direction}展望来自模拟，结构证据用于评估置信度。"
+  ],
+  "ev_disclaimer": [
+    "For educational and research purposes only. Not investment advice.",
+    "本结果仅用于研究与教育目的，不构成任何投资建议。"
+  ],
+  "ev_detail": [
+    "Why this interpretation?",
+    "为什么得到这个判断？"
+  ],
+  "ev_bands_note": [
+    "Rounded scores and descriptive bands are presentation aids only; they do not change frozen state rules.",
+    "整数分数和定性区间仅帮助理解，不改变冻结状态规则。"
+  ],
+  "ev_strong": [
+    "Strong",
+    "强"
+  ],
+  "ev_healthy": [
+    "Moderately Strong",
+    "较强"
+  ],
+  "ev_mixed": [
+    "Mixed",
+    "混合"
+  ],
+  "ev_weak": [
+    "Weak",
+    "弱"
+  ],
+  "ev_very_weak": [
+    "Very Weak",
+    "很弱"
+  ],
+  "ev_methodology": [
+    "View methodology",
+    "查看方法"
+  ],
+  "ev_methodology_text": [
+    "Frozen Evolance v1.1 uses monthly 252-session snapshots, a 4% annual risk-free assumption and daily fixed-weight rebalancing. Monte Carlo uses 5,000 paths, a fixed seed and 6/12-month horizons. State informs interpretation/confidence, never simulation drift or volatility. Future Outlook may use different settings; only exactly compatible simulations are reused.",
+    "冻结的 Evolance v1.1 使用每月 252 个交易日快照、4% 年无风险利率与每日固定权重再平衡。蒙特卡洛采用 5,000 条路径、固定种子及 6/12 个月期限。状态影响解释／置信度，不改变模拟漂移或波动率。未来展望可能使用不同设置；仅复用完全兼容的模拟。"
+  ],
+  "ev_research": [
+    "Research validation",
+    "历史验证"
+  ],
+  "ev_research_text": [
+    "Real frozen-rule walk-forward validation: 2005–2017, AAPL/MSFT/NVDA/SPY. Predictive superiority was not established. Deteriorating transitions were associated with deeper subsequent drawdowns in the tested sample. Pooled confidence showed descriptive High > Moderate > Low ordering, but was not independently calibrated and was affected by portfolio composition. Historical associations do not guarantee future outcomes.",
+    "真实冻结规则前向验证：2005–2017 年，AAPL/MSFT/NVDA/SPY。未确立预测优势。在测试样本中，恶化转变与随后更深的回撤相关。汇总置信度呈描述性的高 > 中等 > 低排序，但未独立校准，且受组合构成影响。历史关联不保证未来结果。"
+  ],
+  "ev_traditional": [
+    "Traditional Analytics",
+    "传统分析"
+  ],
+  "ev_Balanced Growth": [
+    "Balanced Growth",
+    "均衡增长"
+  ],
+  "ev_Growth-Led": [
+    "Growth-Led",
+    "增长主导"
+  ],
+  "ev_Defensive": [
+    "Defensive",
+    "防御型"
+  ],
+  "ev_Stressed": [
+    "Stressed",
+    "承压"
+  ],
+  "ev_Mixed / Neutral": [
+    "Mixed / Neutral",
+    "混合 / 中性"
+  ],
+  "ev_Deteriorating": [
+    "Deteriorating",
+    "恶化"
+  ],
+  "ev_Stable": [
+    "Stable",
+    "稳定"
+  ],
+  "ev_Recovering": [
+    "Recovering",
+    "恢复"
+  ],
+  "ev_Strong Bullish": [
+    "Strong Bullish",
+    "强看涨"
+  ],
+  "ev_Bullish": [
+    "Bullish",
+    "看涨"
+  ],
+  "ev_Neutral / Uncertain": [
+    "Neutral / Uncertain",
+    "中性 / 不确定"
+  ],
+  "ev_Bearish": [
+    "Bearish",
+    "看跌"
+  ],
+  "ev_Strong Bearish": [
+    "Strong Bearish",
+    "强看跌"
+  ],
+  "ev_High": [
+    "High",
+    "高"
+  ],
+  "ev_Moderate": [
+    "Moderate",
+    "中等"
+  ],
+  "ev_Low": [
+    "Low",
+    "低"
+  ],
+  "ev_High Risk Concentration": [
+    "High Risk Concentration",
+    "风险高度集中"
+  ],
+  "ev_Weak Downside Stability": [
+    "Weak Downside Stability",
+    "下行稳定性较弱"
+  ],
+  "ev_Low Return Efficiency": [
+    "Low Return Efficiency",
+    "收益效率偏低"
+  ],
+  "ev_Diversification Erosion": [
+    "Diversification Erosion",
+    "分散化减弱"
+  ],
+  "ev_Rapid Structural Deterioration": [
+    "Rapid Structural Deterioration",
+    "结构快速恶化"
+  ],
+  "ev_Unsupported Growth": [
+    "Unsupported Growth",
+    "增长缺乏结构支撑"
+  ],
+  "ev_Growth Strength": [
+    "Growth Strength",
+    "增长强度"
+  ],
+  "ev_Downside Stability": [
+    "Downside Stability",
+    "下行稳定性"
+  ],
+  "ev_Diversification Quality": [
+    "Diversification Quality",
+    "分散化质量"
+  ],
+  "ev_Return Efficiency": [
+    "Return Efficiency",
+    "收益效率"
+  ],
+  "ev_Structural Resilience": [
+    "Structural Resilience",
+    "结构韧性"
+  ],
+  "ev_Balanced Growth_help": [
+    "Growth and structural support are relatively well aligned.",
+    "增长与结构支撑相对协调。"
+  ],
+  "ev_Growth-Led_help": [
+    "Growth is stronger than the portfolio’s supporting risk structure.",
+    "增长强于组合的风险结构支撑。"
+  ],
+  "ev_Defensive_help": [
+    "Downside stability is relatively strong, while growth is limited.",
+    "下行稳定性相对较强，增长有限。"
+  ],
+  "ev_Stressed_help": [
+    "Structural support is under pressure; inspect downside stability, efficiency and resilience.",
+    "结构支撑承压，需关注下行稳定性、收益效率与韧性。"
+  ],
+  "ev_Mixed / Neutral_help": [
+    "No single structural condition clearly dominates.",
+    "没有单一结构状态明显占主导。"
+  ],
+  "ev_Deteriorating_help": [
+    "Multiple structural dimensions are weakening, or downside/diversification has declined sharply.",
+    "多项结构维度减弱，或下行稳定性／分散化显著下降。"
+  ],
+  "ev_Stable_help": [
+    "No material structural deterioration or recovery trend is confirmed.",
+    "未确认明显结构恶化或恢复趋势。"
+  ],
+  "ev_Recovering_help": [
+    "Multiple structural dimensions are improving from a weaker condition.",
+    "多项结构维度正从较弱状态改善。"
+  ],
+  "ev_Growth Strength_help": [
+    "Trailing return + benchmark-relative return.",
+    "尾随收益 + 基准相对收益。"
+  ],
+  "ev_Downside Stability_help": [
+    "Downside deviation + maximum drawdown.",
+    "下行偏差 + 最大回撤。"
+  ],
+  "ev_Diversification Quality_help": [
+    "Risk-contribution breadth + diversification ratio.",
+    "风险贡献广度 + 分散化比率。"
+  ],
+  "ev_Return Efficiency_help": [
+    "Sortino + Information Ratio.",
+    "索提诺比率 + 信息比率。"
+  ],
+  "ev_Structural Resilience_help": [
+    "Directional deterioration across the other dimensions; improvements are not penalized.",
+    "其他维度的方向性恶化；不惩罚改善。"
+  ],
+  "ev_intro_title": [
+    "Beyond Traditional Analytics",
+    "超越传统指标"
+  ],
+  "ev_intro_text": [
+    "Most portfolio tools stop at reporting return, risk and simulated future outcomes. Finance Mini Lab goes one step further with Evolance — a research-tested interpretation framework developed for this project. It brings those signals together into a structured view of portfolio state, transition, structural pressure, directional outlook and confidence.",
+    "大多数投资组合工具停留在收益、风险与未来模拟结果的展示。Finance Mini Lab 在此基础上进一步加入 Evolance——一套为本项目设计并经过历史验证的解释框架，用于把分散的指标整合为组合状态、结构压力、状态变化、方向性展望与置信度。"
+  ],
+  "ev_complements": [
+    "Evolance complements traditional analytics; it does not replace them.",
+    "Evolance 是传统分析的补充，而不是替代。"
+  ],
+  "ev_snapshot_title": [
+    "Traditional Snapshot — Latest 252 Sessions",
+    "传统分析快照 — 最近 252 个交易日"
+  ],
+  "ev_snapshot_period": [
+    "Shared snapshot: {start} → {date} (252 return sessions). Outlook starts at this historical/synthetic date, not today. Sharpe uses the frozen 4% risk-free assumption.",
+    "共同快照：{start} → {date}（252 个收益交易日）。展望从该历史／合成数据时点开始，不是从今天开始。夏普比率使用冻结的 4% 无风险利率假设。"
+  ],
+  "ev_takeaway": [
+    "Evolance Takeaway",
+    "Evolance 结论"
+  ],
+  "ev_method_validation": [
+    "Methodology & Validation",
+    "方法与验证"
+  ],
+  "ev_how_it_works": [
+    "How it works",
+    "如何工作"
+  ],
+  "ev_historical_evidence": [
+    "Historical evidence",
+    "历史证据"
+  ],
+  "ev_intro_subtitle": [
+    "The Evolance Interpretation Layer",
+    "Evolance 解释层"
+  ],
+  "ev_intro_meaning": [
+    "Traditional analytics tell you what the numbers are. Evolance helps explain what they mean together.",
+    "传统分析告诉你“数字是什么”，Evolance 进一步帮助解释“这些数字放在一起意味着什么”。"
+  ],
+  "ev_intro_side_by_side": [
+    "Both views are shown side by side so you can compare conventional evidence with Finance Mini Lab’s signature interpretation layer.",
+    "两种视角并列展示，让用户既能看到传统金融证据，也能体验 Finance Mini Lab 特有的结构化解释层。"
+  ],
+  "ev_relative_help": [
+    "Percentage-point difference between portfolio and benchmark return over the same snapshot.",
+    "同一快照内组合收益率减去基准收益率的百分点差。"
+  ],
+  "demo_combined": [
+    "Demo Data is being used because live market data is temporarily unavailable. Results use deterministic synthetic prices for feature demonstration and are not real historical/live market data or current predictions.",
+    "实时行情暂不可用，本次使用演示数据。结果基于固定可重复的合成价格，仅用于功能展示，不是真实历史／实时行情，也不是当前市场预测。"
   ]
 }

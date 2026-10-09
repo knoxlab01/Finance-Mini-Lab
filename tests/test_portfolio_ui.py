@@ -89,7 +89,8 @@ class PortfolioUITests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertTrue(any("AAPL: Demo Data" in item.value for item in app.caption))
         self.assertTrue(any("Demo Data" in item.value for item in app.warning))
-        self.assertTrue(any("temporarily unavailable" in item.value for item in app.info))
+        self.assertTrue(any("temporarily unavailable" in item.value for item in app.warning))
+        self.assertEqual(len(app.warning), 1)
         self.assertFalse(app.error)
         self.assertEqual(len(app.metric), 5)
         with Database(self.path).connect() as db:
