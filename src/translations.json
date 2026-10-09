@@ -1,7 +1,7 @@
 {
   "development": [
-    "v0.3.0 · Historical performance does not guarantee future results.",
-    "v0.3.0 · 历史表现不保证未来收益。"
+    "v0.4 development · Historical performance does not guarantee future results.",
+    "v0.4 开发中 · 历史表现不保证未来收益。"
   ],
   "Portfolio Setup": [
     "Portfolio Setup",
@@ -832,8 +832,8 @@
     "超越传统指标"
   ],
   "ev_intro_text": [
-    "Most portfolio tools stop at reporting return, risk and simulated future outcomes. Finance Mini Lab goes one step further with Evolance — a research-tested interpretation framework developed for this project. It brings those signals together into a structured view of portfolio state, transition, structural pressure, directional outlook and confidence.",
-    "大多数投资组合工具停留在收益、风险与未来模拟结果的展示。Finance Mini Lab 在此基础上进一步加入 Evolance——一套为本项目设计并经过历史验证的解释框架，用于把分散的指标整合为组合状态、结构压力、状态变化、方向性展望与置信度。"
+    "Most portfolio tools stop at reporting return, risk and simulated future outcomes. Vexa goes one step further with Evolance — a research-tested interpretation framework developed for this project. It brings those signals together into a structured view of portfolio state, transition, structural pressure, directional outlook and confidence.",
+    "大多数投资组合工具停留在收益、风险与未来模拟结果的展示。Vexa 在此基础上进一步加入 Evolance——一套为本项目设计并经过历史验证的解释框架，用于把分散的指标整合为组合状态、结构压力、状态变化、方向性展望与置信度。"
   ],
   "ev_complements": [
     "Evolance complements traditional analytics; it does not replace them.",
@@ -872,8 +872,8 @@
     "传统分析告诉你“数字是什么”，Evolance 进一步帮助解释“这些数字放在一起意味着什么”。"
   ],
   "ev_intro_side_by_side": [
-    "Both views are shown side by side so you can compare conventional evidence with Finance Mini Lab’s signature interpretation layer.",
-    "两种视角并列展示，让用户既能看到传统金融证据，也能体验 Finance Mini Lab 特有的结构化解释层。"
+    "Both views are shown side by side so you can compare conventional evidence with Vexa’s signature interpretation layer.",
+    "两种视角并列展示，让用户既能看到传统金融证据，也能体验 Vexa 特有的结构化解释层。"
   ],
   "ev_relative_help": [
     "Percentage-point difference between portfolio and benchmark return over the same snapshot.",

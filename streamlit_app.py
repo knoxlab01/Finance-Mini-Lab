@@ -332,10 +332,13 @@ def render_goal_planner() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Finance Mini Lab v0.3.0", page_icon="📈")
-    st.title("Finance Mini Lab v0.3.0")
-    st.write("A lightweight financial planning, portfolio analytics, and scenario simulation toolkit built with Python and Streamlit.")
-    st.caption("一个基于 Python 与 Streamlit 构建的轻量级金融规划、投资组合分析与情景模拟工具。仅用于教育和模拟，不构成投资建议。")
+    st.set_page_config(page_title="Vexa — Portfolio Intelligence, Made Clear", page_icon="📈")
+    st.title("Vexa")
+    st.markdown("**Portfolio Intelligence, Made Clear.**")
+    st.write("Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.")
+    st.caption("Vexa 是一个面向投资组合分析的可解释决策辅助工具，将传统金融分析、概率化未来模拟与 Evolance 解释框架结合，把分散而复杂的金融信号转化为更清晰的结构判断与未来展望。")
+    st.caption("v0.4 development · Developed in Finance Mini Lab · Program One")
+    st.caption("For educational and research purposes only. Not investment advice. / 仅用于教育和研究，不构成投资建议。")
 
     st.subheader("Explore the Modules")
     overview = [

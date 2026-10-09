@@ -21,9 +21,11 @@ class StreamlitAppTests(unittest.TestCase):
     def test_product_intro_and_module_overview(self):
         app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "streamlit_app.py"), default_timeout=15).run()
         self.assertFalse(app.exception)
-        self.assertEqual(app.title[0].value, "Finance Mini Lab v0.3.0")
-        self.assertIn("A lightweight financial planning, portfolio analytics, and scenario simulation toolkit built with Python and Streamlit.", [m.value for m in app.markdown])
-        self.assertTrue(any("仅用于教育和模拟，不构成投资建议" in c.value for c in app.caption))
+        self.assertEqual(app.title[0].value, "Vexa")
+        self.assertIn("**Portfolio Intelligence, Made Clear.**", [m.value for m in app.markdown])
+        self.assertIn("Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.", [m.value for m in app.markdown])
+        self.assertTrue(any("仅用于教育和研究，不构成投资建议" in c.value for c in app.caption))
+        self.assertIn("v0.4 development · Developed in Finance Mini Lab · Program One", [c.value for c in app.caption])
         for name in ["Compound Interest", "DCA Simulator", "Goal Planner", "Portfolio Analytics"]:
             self.assertIn(f"**{name}**", [m.value for m in app.markdown])
         self.assertEqual([tab.label for tab in app.tabs], [
@@ -34,6 +36,13 @@ class StreamlitAppTests(unittest.TestCase):
             10000.0, 8.0, 10, 2.0, 10000.0, 1000.0, 8.0, 10, 2.0, 1000000.0, 100000.0, 8.0, 10, 4.0,
         ])
         self.assertEqual(len(app.button), 6)
+
+    def test_browser_title_is_product_facing_without_release_claim(self):
+        with patch("streamlit.set_page_config", wraps=st.set_page_config) as page_config:
+            app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "streamlit_app.py"), default_timeout=15).run()
+        self.assertFalse(app.exception)
+        self.assertEqual(page_config.call_args.kwargs["page_title"], "Vexa — Portfolio Intelligence, Made Clear")
+        self.assertNotIn("v0.3.0", app.title[0].value)
 
     def test_default_result_and_growth_data(self):
         with patch("streamlit.line_chart", wraps=st.line_chart) as chart:
