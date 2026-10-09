@@ -1,0 +1,1782 @@
+{
+  "real_source": "unavailable",
+  "retrieval_attempts": [
+    "No adequate aligned Yahoo cache for all four tickers (minimum 505 prices)",
+    "Yahoo stopped at AAPL: MarketDataError; category=rate_limit"
+  ],
+  "fixture_sha256": "bf2ba5a09c4ba1548080f894a885d9b83633480a4cf20dfedae74fe7dee794ab",
+  "calibration": {
+    "lookback": 252,
+    "trend_days": 126,
+    "frequency": "monthly",
+    "risk_free_rate": 0.04,
+    "annual_sessions": 252,
+    "forward_days": 63,
+    "anchors": {
+      "cagr": [
+        [
+          -0.3,
+          0
+        ],
+        [
+          -0.1,
+          20
+        ],
+        [
+          0,
+          40
+        ],
+        [
+          0.08,
+          60
+        ],
+        [
+          0.15,
+          80
+        ],
+        [
+          0.3,
+          100
+        ]
+      ],
+      "relative_return": [
+        [
+          -0.2,
+          0
+        ],
+        [
+          -0.05,
+          25
+        ],
+        [
+          0,
+          50
+        ],
+        [
+          0.05,
+          75
+        ],
+        [
+          0.2,
+          100
+        ]
+      ],
+      "trend": [
+        [
+          -0.25,
+          0
+        ],
+        [
+          -0.05,
+          25
+        ],
+        [
+          0,
+          40
+        ],
+        [
+          0.05,
+          60
+        ],
+        [
+          0.15,
+          85
+        ],
+        [
+          0.3,
+          100
+        ]
+      ],
+      "volatility": [
+        [
+          0,
+          100
+        ],
+        [
+          0.1,
+          85
+        ],
+        [
+          0.2,
+          60
+        ],
+        [
+          0.3,
+          35
+        ],
+        [
+          0.5,
+          0
+        ]
+      ],
+      "drawdown": [
+        [
+          0,
+          100
+        ],
+        [
+          0.1,
+          90
+        ],
+        [
+          0.2,
+          70
+        ],
+        [
+          0.3,
+          50
+        ],
+        [
+          0.4,
+          30
+        ],
+        [
+          0.6,
+          0
+        ]
+      ],
+      "negative_frequency": [
+        [
+          0,
+          100
+        ],
+        [
+          0.3,
+          85
+        ],
+        [
+          0.45,
+          60
+        ],
+        [
+          0.5,
+          40
+        ],
+        [
+          0.6,
+          10
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "correlation": [
+        [
+          -1,
+          100
+        ],
+        [
+          0,
+          100
+        ],
+        [
+          0.3,
+          85
+        ],
+        [
+          0.6,
+          55
+        ],
+        [
+          0.8,
+          25
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "max_weight": [
+        [
+          0,
+          100
+        ],
+        [
+          0.2,
+          100
+        ],
+        [
+          0.34,
+          85
+        ],
+        [
+          0.5,
+          60
+        ],
+        [
+          0.75,
+          25
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "effective_holdings": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          40
+        ],
+        [
+          3,
+          65
+        ],
+        [
+          5,
+          85
+        ],
+        [
+          10,
+          100
+        ]
+      ],
+      "sharpe": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          25
+        ],
+        [
+          0.5,
+          50
+        ],
+        [
+          1,
+          75
+        ],
+        [
+          1.5,
+          90
+        ],
+        [
+          2,
+          100
+        ]
+      ],
+      "return_drawdown": [
+        [
+          -2,
+          0
+        ],
+        [
+          -1,
+          10
+        ],
+        [
+          0,
+          30
+        ],
+        [
+          0.5,
+          55
+        ],
+        [
+          1,
+          75
+        ],
+        [
+          2,
+          90
+        ],
+        [
+          3,
+          100
+        ]
+      ],
+      "relative_sharpe": [
+        [
+          -1,
+          0
+        ],
+        [
+          -0.5,
+          25
+        ],
+        [
+          0,
+          50
+        ],
+        [
+          0.5,
+          75
+        ],
+        [
+          1,
+          100
+        ]
+      ],
+      "vol_change": [
+        [
+          -0.1,
+          100
+        ],
+        [
+          0,
+          90
+        ],
+        [
+          0.02,
+          65
+        ],
+        [
+          0.05,
+          30
+        ],
+        [
+          0.1,
+          0
+        ]
+      ],
+      "corr_change": [
+        [
+          -0.2,
+          100
+        ],
+        [
+          0,
+          90
+        ],
+        [
+          0.05,
+          65
+        ],
+        [
+          0.15,
+          30
+        ],
+        [
+          0.3,
+          0
+        ]
+      ],
+      "dd_change": [
+        [
+          -0.2,
+          100
+        ],
+        [
+          0,
+          90
+        ],
+        [
+          0.05,
+          65
+        ],
+        [
+          0.1,
+          30
+        ],
+        [
+          0.2,
+          0
+        ]
+      ],
+      "score_instability": [
+        [
+          0,
+          100
+        ],
+        [
+          5,
+          85
+        ],
+        [
+          10,
+          60
+        ],
+        [
+          20,
+          25
+        ],
+        [
+          35,
+          0
+        ]
+      ]
+    },
+    "weights": {
+      "Growth": {
+        "cagr": 0.4,
+        "relative_return": 0.35,
+        "trend": 0.25
+      },
+      "Stability": {
+        "volatility": 0.35,
+        "drawdown": 0.4,
+        "negative_frequency": 0.25
+      },
+      "Diversification": {
+        "correlation": 0.45,
+        "max_weight": 0.35,
+        "effective_holdings": 0.2
+      },
+      "Efficiency": {
+        "sharpe": 0.45,
+        "return_drawdown": 0.3,
+        "relative_sharpe": 0.25
+      },
+      "Adaptability": {
+        "vol_change": 0.3,
+        "corr_change": 0.25,
+        "dd_change": 0.25,
+        "score_instability": 0.2
+      }
+    },
+    "thresholds": {
+      "growth_high": 65,
+      "growth_very_high": 80,
+      "low": 40,
+      "high": 75,
+      "div_very_low": 30,
+      "support_min": 55,
+      "div_min": 45,
+      "growth_gap": 20,
+      "deterioration": 5,
+      "stress_count": 2,
+      "adapt_low": 40,
+      "recovery_gain": 5,
+      "recovery_stability": 40,
+      "major_score_drop": 15,
+      "case_return_strong": 0.1,
+      "case_low_vol": 0.1,
+      "case_weak_growth": 45,
+      "baseline_cagr": 0,
+      "baseline_sharpe": 0,
+      "baseline_vol": 0.25,
+      "profile_difference": 10
+    },
+    "precedence": [
+      "Stress State",
+      "Fragile Growth",
+      "Concentration Pressure",
+      "Inefficient Risk",
+      "Transitional Recovery",
+      "Growth-Dominant",
+      "Defensive Imbalance",
+      "Balanced Growth"
+    ]
+  },
+  "sensitivities": {
+    "126_monthly": {
+      "durations": [
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2010-06-30T00:00:00",
+          "end": "2010-07-30T00:00:00",
+          "observations": 1,
+          "calendar_days": 30,
+          "right_censored": false
+        },
+        {
+          "state": "Defensive Imbalance",
+          "start": "2010-07-30T00:00:00",
+          "end": "2010-10-29T00:00:00",
+          "observations": 3,
+          "calendar_days": 91,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2010-10-29T00:00:00",
+          "end": "2010-12-31T00:00:00",
+          "observations": 2,
+          "calendar_days": 63,
+          "right_censored": false
+        },
+        {
+          "state": "Defensive Imbalance",
+          "start": "2010-12-31T00:00:00",
+          "end": "2011-01-31T00:00:00",
+          "observations": 1,
+          "calendar_days": 31,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2011-01-31T00:00:00",
+          "end": "2011-03-31T00:00:00",
+          "observations": 2,
+          "calendar_days": 59,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2011-03-31T00:00:00",
+          "end": "2012-03-30T00:00:00",
+          "observations": 12,
+          "calendar_days": 365,
+          "right_censored": false
+        },
+        {
+          "state": "Growth-Dominant",
+          "start": "2012-03-30T00:00:00",
+          "end": "2012-05-31T00:00:00",
+          "observations": 2,
+          "calendar_days": 62,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2012-05-31T00:00:00",
+          "end": "2012-06-29T00:00:00",
+          "observations": 1,
+          "calendar_days": 29,
+          "right_censored": false
+        },
+        {
+          "state": "Stress State",
+          "start": "2012-06-29T00:00:00",
+          "end": "2012-07-31T00:00:00",
+          "observations": 1,
+          "calendar_days": 32,
+          "right_censored": false
+        },
+        {
+          "state": "Inefficient Risk",
+          "start": "2012-07-31T00:00:00",
+          "end": "2013-02-28T00:00:00",
+          "observations": 7,
+          "calendar_days": 212,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2013-02-28T00:00:00",
+          "end": "2013-04-30T00:00:00",
+          "observations": 2,
+          "calendar_days": 61,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2013-04-30T00:00:00",
+          "end": "2013-10-31T00:00:00",
+          "observations": 6,
+          "calendar_days": 184,
+          "right_censored": false
+        },
+        {
+          "state": "Growth-Dominant",
+          "start": "2013-10-31T00:00:00",
+          "end": "2013-11-29T00:00:00",
+          "observations": 1,
+          "calendar_days": 29,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2013-11-29T00:00:00",
+          "end": "2014-04-30T00:00:00",
+          "observations": 5,
+          "calendar_days": 152,
+          "right_censored": false
+        },
+        {
+          "state": "Defensive Imbalance",
+          "start": "2014-04-30T00:00:00",
+          "end": "2014-11-28T00:00:00",
+          "observations": 7,
+          "calendar_days": 212,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2014-11-28T00:00:00",
+          "end": "2014-12-31T00:00:00",
+          "observations": 1,
+          "calendar_days": 33,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2014-12-31T00:00:00",
+          "end": "2015-07-31T00:00:00",
+          "observations": 7,
+          "calendar_days": 212,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2015-07-31T00:00:00",
+          "end": "2015-08-31T00:00:00",
+          "observations": 1,
+          "calendar_days": 31,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2015-08-31T00:00:00",
+          "end": "2015-09-30T00:00:00",
+          "observations": 2,
+          "calendar_days": 30,
+          "right_censored": true
+        }
+      ],
+      "transitions": [
+        {
+          "date": "2010-07-30T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2010-10-29T00:00:00",
+          "old": "Defensive Imbalance",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2010-12-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2011-01-31T00:00:00",
+          "old": "Defensive Imbalance",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2011-03-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-03-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Growth-Dominant"
+        },
+        {
+          "date": "2012-05-31T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Stress State"
+        },
+        {
+          "date": "2012-07-31T00:00:00",
+          "old": "Stress State",
+          "new": "Inefficient Risk"
+        },
+        {
+          "date": "2013-02-28T00:00:00",
+          "old": "Inefficient Risk",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2013-04-30T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2013-10-31T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Growth-Dominant"
+        },
+        {
+          "date": "2013-11-29T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2014-04-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2014-11-28T00:00:00",
+          "old": "Defensive Imbalance",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2014-12-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2015-07-31T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2015-08-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        }
+      ],
+      "most_common": {
+        "Balanced Growth": 33,
+        "Defensive Imbalance": 11,
+        "Mixed / Unclassified": 9,
+        "Inefficient Risk": 7,
+        "Growth-Dominant": 3,
+        "Stress State": 1
+      },
+      "major_deteriorations": [
+        {
+          "date": "2010-07-30T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2010-12-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2012-05-31T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Stress State"
+        },
+        {
+          "date": "2014-04-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Defensive Imbalance"
+        },
+        {
+          "date": "2014-12-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2015-07-31T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        }
+      ]
+    },
+    "504_monthly": {
+      "durations": [
+        {
+          "state": "Balanced Growth",
+          "start": "2011-12-30T00:00:00",
+          "end": "2012-03-30T00:00:00",
+          "observations": 3,
+          "calendar_days": 91,
+          "right_censored": false
+        },
+        {
+          "state": "Growth-Dominant",
+          "start": "2012-03-30T00:00:00",
+          "end": "2012-05-31T00:00:00",
+          "observations": 2,
+          "calendar_days": 62,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2012-05-31T00:00:00",
+          "end": "2012-06-29T00:00:00",
+          "observations": 1,
+          "calendar_days": 29,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2012-06-29T00:00:00",
+          "end": "2012-10-31T00:00:00",
+          "observations": 4,
+          "calendar_days": 124,
+          "right_censored": false
+        },
+        {
+          "state": "Inefficient Risk",
+          "start": "2012-10-31T00:00:00",
+          "end": "2014-05-30T00:00:00",
+          "observations": 19,
+          "calendar_days": 576,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2014-05-30T00:00:00",
+          "end": "2014-10-31T00:00:00",
+          "observations": 5,
+          "calendar_days": 154,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2014-10-31T00:00:00",
+          "end": "2015-09-30T00:00:00",
+          "observations": 12,
+          "calendar_days": 334,
+          "right_censored": true
+        }
+      ],
+      "transitions": [
+        {
+          "date": "2012-03-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Growth-Dominant"
+        },
+        {
+          "date": "2012-05-31T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2012-10-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Inefficient Risk"
+        },
+        {
+          "date": "2014-05-30T00:00:00",
+          "old": "Inefficient Risk",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2014-10-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        }
+      ],
+      "most_common": {
+        "Inefficient Risk": 19,
+        "Balanced Growth": 16,
+        "Mixed / Unclassified": 9,
+        "Growth-Dominant": 2
+      },
+      "major_deteriorations": [
+        {
+          "date": "2012-05-31T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        }
+      ]
+    },
+    "252_quarterly": {
+      "durations": [
+        {
+          "state": "Defensive Imbalance",
+          "start": "2010-12-31T00:00:00",
+          "end": "2011-03-31T00:00:00",
+          "observations": 1,
+          "calendar_days": 90,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2011-03-31T00:00:00",
+          "end": "2012-03-30T00:00:00",
+          "observations": 4,
+          "calendar_days": 365,
+          "right_censored": false
+        },
+        {
+          "state": "Growth-Dominant",
+          "start": "2012-03-30T00:00:00",
+          "end": "2012-06-29T00:00:00",
+          "observations": 1,
+          "calendar_days": 91,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2012-06-29T00:00:00",
+          "end": "2012-09-28T00:00:00",
+          "observations": 1,
+          "calendar_days": 91,
+          "right_censored": false
+        },
+        {
+          "state": "Inefficient Risk",
+          "start": "2012-09-28T00:00:00",
+          "end": "2013-09-30T00:00:00",
+          "observations": 4,
+          "calendar_days": 367,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2013-09-30T00:00:00",
+          "end": "2014-09-30T00:00:00",
+          "observations": 4,
+          "calendar_days": 365,
+          "right_censored": false
+        },
+        {
+          "state": "Mixed / Unclassified",
+          "start": "2014-09-30T00:00:00",
+          "end": "2015-03-31T00:00:00",
+          "observations": 2,
+          "calendar_days": 182,
+          "right_censored": false
+        },
+        {
+          "state": "Balanced Growth",
+          "start": "2015-03-31T00:00:00",
+          "end": "2015-09-30T00:00:00",
+          "observations": 3,
+          "calendar_days": 183,
+          "right_censored": true
+        }
+      ],
+      "transitions": [
+        {
+          "date": "2011-03-31T00:00:00",
+          "old": "Defensive Imbalance",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2012-03-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Growth-Dominant"
+        },
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2012-09-28T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Inefficient Risk"
+        },
+        {
+          "date": "2013-09-30T00:00:00",
+          "old": "Inefficient Risk",
+          "new": "Balanced Growth"
+        },
+        {
+          "date": "2014-09-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2015-03-31T00:00:00",
+          "old": "Mixed / Unclassified",
+          "new": "Balanced Growth"
+        }
+      ],
+      "most_common": {
+        "Balanced Growth": 11,
+        "Inefficient Risk": 4,
+        "Mixed / Unclassified": 3,
+        "Defensive Imbalance": 1,
+        "Growth-Dominant": 1
+      },
+      "major_deteriorations": [
+        {
+          "date": "2012-06-29T00:00:00",
+          "old": "Growth-Dominant",
+          "new": "Mixed / Unclassified"
+        },
+        {
+          "date": "2014-09-30T00:00:00",
+          "old": "Balanced Growth",
+          "new": "Mixed / Unclassified"
+        }
+      ]
+    },
+    "cutoffs_-5": {
+      "state_disagreement": 0.1206896551724138
+    },
+    "cutoffs_+5": {
+      "state_disagreement": 0.06896551724137931
+    }
+  },
+  "diversification_equal_minus_concentrated": 37.6815487797546,
+  "results": {
+    "fixture_equal": {
+      "summary": {
+        "durations": [
+          {
+            "state": "Defensive Imbalance",
+            "start": "2010-12-31T00:00:00",
+            "end": "2011-01-31T00:00:00",
+            "observations": 1,
+            "calendar_days": 31,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2011-01-31T00:00:00",
+            "end": "2011-03-31T00:00:00",
+            "observations": 2,
+            "calendar_days": 59,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2011-03-31T00:00:00",
+            "end": "2012-03-30T00:00:00",
+            "observations": 12,
+            "calendar_days": 365,
+            "right_censored": false
+          },
+          {
+            "state": "Growth-Dominant",
+            "start": "2012-03-30T00:00:00",
+            "end": "2012-05-31T00:00:00",
+            "observations": 2,
+            "calendar_days": 62,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2012-05-31T00:00:00",
+            "end": "2012-06-29T00:00:00",
+            "observations": 1,
+            "calendar_days": 29,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2012-06-29T00:00:00",
+            "end": "2012-08-31T00:00:00",
+            "observations": 2,
+            "calendar_days": 63,
+            "right_censored": false
+          },
+          {
+            "state": "Inefficient Risk",
+            "start": "2012-08-31T00:00:00",
+            "end": "2013-07-31T00:00:00",
+            "observations": 11,
+            "calendar_days": 334,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2013-07-31T00:00:00",
+            "end": "2013-09-30T00:00:00",
+            "observations": 2,
+            "calendar_days": 61,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2013-09-30T00:00:00",
+            "end": "2013-10-31T00:00:00",
+            "observations": 1,
+            "calendar_days": 31,
+            "right_censored": false
+          },
+          {
+            "state": "Growth-Dominant",
+            "start": "2013-10-31T00:00:00",
+            "end": "2013-11-29T00:00:00",
+            "observations": 1,
+            "calendar_days": 29,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2013-11-29T00:00:00",
+            "end": "2014-08-29T00:00:00",
+            "observations": 9,
+            "calendar_days": 273,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2014-08-29T00:00:00",
+            "end": "2014-10-31T00:00:00",
+            "observations": 2,
+            "calendar_days": 63,
+            "right_censored": false
+          },
+          {
+            "state": "Defensive Imbalance",
+            "start": "2014-10-31T00:00:00",
+            "end": "2014-11-28T00:00:00",
+            "observations": 1,
+            "calendar_days": 28,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2014-11-28T00:00:00",
+            "end": "2015-02-27T00:00:00",
+            "observations": 3,
+            "calendar_days": 91,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2015-02-27T00:00:00",
+            "end": "2015-09-30T00:00:00",
+            "observations": 8,
+            "calendar_days": 215,
+            "right_censored": true
+          }
+        ],
+        "transitions": [
+          {
+            "date": "2011-01-31T00:00:00",
+            "old": "Defensive Imbalance",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2011-03-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2012-03-30T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Growth-Dominant"
+          },
+          {
+            "date": "2012-05-31T00:00:00",
+            "old": "Growth-Dominant",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2012-08-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Inefficient Risk"
+          },
+          {
+            "date": "2013-07-31T00:00:00",
+            "old": "Inefficient Risk",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2013-09-30T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2013-10-31T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Growth-Dominant"
+          },
+          {
+            "date": "2013-11-29T00:00:00",
+            "old": "Growth-Dominant",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2014-08-29T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2014-10-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Defensive Imbalance"
+          },
+          {
+            "date": "2014-11-28T00:00:00",
+            "old": "Defensive Imbalance",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2015-02-27T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Balanced Growth"
+          }
+        ],
+        "most_common": {
+          "Balanced Growth": 31,
+          "Mixed / Unclassified": 11,
+          "Inefficient Risk": 11,
+          "Growth-Dominant": 3,
+          "Defensive Imbalance": 2
+        },
+        "major_deteriorations": [
+          {
+            "date": "2012-05-31T00:00:00",
+            "old": "Growth-Dominant",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2012-08-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Inefficient Risk"
+          },
+          {
+            "date": "2014-10-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Defensive Imbalance"
+          }
+        ]
+      },
+      "cases": {
+        "A": {
+          "date": "2011-03-31T00:00:00",
+          "state": "Balanced Growth",
+          "metrics": {
+            "cagr": 0.11208092382205435,
+            "trailing_return": 0.10780347533292023,
+            "volatility": 0.0559914095262777,
+            "sharpe": 1.1561703280765945,
+            "drawdown": 0.0328647708064691,
+            "relative_return": 0.09994468695260728,
+            "correlation": 0.21398054669157948,
+            "max_weight": 0.3334
+          },
+          "scores": {
+            "Growth": 75.16998083976583,
+            "Stability": 85.11093953269102,
+            "Diversification": 83.18293739943947,
+            "Efficiency": 90.85829942903402,
+            "Adaptability": 73.22034331591861
+          },
+          "forward_return": 0.07232480305104172,
+          "forward_drawdown": -0.018420515192990483,
+          "forward_days": 63
+        },
+        "B": {
+          "date": "2014-10-31T00:00:00",
+          "state": "Defensive Imbalance",
+          "metrics": {
+            "cagr": 0.005243359549663133,
+            "trailing_return": 0.0050526689829795135,
+            "volatility": 0.010024559842921027,
+            "sharpe": -3.4050103103182194,
+            "drawdown": 0.00968064129855195,
+            "relative_return": -0.011991296157016107,
+            "correlation": 0.024122094398040306,
+            "max_weight": 0.3334
+          },
+          "scores": {
+            "Growth": 43.03008793840599,
+            "Stability": 81.40791352773314,
+            "Diversification": 87.4547525760441,
+            "Efficiency": 16.99960190192868,
+            "Adaptability": 82.29103210400993
+          },
+          "forward_return": 0.10344471326906302,
+          "forward_drawdown": -0.045514036223100574,
+          "forward_days": 63
+        },
+        "C": {
+          "date": "2012-08-31T00:00:00",
+          "state": "Inefficient Risk",
+          "metrics": {
+            "cagr": -0.11304611527923941,
+            "trailing_return": -0.1091778454350939,
+            "volatility": 0.31404388968477726,
+            "sharpe": -0.33475621785362625,
+            "drawdown": 0.42753236150945617,
+            "relative_return": -0.05561950073003663,
+            "correlation": 0.8765822517743812,
+            "max_weight": 0.3334
+          },
+          "scores": {
+            "Growth": 15.900351179578287,
+            "Stability": 37.46538329375325,
+            "Diversification": 49.93974803769107,
+            "Efficiency": 26.713917311775752,
+            "Adaptability": 59.40432279509767
+          },
+          "forward_return": 0.004091528735491234,
+          "forward_drawdown": -0.2431405912161928,
+          "forward_days": 63
+        },
+        "D": {
+          "date": "2012-03-30T00:00:00",
+          "state": "Growth-Dominant",
+          "metrics": {
+            "cagr": 0.6397931558783105,
+            "trailing_return": 0.6106355062672324,
+            "volatility": 0.11362665531361123,
+            "sharpe": 3.9098539256110363,
+            "drawdown": 0.04238888447669786,
+            "relative_return": 0.1909506516538837,
+            "correlation": 0.4573580227021359,
+            "max_weight": 0.3334
+          },
+          "scores": {
+            "Growth": 99.47212134647654,
+            "Stability": 85.06978423866306,
+            "Diversification": 74.16638867840389,
+            "Efficiency": 95.90495514989206,
+            "Adaptability": 74.5440713855705
+          },
+          "forward_return": -0.3487939255188126,
+          "forward_drawdown": -0.40104474833305814,
+          "forward_days": 63,
+          "later_baseline_date": "2012-06-29T00:00:00",
+          "lead_calendar_days": 91
+        }
+      }
+    },
+    "fixture_concentrated": {
+      "summary": {
+        "durations": [
+          {
+            "state": "Defensive Imbalance",
+            "start": "2010-12-31T00:00:00",
+            "end": "2011-01-31T00:00:00",
+            "observations": 1,
+            "calendar_days": 31,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2011-01-31T00:00:00",
+            "end": "2011-03-31T00:00:00",
+            "observations": 2,
+            "calendar_days": 59,
+            "right_censored": false
+          },
+          {
+            "state": "Balanced Growth",
+            "start": "2011-03-31T00:00:00",
+            "end": "2011-06-30T00:00:00",
+            "observations": 3,
+            "calendar_days": 91,
+            "right_censored": false
+          },
+          {
+            "state": "Growth-Dominant",
+            "start": "2011-06-30T00:00:00",
+            "end": "2012-02-29T00:00:00",
+            "observations": 8,
+            "calendar_days": 244,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2012-02-29T00:00:00",
+            "end": "2012-06-29T00:00:00",
+            "observations": 4,
+            "calendar_days": 121,
+            "right_censored": false
+          },
+          {
+            "state": "Concentration Pressure",
+            "start": "2012-06-29T00:00:00",
+            "end": "2013-05-31T00:00:00",
+            "observations": 11,
+            "calendar_days": 336,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2013-05-31T00:00:00",
+            "end": "2014-09-30T00:00:00",
+            "observations": 16,
+            "calendar_days": 487,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2014-09-30T00:00:00",
+            "end": "2014-11-28T00:00:00",
+            "observations": 2,
+            "calendar_days": 59,
+            "right_censored": false
+          },
+          {
+            "state": "Defensive Imbalance",
+            "start": "2014-11-28T00:00:00",
+            "end": "2015-01-30T00:00:00",
+            "observations": 2,
+            "calendar_days": 63,
+            "right_censored": false
+          },
+          {
+            "state": "Mixed / Unclassified",
+            "start": "2015-01-30T00:00:00",
+            "end": "2015-02-27T00:00:00",
+            "observations": 1,
+            "calendar_days": 28,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2015-02-27T00:00:00",
+            "end": "2015-09-30T00:00:00",
+            "observations": 7,
+            "calendar_days": 215,
+            "right_censored": false
+          },
+          {
+            "state": "Growth-Dominant",
+            "start": "2015-09-30T00:00:00",
+            "end": "2015-09-30T00:00:00",
+            "observations": 1,
+            "calendar_days": 0,
+            "right_censored": true
+          }
+        ],
+        "transitions": [
+          {
+            "date": "2011-01-31T00:00:00",
+            "old": "Defensive Imbalance",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2011-03-31T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Balanced Growth"
+          },
+          {
+            "date": "2011-06-30T00:00:00",
+            "old": "Balanced Growth",
+            "new": "Growth-Dominant"
+          },
+          {
+            "date": "2012-02-29T00:00:00",
+            "old": "Growth-Dominant",
+            "new": "Fragile Growth"
+          },
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Concentration Pressure"
+          },
+          {
+            "date": "2013-05-31T00:00:00",
+            "old": "Concentration Pressure",
+            "new": "Fragile Growth"
+          },
+          {
+            "date": "2014-09-30T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2014-11-28T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Defensive Imbalance"
+          },
+          {
+            "date": "2015-01-30T00:00:00",
+            "old": "Defensive Imbalance",
+            "new": "Mixed / Unclassified"
+          },
+          {
+            "date": "2015-02-27T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Fragile Growth"
+          },
+          {
+            "date": "2015-09-30T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Growth-Dominant"
+          }
+        ],
+        "most_common": {
+          "Fragile Growth": 27,
+          "Concentration Pressure": 11,
+          "Growth-Dominant": 9,
+          "Mixed / Unclassified": 5,
+          "Defensive Imbalance": 3,
+          "Balanced Growth": 3
+        },
+        "major_deteriorations": [
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Concentration Pressure"
+          },
+          {
+            "date": "2014-11-28T00:00:00",
+            "old": "Mixed / Unclassified",
+            "new": "Defensive Imbalance"
+          }
+        ]
+      },
+      "cases": {
+        "A": {
+          "date": "2012-01-31T00:00:00",
+          "state": "Growth-Dominant",
+          "metrics": {
+            "cagr": 0.5170650745864069,
+            "trailing_return": 0.49771483633947944,
+            "volatility": 0.08688300980203005,
+            "sharpe": 4.244749286220138,
+            "drawdown": 0.029818118953762518,
+            "relative_return": 0.08586861554481406,
+            "correlation": 0.35904501693666707,
+            "max_weight": 0.9
+          },
+          "scores": {
+            "Growth": 91.31461946273033,
+            "Stability": 87.28824526957096,
+            "Diversification": 40.908925158095386,
+            "Efficiency": 91.50686436147994,
+            "Adaptability": 77.91062679384785
+          },
+          "forward_return": 0.13771429281617698,
+          "forward_drawdown": -0.04804822728399427,
+          "forward_days": 63
+        },
+        "B": {
+          "date": "2014-11-28T00:00:00",
+          "state": "Defensive Imbalance",
+          "metrics": {
+            "cagr": 0.007029858427636253,
+            "trailing_return": 0.006773977841611822,
+            "volatility": 0.034475154238164635,
+            "sharpe": -0.9247609374274791,
+            "drawdown": 0.04241494071212648,
+            "relative_return": -0.01348801156112156,
+            "correlation": 0.31725762612756975,
+            "max_weight": 0.9
+          },
+          "scores": {
+            "Growth": 42.6969477360513,
+            "Stability": 85.06488534543988,
+            "Diversification": 42.789357744504755,
+            "Efficiency": 20.760086050707937,
+            "Adaptability": 49.216109966712054
+          },
+          "forward_return": 0.11960437202032193,
+          "forward_drawdown": -0.03570111279832788,
+          "forward_days": 63
+        },
+        "C": null,
+        "D": {
+          "date": "2011-06-30T00:00:00",
+          "state": "Growth-Dominant",
+          "metrics": {
+            "cagr": 0.18539469630723335,
+            "trailing_return": 0.1781036125218196,
+            "volatility": 0.06844796941271596,
+            "sharpe": 1.8563993927969007,
+            "drawdown": 0.03835635939035653,
+            "relative_return": 0.1091895508708236,
+            "correlation": 0.2118079834694524,
+            "max_weight": 0.9
+          },
+          "scores": {
+            "Growth": 86.15289229212833,
+            "Stability": 85.93042828841921,
+            "Diversification": 45.55027129218272,
+            "Efficiency": 98.7075945351721,
+            "Adaptability": 88.22992747691521
+          },
+          "forward_return": 0.10919042197183293,
+          "forward_drawdown": -0.013511484538361707,
+          "forward_days": 63,
+          "later_baseline_date": "2012-07-31T00:00:00",
+          "lead_calendar_days": 397
+        }
+      }
+    },
+    "fixture_single": {
+      "summary": {
+        "durations": [
+          {
+            "state": "Concentration Pressure",
+            "start": "2010-12-31T00:00:00",
+            "end": "2011-03-31T00:00:00",
+            "observations": 3,
+            "calendar_days": 90,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2011-03-31T00:00:00",
+            "end": "2012-06-29T00:00:00",
+            "observations": 15,
+            "calendar_days": 456,
+            "right_censored": false
+          },
+          {
+            "state": "Concentration Pressure",
+            "start": "2012-06-29T00:00:00",
+            "end": "2013-05-31T00:00:00",
+            "observations": 11,
+            "calendar_days": 336,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2013-05-31T00:00:00",
+            "end": "2014-09-30T00:00:00",
+            "observations": 16,
+            "calendar_days": 487,
+            "right_censored": false
+          },
+          {
+            "state": "Concentration Pressure",
+            "start": "2014-09-30T00:00:00",
+            "end": "2015-02-27T00:00:00",
+            "observations": 5,
+            "calendar_days": 150,
+            "right_censored": false
+          },
+          {
+            "state": "Fragile Growth",
+            "start": "2015-02-27T00:00:00",
+            "end": "2015-09-30T00:00:00",
+            "observations": 8,
+            "calendar_days": 215,
+            "right_censored": true
+          }
+        ],
+        "transitions": [
+          {
+            "date": "2011-03-31T00:00:00",
+            "old": "Concentration Pressure",
+            "new": "Fragile Growth"
+          },
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Concentration Pressure"
+          },
+          {
+            "date": "2013-05-31T00:00:00",
+            "old": "Concentration Pressure",
+            "new": "Fragile Growth"
+          },
+          {
+            "date": "2014-09-30T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Concentration Pressure"
+          },
+          {
+            "date": "2015-02-27T00:00:00",
+            "old": "Concentration Pressure",
+            "new": "Fragile Growth"
+          }
+        ],
+        "most_common": {
+          "Fragile Growth": 39,
+          "Concentration Pressure": 19
+        },
+        "major_deteriorations": [
+          {
+            "date": "2012-06-29T00:00:00",
+            "old": "Fragile Growth",
+            "new": "Concentration Pressure"
+          }
+        ]
+      },
+      "cases": {
+        "A": {
+          "date": "2012-05-31T00:00:00",
+          "state": "Fragile Growth",
+          "metrics": {
+            "cagr": 0.40978972149354564,
+            "trailing_return": 0.3923343544636133,
+            "volatility": 0.16514649213114466,
+            "sharpe": 1.85053445778909,
+            "drawdown": 0.15140582208391817,
+            "relative_return": -0.007544114733591956,
+            "correlation": null,
+            "max_weight": 1.0
+          },
+          "scores": {
+            "Growth": 74.87955879156928,
+            "Stability": 71.99541723001245,
+            "Diversification": 0.0,
+            "Efficiency": 82.16564391072097,
+            "Adaptability": 54.83021679454169
+          },
+          "forward_return": -0.262595568644472,
+          "forward_drawdown": -0.27405669637571384,
+          "forward_days": 63
+        },
+        "B": null,
+        "C": null,
+        "D": {
+          "date": "2011-03-31T00:00:00",
+          "state": "Fragile Growth",
+          "metrics": {
+            "cagr": 0.08575975853558179,
+            "trailing_return": 0.08252378033755514,
+            "volatility": 0.06439728975531908,
+            "sharpe": 0.654497579759171,
+            "drawdown": 0.043836865677045034,
+            "relative_return": 0.07466499195724219,
+            "correlation": null,
+            "max_weight": 1.0
+          },
+          "scores": {
+            "Growth": 70.06598149617389,
+            "Stability": 84.9318052269015,
+            "Diversification": 0.0,
+            "Efficiency": 77.7797198716457,
+            "Adaptability": 83.18024375299153
+          },
+          "forward_return": 0.09057113556071195,
+          "forward_drawdown": -0.020729865434441663,
+          "forward_days": 63,
+          "later_baseline_date": "2012-08-31T00:00:00",
+          "lead_calendar_days": 519
+        }
+      }
+    },
+    "fixture_defensive": {
+      "summary": {
+        "durations": [
+          {
+            "state": "Concentration Pressure",
+            "start": "2010-12-31T00:00:00",
+            "end": "2015-09-30T00:00:00",
+            "observations": 58,
+            "calendar_days": 1734,
+            "right_censored": true
+          }
+        ],
+        "transitions": [],
+        "most_common": {
+          "Concentration Pressure": 58
+        },
+        "major_deteriorations": []
+      },
+      "cases": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": null
+      }
+    }
+  },
+  "kill_criteria": [
+    [
+      "1. Distinct periods / 不同阶段",
+      "Fixture distinct states: 5",
+      "Unverified; synthetic variation is not historical validation"
+    ],
+    [
+      "2. Earlier/clearer deterioration / 更早或更清楚",
+      "Declared weak-baseline Case D search; no predictive test",
+      "Unverified against a strong traditional baseline"
+    ],
+    [
+      "3. Easier explanation / 更易理解",
+      "Auditable components, rule matches and missing-evidence explanations",
+      "Unverified without independent reader/user assessment"
+    ],
+    [
+      "4. Different structures / 不同结构",
+      "Fixture diversification mean gap: 37.68 points",
+      "Mechanically demonstrated; real historical usefulness unverified"
+    ]
+  ],
+  "recommendation": "Revise and retest; do not productize yet"
+}

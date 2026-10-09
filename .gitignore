@@ -44,3 +44,8 @@ data/
 cache/
 .cache/
 secrets.toml
+
+# Private, user-acquired research inputs (never publish raw market data)
+research/private_data/
+research/private_data/**
+*.private.csv

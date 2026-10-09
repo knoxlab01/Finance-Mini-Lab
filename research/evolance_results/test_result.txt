@@ -1,0 +1,4 @@
+2026-10-09
+Command: python -m pytest -q
+220 passed, 139 subtests passed in 18.28s
+189 existing tests + 31 Evolance tests. Network-independent suite.

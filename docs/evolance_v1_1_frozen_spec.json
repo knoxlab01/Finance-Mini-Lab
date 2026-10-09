@@ -1,0 +1,617 @@
+{
+  "amendment_policy": "No result-driven parameter changes. Only documented coding/formula/data/numerical/logically impossible-edge fixes.",
+  "anchors": {
+    "absolute_return": [
+      [
+        -0.3,
+        0
+      ],
+      [
+        -0.1,
+        20
+      ],
+      [
+        0,
+        40
+      ],
+      [
+        0.08,
+        60
+      ],
+      [
+        0.15,
+        80
+      ],
+      [
+        0.3,
+        100
+      ]
+    ],
+    "active_return": [
+      [
+        -0.2,
+        0
+      ],
+      [
+        -0.05,
+        25
+      ],
+      [
+        0,
+        50
+      ],
+      [
+        0.05,
+        70
+      ],
+      [
+        0.1,
+        85
+      ],
+      [
+        0.2,
+        100
+      ]
+    ],
+    "deterioration": [
+      [
+        0,
+        100
+      ],
+      [
+        5,
+        85
+      ],
+      [
+        10,
+        65
+      ],
+      [
+        20,
+        30
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "diversification_ratio": [
+      [
+        1,
+        0
+      ],
+      [
+        1.1,
+        30
+      ],
+      [
+        1.25,
+        55
+      ],
+      [
+        1.5,
+        80
+      ],
+      [
+        2,
+        100
+      ]
+    ],
+    "downside_deviation": [
+      [
+        0,
+        100
+      ],
+      [
+        0.05,
+        90
+      ],
+      [
+        0.1,
+        75
+      ],
+      [
+        0.15,
+        55
+      ],
+      [
+        0.25,
+        25
+      ],
+      [
+        0.4,
+        0
+      ]
+    ],
+    "drawdown": [
+      [
+        0,
+        100
+      ],
+      [
+        0.1,
+        90
+      ],
+      [
+        0.2,
+        70
+      ],
+      [
+        0.3,
+        50
+      ],
+      [
+        0.4,
+        30
+      ],
+      [
+        0.6,
+        0
+      ]
+    ],
+    "information_ratio": [
+      [
+        -1,
+        0
+      ],
+      [
+        -0.5,
+        15
+      ],
+      [
+        0,
+        40
+      ],
+      [
+        0.25,
+        55
+      ],
+      [
+        0.5,
+        70
+      ],
+      [
+        0.75,
+        85
+      ],
+      [
+        1,
+        100
+      ]
+    ],
+    "sortino": [
+      [
+        -1,
+        0
+      ],
+      [
+        0,
+        25
+      ],
+      [
+        0.5,
+        50
+      ],
+      [
+        1,
+        70
+      ],
+      [
+        1.5,
+        85
+      ],
+      [
+        2,
+        100
+      ]
+    ]
+  },
+  "baselines": {
+    "mc_only": {
+      "direction_identity_expected": true,
+      "rule": "same frozen probability bands and median guardrail; base confidence only, with synthetic cap; no structure downgrades"
+    },
+    "traditional": {
+      "rule": "Bullish if trailing return>0 and Sharpe>0; Bearish if trailing return<0 and Sharpe<0; otherwise Neutral / Uncertain",
+      "uses": "same past window; no horizon-specific fitting"
+    }
+  },
+  "change_counts": {
+    "major_decline": 10,
+    "minor_decline": 5,
+    "recovery_improvement": 5
+  },
+  "confidence": {
+    "absolute_contradictions": [
+      [
+        "bullish",
+        "Deteriorating"
+      ],
+      [
+        "bearish",
+        "Recovering"
+      ]
+    ],
+    "calibration": "Ordinal model-support labels, not calibrated probabilities of correctness",
+    "concentration_flag": "High Risk Concentration",
+    "each_downgrade_levels": 1,
+    "levels": [
+      "Low",
+      "Moderate",
+      "High"
+    ],
+    "moderate_base": "Moderate when directional moderate probability band and final median-guarded direction agrees",
+    "neutral_base": "Low",
+    "relative_contradictions": [
+      [
+        "Likely Outperform",
+        "Deteriorating"
+      ],
+      [
+        "Likely Underperform",
+        "Recovering"
+      ]
+    ],
+    "resilience_below": 40,
+    "strong_base": "High when strong probability band and final median-guarded direction agrees",
+    "synthetic_cap": "Moderate",
+    "unavailable_resilience": "No invented penalty; availability disclosed"
+  },
+  "dimension_weights": {
+    "Diversification Quality": {
+      "diversification_ratio": 0.4,
+      "risk_breadth_score": 0.6
+    },
+    "Downside Stability": {
+      "downside_deviation": 0.5,
+      "drawdown": 0.5
+    },
+    "Growth Strength": {
+      "absolute_return": 0.6,
+      "active_return": 0.4
+    },
+    "Return Efficiency": {
+      "information_ratio": 0.6,
+      "sortino": 0.4
+    },
+    "Structural Resilience": {
+      "Diversification Quality": 0.3,
+      "Downside Stability": 0.35,
+      "Growth Strength": 0.15,
+      "Return Efficiency": 0.2
+    }
+  },
+  "direction": {
+    "bearish_max": 0.4,
+    "bullish_min": 0.6,
+    "guardrail": "bullish requires median>0; bearish requires median<0; abs(median) below horizon minimum -> Neutral / Uncertain",
+    "median_abs_min": {
+      "12": 0.04,
+      "6": 0.02
+    },
+    "strong_bearish_max": 0.3,
+    "strong_bullish_min": 0.7
+  },
+  "flags": {
+    "Diversification Erosion": [
+      "decline3:Diversification Quality",
+      ">=",
+      10
+    ],
+    "High Risk Concentration": [
+      "risk_breadth_score",
+      "<",
+      35
+    ],
+    "Low Return Efficiency": [
+      "Return Efficiency",
+      "<",
+      40
+    ],
+    "Rapid Structural Deterioration": {
+      "all": [
+        [
+          "Structural Resilience",
+          "<",
+          40
+        ],
+        [
+          "core_declines_ge10",
+          ">=",
+          2
+        ]
+      ]
+    },
+    "Unsupported Growth": {
+      "all": [
+        [
+          "Growth Strength",
+          ">=",
+          70
+        ],
+        {
+          "any": [
+            [
+              "Downside Stability",
+              "<",
+              45
+            ],
+            [
+              "Diversification Quality",
+              "<",
+              45
+            ]
+          ]
+        }
+      ]
+    },
+    "Weak Downside Stability": [
+      "Downside Stability",
+      "<",
+      40
+    ]
+  },
+  "formulas": {
+    "covariance": "sample daily covariance *252; signed RC=w*(Sigma*w)/sigma_p; q=abs(RC)/sum(abs(RC))",
+    "diversification_ratio": "sum(w_i*sigma_i)/sigma_p; long-only",
+    "downside_deviation": "sqrt(252 * mean(min(r - ((1+rf)^(1/252)-1),0)^2)); denominator includes ALL observations",
+    "growth_active_return": "product(1+r_p)-product(1+r_b)",
+    "information_ratio": "252*mean(r_p-r_b)/(sqrt(252)*sample_std(r_p-r_b))",
+    "risk_breadth": "100*clip((1/sum(q^2)-1)/(N-1),0,1); N=1 -> 0; zero portfolio volatility -> RC/DR unavailable",
+    "sortino": "((product(1+r)^(252/n)-1)-rf)/annual_downside_deviation",
+    "zero_downside_or_tracking_error": "Sortino or IR unavailable, not infinity; no perfect score imputation"
+  },
+  "forward": {
+    "engine": "src.future_simulation.simulate_monte_carlo(parameters,100,1,5000,seed); read paths[6] and paths[12]",
+    "horizons_months": [
+      6,
+      12
+    ],
+    "initial_value": 100,
+    "outcome_sessions": {
+      "12": 252,
+      "6": 126
+    },
+    "seed": 20261007,
+    "simulations": 5000,
+    "state_parameter_adjustment": false,
+    "tie_probability": "terminal==initial is neither up nor loss"
+  },
+  "history": {
+    "annual_sessions": 252,
+    "frequency": "completed calendar months",
+    "insufficient_component": "unavailable, no reweighting",
+    "lookback": 252,
+    "max_gap_days": 7,
+    "nan_policy": "reject; no fill",
+    "risk_free_rate": 0.04,
+    "sensitivity_lookbacks": [
+      126,
+      504
+    ],
+    "zero_denominator_epsilon": 1e-12,
+    "zero_weight_policy": "exclude inactive holdings"
+  },
+  "hysteresis": {
+    "confirm_consecutive": 2,
+    "initial_confirmed": "Mixed / Neutral",
+    "initial_status": "provisional until two consecutive candidates or severe stress",
+    "interpretation": "Normal same-candidate persistence also applies on stress exit. Only current downside stability must exceed 45. Severe stress overrides confirmation, retaining raw candidate for diagnostics.",
+    "severe_stress": {
+      "any": [
+        {
+          "all": [
+            [
+              "Downside Stability",
+              "<",
+              30
+            ],
+            [
+              "Return Efficiency",
+              "<",
+              35
+            ]
+          ]
+        },
+        [
+          "Structural Resilience",
+          "<",
+          30
+        ]
+      ]
+    },
+    "stress_exit": {
+      "current_downside_stability_above": 45,
+      "require_same_nonstress_candidate_twice": true
+    }
+  },
+  "positioning": "An interpretable dynamic portfolio-state framework that organizes established financial evidence into structural states, risk flags, transitions, and probabilistic forward outlooks.",
+  "primary_default": "Mixed / Neutral",
+  "primary_precedence": [
+    "Stressed",
+    "Growth-Led",
+    "Defensive",
+    "Balanced Growth"
+  ],
+  "primary_rules": {
+    "Balanced Growth": {
+      "all": [
+        [
+          "Growth Strength",
+          ">=",
+          60
+        ],
+        [
+          "Downside Stability",
+          ">=",
+          55
+        ],
+        [
+          "Diversification Quality",
+          ">=",
+          55
+        ],
+        [
+          "Return Efficiency",
+          ">=",
+          55
+        ],
+        [
+          "is_growth_led",
+          "==",
+          false
+        ],
+        [
+          "is_stressed",
+          "==",
+          false
+        ]
+      ]
+    },
+    "Defensive": {
+      "all": [
+        [
+          "Downside Stability",
+          ">=",
+          70
+        ],
+        [
+          "Growth Strength",
+          "<",
+          50
+        ]
+      ]
+    },
+    "Growth-Led": {
+      "all": [
+        [
+          "Growth Strength",
+          ">=",
+          70
+        ],
+        [
+          "growth_support_gap",
+          ">=",
+          15
+        ]
+      ]
+    },
+    "Stressed": {
+      "any": [
+        {
+          "all": [
+            [
+              "Downside Stability",
+              "<",
+              40
+            ],
+            [
+              "Return Efficiency",
+              "<",
+              45
+            ]
+          ]
+        },
+        {
+          "all": [
+            [
+              "Downside Stability",
+              "<",
+              35
+            ],
+            [
+              "Structural Resilience",
+              "<",
+              50
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "relative": {
+    "confidence_policy": "Relative confidence starts from absolute base and common structural/data downgrades; one additional relative contradiction downgrade; label unchanged",
+    "outperform_active_gt": 0,
+    "outperform_ir_ge": 0.25,
+    "probability_claim": false,
+    "underperform_active_lt": 0,
+    "underperform_ir_le": -0.25
+  },
+  "resilience": {
+    "decline": "max(0,score[t-3]-score[t])",
+    "first_three": "unavailable",
+    "lag_evaluations": 3
+  },
+  "transitions": {
+    "Deteriorating": {
+      "any": [
+        {
+          "all": [
+            [
+              "core_declines_ge5",
+              ">=",
+              2
+            ],
+            [
+              "Structural Resilience",
+              "<",
+              55
+            ]
+          ]
+        },
+        [
+          "decline3:Downside Stability",
+          ">=",
+          15
+        ],
+        [
+          "decline3:Diversification Quality",
+          ">=",
+          15
+        ]
+      ]
+    },
+    "Recovering": {
+      "all": [
+        [
+          "prior_adversity",
+          "==",
+          true
+        ],
+        [
+          "core_improvements2_ge5",
+          ">=",
+          2
+        ],
+        [
+          "improve2:Downside Stability",
+          ">=",
+          -5
+        ],
+        [
+          "improve2:Diversification Quality",
+          ">=",
+          -5
+        ]
+      ]
+    },
+    "default": "Stable",
+    "precedence": [
+      "Deteriorating",
+      "Recovering"
+    ],
+    "prior_adversity_resilience_below": 50,
+    "prior_evaluations": 6,
+    "recovery_intervals": 2
+  },
+  "validation": {
+    "csv": "Date plus generic tickers; caller declares real/synthetic and source, adjusted/close price convention; self-reported provenance not independently authenticated",
+    "directional_hit": "strict sign match, excluding Neutral; zero realized return counts as miss; complete outcomes only",
+    "drawdown": "minimum wealth/peak-1 including initial baseline during future window",
+    "history_dates": "last observed trading date of completed month; cutoff at period end; no outcome fed into signals",
+    "incomplete_forward": "censored, not zero",
+    "neutral_coverage": "fraction Neutral of all issued signals plus separate complete-window coverage",
+    "overlap": "monthly forward windows overlap; no iid significance claims"
+  },
+  "version": "1.1-frozen"
+}

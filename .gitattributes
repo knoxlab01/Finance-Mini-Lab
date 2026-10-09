@@ -1,0 +1,11 @@
+# Defense in depth for Git-generated source archives; inputs also stay ignored.
+research/private_data export-ignore
+research/private_data/** export-ignore
+*.private.csv export-ignore
+
+# Preserve exact research milestone bytes and recorded SHA-256 values on checkout.
+docs/evolance* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+src/evolance/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+research/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/test_evolance*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/test_real_data_input.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

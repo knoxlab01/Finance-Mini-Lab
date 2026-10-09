@@ -1,0 +1,117 @@
+date,months,complete,observations,direction,confidence,mc_only_direction,mc_only_confidence,traditional_direction,state,transition,flags,forward_return,forward_drawdown,probability_up,p10,p50,p90
+2010-12-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.19865444,-0.03286477,0.54360000,-0.03731533,0.00352256,0.04647463
+2010-12-31T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.45927660,-0.03286477,0.56040000,-0.05016426,0.00704429,0.06719237
+2011-01-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.21702125,-0.01842052,0.57580000,-0.03699479,0.00691146,0.05323191
+2011-01-31T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.44922615,-0.03237982,0.61440000,-0.04782064,0.01385639,0.07897936
+2011-02-28T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.20407087,-0.01842052,0.63320000,-0.03271788,0.01237708,0.05999853
+2011-02-28T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Mixed / Neutral,Stable,[],0.53009011,-0.03237982,0.69380000,-0.03878559,0.02489257,0.09222110
+2011-03-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],0.15555255,-0.01842052,0.89960000,-0.00002521,0.05196731,0.10715593
+2011-03-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],0.46775415,-0.04238888,0.96820000,0.03040642,0.10661747,0.18777795
+2011-04-29T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.24642748,-0.01551311,0.89320000,-0.00184298,0.05202288,0.10930763
+2011-04-29T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.68177844,-0.04238888,0.96280000,0.02780211,0.10673373,0.19101237
+2011-05-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.24056542,-0.02112708,0.94780000,0.01413692,0.06912928,0.12762654
+2011-05-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.33779803,-0.17253703,0.98780000,0.06112973,0.14301831,0.23048452
+2011-06-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.21047147,-0.02112708,0.98060000,0.03445151,0.09288190,0.15517008
+2011-06-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.01333005,-0.35068962,0.99840000,0.10546693,0.19437008,0.28961397
+2011-07-29T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.22077403,-0.03237982,0.98780000,0.04487092,0.10595409,0.17119251
+2011-07-29T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.11043306,-0.40104475,0.99980000,0.12909645,0.22311246,0.32409802
+2011-08-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.25928100,-0.03237982,0.99000000,0.05196968,0.11586526,0.18425499
+2011-08-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.13449370,-0.41865640,1.00000000,0.14594854,0.24513204,0.35198985
+2011-09-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.37086961,-0.04238888,0.99360000,0.06258983,0.12867194,0.19949916
+2011-09-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.07086708,-0.42753236,1.00000000,0.17014942,0.27387603,0.38584280
+2011-10-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.35392900,-0.04665579,0.99960000,0.09078971,0.16399428,0.24282059
+2011-10-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.25046895,-0.45376979,1.00000000,0.23646131,0.35485482,0.48348459
+2011-11-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.02176483,-0.21151098,1.00000000,0.12072285,0.19861696,0.28268180
+2011-11-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.28290435,-0.48938812,1.00000000,0.30698473,0.43665207,0.57797326
+2011-12-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.24087173,-0.40104475,1.00000000,0.12224376,0.20172121,0.28760089
+2011-12-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.21097692,-0.48938812,1.00000000,0.31148929,0.44410259,0.58888402
+2012-01-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.10174533,-0.40104475,1.00000000,0.13990334,0.23061191,0.32943249
+2012-01-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.24200533,-0.48938812,1.00000000,0.35962715,0.51436899,0.68524899
+2012-02-29T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.30107585,-0.41865640,0.99800000,0.10456140,0.20431697,0.31407934
+2012-02-29T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.26288273,-0.48938812,1.00000000,0.28412579,0.45033969,0.63645224
+2012-03-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.33400896,-0.42753236,0.99940000,0.14407031,0.26775292,0.40607378
+2012-03-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.32705911,-0.48938812,1.00000000,0.39089763,0.60714525,0.85483929
+2012-04-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.38638008,-0.42738214,0.99220000,0.11358199,0.25014364,0.40487893
+2012-04-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.30723018,-0.46472114,1.00000000,0.32795092,0.56280191,0.83676031
+2012-05-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Deteriorating,[],-0.25579231,-0.39909013,0.89480000,-0.00380955,0.16175923,0.35667681
+2012-05-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Deteriorating,[],-0.23826114,-0.39909013,0.96360000,0.08695282,0.34961884,0.67282108
+2012-06-29T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",-0.02295584,-0.33130732,0.48520000,-0.18879636,-0.00584888,0.22053632
+2012-06-29T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",0.07687416,-0.33130732,0.48400000,-0.25776528,-0.01172716,0.31281777
+2012-07-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bullish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",-0.13921289,-0.28164990,0.56740000,-0.19218329,0.03508342,0.32917919
+2012-07-31T00:00:00,12,True,252,Bullish,Low,Bullish,Moderate,Bullish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",0.00634577,-0.28164990,0.60220000,-0.24428989,0.07131363,0.51443032
+2012-08-31T00:00:00,6,True,126,Bearish,Low,Bearish,Moderate,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",0.04825601,-0.24314059,0.39420000,-0.29383668,-0.05898254,0.25714525
+2012-08-31T00:00:00,12,True,252,Bearish,Low,Bearish,Moderate,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Rapid Structural Deterioration"", ""Weak Downside Stability""]",0.17066511,-0.24314059,0.35740000,-0.40895494,-0.11456658,0.32211164
+2012-09-28T00:00:00,6,True,126,Bearish,Moderate,Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.14631426,-0.16531085,0.32300000,-0.34441160,-0.10378728,0.22852382
+2012-09-28T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.35203460,-0.16531085,0.26240000,-0.48282704,-0.19688222,0.24271928
+2012-10-31T00:00:00,6,True,126,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.29919748,-0.10555407,0.24060000,-0.41895642,-0.17499895,0.17499919
+2012-10-31T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Deteriorating,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.52948731,-0.10555407,0.15880000,-0.58453205,-0.31944876,0.11031593
+2012-11-30T00:00:00,6,True,126,Bearish,Moderate,Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.09813561,-0.05627249,0.34440000,-0.38991632,-0.10998083,0.30271649
+2012-11-30T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.34371188,-0.05627249,0.28820000,-0.53456120,-0.20796054,0.34202076
+2012-12-31T00:00:00,6,True,126,Bearish,Moderate,Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.14296053,-0.05627249,0.33980000,-0.39237181,-0.11327496,0.29832037
+2012-12-31T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.34143236,-0.05627249,0.28240000,-0.53821149,-0.21381274,0.33270937
+2013-01-31T00:00:00,6,True,126,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.12893033,-0.05627249,0.29200000,-0.41337169,-0.14599942,0.24734296
+2013-01-31T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.31612328,-0.05627249,0.22380000,-0.57019813,-0.27076967,0.23196898
+2013-02-28T00:00:00,6,True,126,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.12247803,-0.05627249,0.28460000,-0.41582601,-0.15111895,0.23759082
+2013-02-28T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.27790953,-0.05627249,0.21300000,-0.57424598,-0.27948618,0.21415330
+2013-03-29T00:00:00,6,True,126,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.18677840,-0.05627249,0.23240000,-0.44107555,-0.19089326,0.17508598
+2013-03-29T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.25257981,-0.05627249,0.14880000,-0.61113156,-0.34542291,0.09719899
+2013-04-30T00:00:00,6,True,126,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.21410634,-0.04585994,0.28480000,-0.40656584,-0.14670742,0.23086037
+2013-04-30T00:00:00,12,True,252,Strong Bearish,Moderate,Strong Bearish,Moderate,Bearish,Stressed,Stable,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.25459668,-0.04585994,0.21380000,-0.56337479,-0.27197545,0.20887988
+2013-05-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Stressed,Recovering,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.21160264,-0.04585994,0.47600000,-0.29828754,-0.01540312,0.38563801
+2013-05-31T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Stressed,Recovering,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.20427376,-0.04585994,0.47180000,-0.39828330,-0.03067288,0.55549940
+2013-06-28T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bullish,Stressed,Recovering,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.16235707,-0.04585994,0.53260000,-0.25816820,0.02059812,0.40805963
+2013-06-28T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bullish,Stressed,Recovering,"[""Low Return Efficiency"", ""Weak Downside Stability""]",0.15746279,-0.04585994,0.54300000,-0.33530327,0.04151538,0.62602267
+2013-07-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Bullish,Stressed,Recovering,"[""Low Return Efficiency""]",0.15565657,-0.04585994,0.56900000,-0.21162395,0.04034443,0.37619127
+2013-07-31T00:00:00,12,True,252,Bullish,Moderate,Bullish,Moderate,Bullish,Stressed,Recovering,"[""Low Return Efficiency""]",0.15156989,-0.04585994,0.60580000,-0.26757680,0.08222155,0.59402693
+2013-08-30T00:00:00,6,True,126,Bullish,Moderate,Bullish,Moderate,Bullish,Mixed / Neutral,Stable,"[""Low Return Efficiency""]",0.12453510,-0.02445124,0.61600000,-0.18013697,0.06352676,0.38276428
+2013-08-30T00:00:00,12,True,252,Bullish,Moderate,Bullish,Moderate,Bullish,Mixed / Neutral,Stable,"[""Low Return Efficiency""]",0.12122442,-0.02445124,0.67160000,-0.21589206,0.13099605,0.62650945
+2013-09-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Recovering,[],0.06390375,-0.02445124,0.77140000,-0.08752214,0.13615257,0.41738325
+2013-09-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Recovering,[],0.06802815,-0.02445124,0.85820000,-0.05200581,0.29075311,0.75304884
+2013-10-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Recovering,[],-0.00675996,-0.02445124,0.97220000,0.08021719,0.26060958,0.47312376
+2013-10-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Recovering,[],-0.00023507,-0.02445124,0.99640000,0.27856612,0.58905886,0.97147523
+2013-11-29T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Recovering,[],-0.00600599,-0.00905195,0.93600000,0.02092457,0.13792211,0.26953677
+2013-11-29T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Recovering,[],0.00679273,-0.01975755,0.98420000,0.11142147,0.29482226,0.50662016
+2013-12-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.00115459,-0.00613551,0.95820000,0.03849598,0.15348600,0.28239092
+2013-12-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.08942663,-0.01975755,0.99220000,0.14764211,0.33048575,0.54061268
+2014-01-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],-0.00135167,-0.00655179,0.95340000,0.03197674,0.14135706,0.26344822
+2014-01-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.11758681,-0.04551404,0.99020000,0.13041543,0.30265442,0.49941215
+2014-02-28T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.00272985,-0.00521649,0.94880000,0.02712267,0.13212542,0.24892992
+2014-02-28T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.12580826,-0.04551404,0.98860000,0.11755055,0.28166848,0.46825600
+2014-03-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.00699358,-0.00521649,0.91060000,0.00485465,0.10265886,0.21097007
+2014-03-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.15344979,-0.04551404,0.97400000,0.06680258,0.21582083,0.38418689
+2014-04-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.00733717,-0.00478720,0.95800000,0.03025415,0.12073842,0.22007147
+2014-04-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.20130248,-0.04551404,0.99180000,0.11565508,0.25602114,0.41268945
+2014-05-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.01751509,-0.01975755,0.91280000,0.00471626,0.08639574,0.17552219
+2014-05-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.20523813,-0.04551404,0.97500000,0.05725557,0.18022651,0.31632564
+2014-06-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.09274131,-0.01975755,0.90800000,0.00269972,0.07804850,0.15979732
+2014-06-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.24080651,-0.04551404,0.97280000,0.04946643,0.16216192,0.28589528
+2014-07-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.12809497,-0.04551404,0.94920000,0.01733987,0.08198889,0.15136906
+2014-07-31T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.24258767,-0.04551404,0.98880000,0.07342194,0.17067712,0.27584650
+2014-08-29T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.12539123,-0.04551404,0.86320000,-0.00743393,0.04291987,0.09630459
+2014-08-29T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.23312812,-0.04551404,0.93960000,0.01447303,0.08766483,0.16547883
+2014-09-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.15315170,-0.04551404,0.86460000,-0.00467014,0.02772648,0.06147616
+2014-09-30T00:00:00,12,True,252,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.28678933,-0.04551404,0.94200000,0.00964391,0.05621101,0.10452205
+2014-10-31T00:00:00,6,True,126,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Balanced Growth,Stable,"[""Low Return Efficiency""]",0.18704041,-0.04551404,0.63200000,-0.00663553,0.00242838,0.01165570
+2014-10-31T00:00:00,12,True,252,Neutral / Uncertain,Low,Neutral / Uncertain,Low,Neutral / Uncertain,Balanced Growth,Stable,"[""Low Return Efficiency""]",0.33616230,-0.04551404,0.69300000,-0.00790723,0.00485977,0.01768556
+2014-11-28T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],0.13442321,-0.04551404,0.82960000,-0.00770843,0.02243074,0.05376225
+2014-11-28T00:00:00,12,False,232,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.91200000,0.00223740,0.04535472,0.08995473
+2014-12-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],0.12479580,-0.03706168,0.87380000,-0.00506808,0.04207641,0.09189875
+2014-12-31T00:00:00,12,False,209,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],,,0.94920000,0.01739210,0.08590734,0.15842443
+2015-01-30T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,"[""Diversification Erosion""]",0.08942186,-0.03706168,0.90240000,0.00078830,0.05689950,0.11669164
+2015-01-30T00:00:00,12,False,187,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,"[""Diversification Erosion""]",,,0.97020000,0.03444721,0.11701728,0.20542741
+2015-02-27T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],0.09859668,-0.04025646,0.93000000,0.00878818,0.07063492,0.13686738
+2015-02-27T00:00:00,12,False,167,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],,,0.98100000,0.05413564,0.14623756,0.24554048
+2015-03-31T00:00:00,6,True,126,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],0.11707202,-0.04025646,0.94100000,0.01563126,0.08810997,0.16646703
+2015-03-31T00:00:00,12,False,145,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Mixed / Neutral,Stable,[],,,0.98560000,0.07446635,0.18395748,0.30358012
+2015-04-30T00:00:00,6,False,123,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.95760000,0.02542008,0.10293596,0.18707119
+2015-04-30T00:00:00,12,False,123,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.99140000,0.09783629,0.21643968,0.34673572
+2015-05-29T00:00:00,6,False,102,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.93900000,0.01684224,0.09979870,0.19034264
+2015-05-29T00:00:00,12,False,102,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.98540000,0.08309949,0.20952716,0.34950402
+2015-06-30T00:00:00,6,False,80,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.93740000,0.01694476,0.10417211,0.19974819
+2015-06-30T00:00:00,12,False,80,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.98500000,0.08580104,0.21916430,0.36762280
+2015-07-31T00:00:00,6,False,57,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.92420000,0.01001610,0.10119943,0.20152655
+2015-07-31T00:00:00,12,False,57,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.97800000,0.07368425,0.21260701,0.36815453
+2015-08-31T00:00:00,6,False,36,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.95340000,0.02792506,0.12442434,0.23095253
+2015-08-31T00:00:00,12,False,36,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.99020000,0.11426895,0.26429420,0.43305057
+2015-09-30T00:00:00,6,False,14,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.97380000,0.04940640,0.15215301,0.26599773
+2015-09-30T00:00:00,12,False,14,Strong Bullish,Moderate,Strong Bullish,Moderate,Bullish,Balanced Growth,Stable,[],,,0.99660000,0.16385869,0.32741733,0.51234798

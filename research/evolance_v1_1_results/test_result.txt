@@ -1,0 +1,4 @@
+2026-10-09
+Command: python -m pytest -q
+257 passed, 186 subtests passed in 19.19s
+189 v0.3 +31 preserved v1 +37 new v1.1 tests. Offline suite.

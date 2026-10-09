@@ -1,0 +1,17 @@
+{
+  "docs/evolance_v1_research.md": "ef65e671c33ee5c977bc17d2587353b7abbfd5e46d4a11a85b071de05b0dfd65",
+  "tests/test_evolance.py": "7e7c0c212d8cffba157fd760e302b58ef7fa30572158810830de5b01f793e2ea",
+  "research/evolance_validation.py": "e63a601ec683ea8ce8bae03269ac43cbf14ef7ebd509cfd98f552ff55a4d33be",
+  "research/evolance_results/fixture_concentrated_timeline.csv": "9d129bc9b57d1e0ec0b5c78025e09f0c3b98b7a5605d65aa6ac1a54b6c5d0cf6",
+  "research/evolance_results/fixture_defensive_timeline.csv": "d0b7e916d62457883533f917c7fa23ed6e8066274b54a023b2f63ca1ff23d824",
+  "research/evolance_results/fixture_equal_timeline.csv": "0ecaaa8f18bb9cb8fed9de92e3ced14003c3b94f821ecdededc9c45c24874ba2",
+  "research/evolance_results/fixture_single_timeline.csv": "c94036e2cd0345234183de7da2d9b8f38e219a7586e36e6db99e3f05cc541ec2",
+  "research/evolance_results/summary.json": "fe041e44f6c54eb2d7447c30093a477bf835bc46724e28afa6bb4e8ca02ff6e0",
+  "research/evolance_results/test_result.txt": "1a5b07b76405ba444d58f6516e745eb0bef941179602e049b664f332ac06cf79",
+  "src/evolance/config.py": "e77089e02ed3bbb7ab9cf10fba147974f7783344e1118122106157c381f90db3",
+  "src/evolance/scoring.py": "c6dc16f504722d363933fdfd95be0be498d57ef60f6a7aa2dfd7fa84ca6afa83",
+  "src/evolance/states.py": "ee4ac6f86ae604fad6f4375137228997df2d6b3b5f0f79e88c6426c1770eb271",
+  "src/evolance/timeline.py": "e3a512b72619190b8f02e7a333a5423f11e66b40be223cf7b2d0a5b74007f82f",
+  "src/evolance/validation.py": "7fd558baa7204f3b8d160c1bbad1c4a2fd3dcce7aa55437714b05c5525042da8",
+  "src/evolance/__init__.py": "c1087911db03df5860d370a53c88b3d242f1518667a6281207c7df61724facf9"
+}

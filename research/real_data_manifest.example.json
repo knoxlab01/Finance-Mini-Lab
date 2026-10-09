@@ -1,0 +1,11 @@
+{
+  "dataset_name": "equity_validation_set_01",
+  "source": "",
+  "download_date": "",
+  "usage_context": "local research validation only",
+  "asset_class": "equity",
+  "price_type": "adjusted_close",
+  "tickers": ["AAPL", "MSFT", "NVDA", "SPY"],
+  "benchmark": "SPY",
+  "notes": ""
+}
