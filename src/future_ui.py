@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-from src.i18n import tr, localize_message, metric_help
+from src.i18n import tr, localize_message, metric_help, localized_selectbox
 from src.future_simulation import estimate_parameters, build_scenarios, simulate_monte_carlo, interpret_outcomes
 
 
@@ -19,8 +19,8 @@ def render_future_outlook(historical, language="English"):
         st.markdown("**" + t('Forecast Settings') + "**")
         left, middle, right = st.columns(3)
         value = left.number_input(t('Initial Value'), min_value=1., value=100000., key="fo_value")
-        horizon = middle.selectbox(t('Forecast Horizon'), [1, 3, 5], index=2,
-                                  format_func=lambda year: t("years", years=year), key="fo_horizon")
+        horizon = localized_selectbox(middle, t('Forecast Horizon'), [1, 3, 5], index=2,
+                                      format_func=lambda year: t("years", years=year), key="fo_horizon", language=language)
         count = right.number_input(t('Simulations'), min_value=1000, max_value=10000, value=5000, step=1000, key="fo_count")
         run = st.form_submit_button(t('Run Future Outlook'), key="fo_run")
     if run:

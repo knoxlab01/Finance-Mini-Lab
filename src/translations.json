@@ -9,7 +9,7 @@
   ],
   "setup_note": [
     "Same-currency stocks/ETFs; nonnegative weights, daily target-weight rebalancing, no taxes or fees.",
-    "仅支持同币种股票/ETF；权重非负，每日恢复目标权重，不计税费。"
+    "仅支持同币种股票和 ETF；权重不能为负，每日再平衡至目标权重，不计税费。"
   ],
   "db_error": [
     "Cannot open SQLite; check data directory permissions.",
@@ -57,7 +57,7 @@
   ],
   "rf_help": [
     "Editable constant effective annual rate, not a live Treasury quote.",
-    "可编辑的固定年有效利率假设，并非实时国债报价。"
+    "可自行设置固定的年化无风险利率，并非实时国债报价。"
   ],
   "Portfolio Name": [
     "Portfolio Name (optional)",
@@ -109,23 +109,23 @@
   ],
   "demo_notice": [
     "Live market data is temporarily unavailable. Demo data is being used for analysis.",
-    "实时行情暂不可用，本次整个分析使用演示数据。"
+    "实时行情暂不可用，本次分析使用演示数据。"
   ],
   "demo_warning": [
     "Demo Data: deterministic synthetic prices for feature demonstration, not actual historical/live market data or predictions.",
-    "演示数据：固定可重复的合成价格，仅用于功能展示，不是真实历史或实时行情，也不是预测。"
+    "当前使用可重复生成的模拟数据，仅用于功能展示，并非真实市场历史或实时行情，也不代表当前市场预测。"
   ],
   "period": [
     "Actual common period: {start} – {end} · {count} return observations",
-    "实际共同区间：{start} – {end} · {count} 个收益观测值"
+    "实际分析区间：{start} – {end} · {count} 个交易日的收益数据"
   ],
   "annualization": [
     "252 sessions/year; calendar CAGR; daily equivalent of the annual risk-free rate. N/A means insufficient history or zero volatility.",
-    "按 252 交易日年化；CAGR 按日历天数；无风险年利率换算为日利率。N/A 表示样本不足或零波动。"
+    "风险指标按每年 252 个交易日折算；年化复合收益率按实际日历天数计算，无风险年利率换算为日利率。N/A 表示样本不足或波动率为零。"
   ],
   "alignment": [
     "Common observations only, no fills; holidays or missing quotes can make annualized risk approximate.",
-    "仅使用共同观测日，不填补价格；假日或缺失报价可能使年化风险指标成为近似值。"
+    "只使用各资产都有报价的日期，不填补缺失价格。节假日或报价缺失可能影响年化风险指标的精度。"
   ],
   "Cumulative Return": [
     "Total Return",
@@ -161,7 +161,7 @@
   ],
   "drawdown_note": [
     "Drawdown is a decimal; zero marks a running peak.",
-    "回撤为小数，0 表示当时的历史高点。"
+    "回撤以小数表示；0 表示组合价值达到截至当时的历史高点。"
   ],
   "Correlation Matrix": [
     "Correlation Matrix",
@@ -169,7 +169,7 @@
   ],
   "correlation_na": [
     "Correlations for constant-return assets are undefined and shown as N/A.",
-    "常数收益资产的相关系数未定义，显示 N/A。"
+    "收益率始终不变的资产无法计算相关系数，显示为 N/A。"
   ],
   "metric_explanations": [
     "What do these metrics mean?",
@@ -181,7 +181,7 @@
   ],
   "help_cagr": [
     "The compounded annual growth rate over the selected period.",
-    "把整个投资期间折算成平均每年的复合增长速度。"
+    "将整个投资期间的表现折算为每年的复合增长率。"
   ],
   "help_volatility": [
     "Measures how much returns fluctuate; higher volatility generally means larger price swings.",
@@ -189,7 +189,7 @@
   ],
   "help_sharpe": [
     "Measures excess return relative to risk taken; higher values generally indicate better risk-adjusted performance.",
-    "衡量承担风险后获得的超额收益质量；通常越高，风险调整后的表现越好。"
+    "衡量每单位风险对应的超额收益；通常越高，风险调整后的表现越好。"
   ],
   "help_drawdown": [
     "The largest historical decline from a portfolio peak to a subsequent trough.",
@@ -197,7 +197,7 @@
   ],
   "help_correlation": [
     "Measures how closely assets move together; higher correlation generally means less diversification benefit.",
-    "衡量不同资产是不是经常一起涨跌；相关性越高，分散效果通常越弱。"
+    "衡量不同资产涨跌的同步程度；相关性越高，分散风险的效果通常越有限。"
   ],
   "help_benchmark": [
     "A reference market used to compare portfolio performance, such as SPY.",
@@ -205,11 +205,11 @@
   ],
   "help_percentiles": [
     "Lower, median and upper simulated percentile outcomes; not guaranteed worst, average or best cases.",
-    "模拟中的较低、中位和较高百分位结果，不代表最差、平均或最好保证值。"
+    "P10、P50 和 P90 分别表示模拟结果的第 10、50 和 90 百分位，不代表最差、平均或最好的保证结果。"
   ],
   "help_loss": [
     "The share of simulations that end below the initial portfolio value.",
-    "模拟期结束时组合价值低于初始价值的模拟比例。"
+    "模拟期结束时，组合价值低于初始价值的路径占比。"
   ],
   "help_scenarios": [
     "Shows possible portfolio paths under conservative, base and optimistic assumptions.",
@@ -221,7 +221,7 @@
   ],
   "future_demo": [
     "Demo-based simulation: synthetic demo data for feature demonstration only, not a real-market prediction.",
-    "基于演示数据的模拟：使用合成数据，仅用于功能展示，不是真实市场预测。"
+    "本次模拟基于演示数据，仅用于功能展示，不代表真实市场预测。"
   ],
   "future_live": [
     "Simulation is based on historical portfolio return and volatility estimates.",
@@ -229,7 +229,7 @@
   ],
   "future_disclaimer": [
     "Historical performance does not guarantee future results; simulations are not forecasts or guarantees.",
-    "历史表现不保证未来结果；模拟不是预测或保证。"
+    "历史表现不代表未来收益；模拟结果不构成预测或收益保证。"
   ],
   "Forecast Settings": [
     "Forecast Settings",
@@ -261,11 +261,11 @@
   ],
   "current_result": [
     "Current result: {years} years · {count} simulations · initial {initial} · seed {seed} · {observations} historical returns",
-    "本次结果：{years} 年 · {count} 次模拟 · 初值 {initial} · 种子 {seed} · {observations} 个历史收益"
+    "本次结果：{years} 年 · {count} 次模拟 · 初始价值 {initial} · 随机种子 {seed} · {observations} 个交易日的历史收益数据"
   ],
   "parameters": [
     "Model expected annual return: {expected} · Annualized log volatility: {volatility}",
-    "模型年预期收益：{expected} · 年化对数波动率：{volatility}"
+    "模型预期年化收益率：{expected} · 年化对数收益波动率：{volatility}"
   ],
   "model_help": [
     "Model assumptions",
@@ -273,11 +273,11 @@
   ],
   "model_note": [
     "GBM with constant parameters and exact monthly steps; fixed seed. No contributions, taxes, fees, inflation or parameter uncertainty. Base is mean wealth, not P50.",
-    "采用恒定参数 GBM 和精确月度转移，固定种子；不计追加投入、税费、通胀或参数估计误差。基准情景为平均财富，不是 P50。"
+    "采用固定参数的几何布朗运动模型（GBM），按月计算，并使用固定随机种子。不计追加投入、税费、通胀和参数估计误差。基准情景反映平均组合价值，不等于 P50 中位数。"
   ],
   "Scenario Projection": [
     "Scenario Projection",
-    "情景投影"
+    "情景预测"
   ],
   "Conservative": [
     "Conservative",
@@ -341,7 +341,7 @@
   ],
   "band_note": [
     "50 sample paths; pointwise P10–P90 band and P50 line, not simultaneous path coverage.",
-    "显示 50 条样本路径；阴影为各时点 P10–P90，橙线为 P50，不表示整条路径始终处于区间内。"
+    "显示 50 条样本路径。阴影表示各时点的 P10–P90 区间，橙线表示 P50 中位数；不代表每条路径始终处于区间内。"
   ],
   "Ending Value Distribution": [
     "Ending Value Distribution",
@@ -369,7 +369,7 @@
   ],
   "guidance_disclaimer": [
     "Illustrative educational decision support, not personalized, fiduciary or regulated investment advice. Consider personal circumstances; no performance guarantee.",
-    "教育性决策辅助，非个性化、受托或受监管投资建议；请结合个人情况，不保证未来表现。"
+    "以下内容仅用于教育和决策参考，不构成个性化、受托或受监管的投资建议。请结合自身情况独立判断，历史与模拟结果均不代表未来表现。"
   ],
   "run_history": [
     "Run historical portfolio analysis first.",
@@ -377,7 +377,7 @@
   ],
   "guidance_demo": [
     "Demo-based guidance: synthetic demo analysis for feature demonstration only, not real stock history.",
-    "基于演示数据的建议：使用合成分析，仅用于功能展示，不基于真实股票历史行情。"
+    "当前建议基于演示数据，仅用于展示产品功能，并非针对真实股票历史或当前市场的分析。"
   ],
   "Your Profile": [
     "Your Profile",
@@ -417,7 +417,7 @@
   ],
   "Capital Preservation": [
     "Capital Preservation",
-    "资本保值"
+    "资产保值"
   ],
   "Steady Growth": [
     "Steady Growth",
@@ -445,15 +445,15 @@
   ],
   "heuristic": [
     "Educational heuristic, not a validated risk rating; missing evidence is not evidence of safety.",
-    "启发式教育规则，不是经验证风险评级；缺失证据不代表安全。"
+    "这些建议基于教育用途的经验规则，并非经过验证的风险评级。信息不足不代表风险较低。"
   ],
   "run_future": [
     "Run Future Outlook for a fuller risk assessment.",
-    "运行未来展望可补充风险判断。"
+    "运行未来模拟后，可补充对潜在风险的判断。"
   ],
   "evidence_horizon": [
     "Simulation evidence horizon: {years} years; not necessarily your investment horizon.",
-    "模拟证据期限：{years} 年，与偏好投资期限不一定相同。"
+    "本次模拟期限为 {years} 年，可能与你选择的投资期限不同。"
   ],
   "Key Guidance": [
     "Key Guidance",
@@ -481,11 +481,11 @@
   ],
   "missing": [
     "Missing or limited evidence",
-    "缺失或有限证据"
+    "可用信息不足"
   ],
   "rule_note": [
     "Thresholds and profile caps are documented in README; income, liabilities, taxes and financial capacity are not assessed.",
-    "完整阈值和偏好约束见 README；不评估收入、负债、税务或实际损失承受能力。"
+    "完整判断阈值和偏好条件见 README。本工具不评估个人收入、负债、税务或实际承受损失的能力。"
   ],
   "Diversification": [
     "Diversification",
@@ -529,15 +529,15 @@
   ],
   "ev_title": [
     "Traditional Analytics vs Evolance",
-    "传统分析 vs Evolance"
+    "传统分析与 Evolance"
   ],
   "ev_why_both": [
     "Traditional analytics measure return and risk directly. Evolance does not replace those metrics; it organizes them into an interpretable view of portfolio state, structural pressure, transition and forward uncertainty.",
-    "传统分析直接衡量收益与风险。Evolance 并不取代这些指标，而是在其基础上进一步组织组合状态、结构压力、状态转化与未来不确定性。"
+    "传统分析衡量收益和风险。Evolance 在保留这些指标的基础上，进一步梳理组合状态、结构压力、变化趋势和未来的不确定性。"
   ],
   "ev_demo": [
     "Demo Data — structural interpretation and outlook are based on deterministic synthetic data, not current market history.",
-    "演示数据 — 当前结构判断与未来展望基于确定性合成数据，并非真实市场历史。"
+    "当前使用可重复生成的模拟数据，仅用于展示组合解读与未来展望，并非真实市场历史或实时行情，也不代表当前市场预测。"
   ],
   "ev_traditional_subtitle": [
     "What the conventional metrics show",
@@ -549,7 +549,7 @@
   ],
   "ev_structural_subtitle": [
     "What the portfolio structure means",
-    "组合结构意味着什么"
+    "这个组合目前处于什么状态？"
   ],
   "ev_relative": [
     "**Benchmark-relative return:** {value} pp",
@@ -557,15 +557,15 @@
   ],
   "ev_asof": [
     "Latest completed month: {date}; trailing 252 sessions. Outlook starts at this historical date, not today.",
-    "最近完成月份：{date}；回溯 252 个交易日。展望从该历史时点开始，并非从今天开始。"
+    "最近完整月份：{date}；分析窗口为 252 个交易日。展望从该历史时点开始，而非今天。"
   ],
   "ev_state": [
     "Primary State",
-    "主状态"
+    "当前状态"
   ],
   "ev_transition": [
     "Transition",
-    "转化状态"
+    "变化趋势"
   ],
   "ev_12m": [
     "12-Month Outlook",
@@ -581,19 +581,19 @@
   ],
   "ev_flags": [
     "Active structural flags",
-    "当前结构提示"
+    "结构提示"
   ],
   "ev_confidence_help": [
     "Confidence is an ordinal evidence-strength label, not a guaranteed probability of success.",
-    "置信度用于表示当前证据强弱，并非预测成功率或保证概率。"
+    "置信度反映支持当前判断的信息强弱，不是预测成功率，也不是资金获利概率。"
   ],
   "ev_no_flags": [
     "No major structural warnings",
-    "无明显结构警示"
+    "暂未识别到明显的结构提示"
   ],
   "ev_warmup": [
     "State confirmation or transition history is still warming up; Stable does not establish structural stability.",
-    "状态确认或转化历史仍在积累；暂定稳定不代表已证实结构稳定。"
+    "用于确认状态和判断变化趋势的历史数据仍在积累。暂标为稳定，不代表已确认组合结构稳定。"
   ],
   "ev_insufficient": [
     "Insufficient historical evidence for Evolance analysis.",
@@ -601,11 +601,11 @@
   ],
   "ev_quality": [
     "Historical data does not meet the frozen quality requirements.",
-    "历史数据未满足冻结规则的数据质量要求。"
+    "历史数据未达到模型的数据质量要求，暂无法分析。"
   ],
   "ev_required": [
     "Requires 253 valid aligned prices at a completed month-end; structural change needs four eligible monthly observations. Traditional analytics remains available.",
-    "需在已完成月末拥有 253 个有效对齐价格；结构变化需四次有效月度观察。传统分析仍可使用。"
+    "需在一个完整月末拥有至少 253 个有效、已对齐的价格数据点；判断变化趋势还需四次有效的月度观测。传统分析仍可使用。"
   ],
   "ev_unavailable": [
     "Unavailable",
@@ -613,7 +613,7 @@
   ],
   "ev_conclusion": [
     "At this historical snapshot, structure is {state} and transition is {transition}; active evidence: {flags}. The {direction} outlook comes from the simulation, with structural evidence informing confidence.",
-    "在该历史快照中，结构为{state}，转变为{transition}；当前证据：{flags}。{direction}展望来自模拟，结构证据用于评估置信度。"
+    "在这一历史时点，组合整体处于{state}状态，{transition}。蒙特卡洛模拟对未来 12 个月给出{direction}展望；{flags}，Evolance 据此将这一方向性判断的置信度评为{confidence}。"
   ],
   "ev_disclaimer": [
     "For educational and research purposes only. Not investment advice.",
@@ -625,7 +625,7 @@
   ],
   "ev_bands_note": [
     "Rounded scores and descriptive bands are presentation aids only; they do not change frozen state rules.",
-    "整数分数和定性区间仅帮助理解，不改变冻结状态规则。"
+    "各维度用简化等级辅助理解评分，仅用于展示，不改变模型的状态判断规则。"
   ],
   "ev_strong": [
     "Strong",
@@ -641,7 +641,7 @@
   ],
   "ev_weak": [
     "Weak",
-    "弱"
+    "偏弱"
   ],
   "ev_very_weak": [
     "Very Weak",
@@ -653,7 +653,7 @@
   ],
   "ev_methodology_text": [
     "Frozen Evolance v1.1 uses monthly 252-session snapshots, a 4% annual risk-free assumption and daily fixed-weight rebalancing. Monte Carlo uses 5,000 paths, a fixed seed and 6/12-month horizons. State informs interpretation/confidence, never simulation drift or volatility. Future Outlook may use different settings; only exactly compatible simulations are reused.",
-    "冻结的 Evolance v1.1 使用每月 252 个交易日快照、4% 年无风险利率与每日固定权重再平衡。蒙特卡洛采用 5,000 条路径、固定种子及 6/12 个月期限。状态影响解释／置信度，不改变模拟漂移或波动率。未来展望可能使用不同设置；仅复用完全兼容的模拟。"
+    "Evolance v1.1 按已冻结的规则，在每个完整月末分析最近 252 个交易日，采用 4% 年化无风险利率和每日固定权重再平衡。蒙特卡洛模拟使用 5,000 条路径、固定随机种子以及 6 个月和 12 个月的期限。Evolance 的状态判断只用于解释结果和评估置信度，不会修改模拟中的漂移率或波动率。“未来展望”可以采用不同设置；只有设置完全兼容时才复用已有模拟。"
   ],
   "ev_research": [
     "Research validation",
@@ -661,7 +661,7 @@
   ],
   "ev_research_text": [
     "Real frozen-rule walk-forward validation: 2005–2017, AAPL/MSFT/NVDA/SPY. Predictive superiority was not established. Deteriorating transitions were associated with deeper subsequent drawdowns in the tested sample. Pooled confidence showed descriptive High > Moderate > Low ordering, but was not independently calibrated and was affected by portfolio composition. Historical associations do not guarantee future outcomes.",
-    "真实冻结规则前向验证：2005–2017 年，AAPL/MSFT/NVDA/SPY。未确立预测优势。在测试样本中，恶化转变与随后更深的回撤相关。汇总置信度呈描述性的高 > 中等 > 低排序，但未独立校准，且受组合构成影响。历史关联不保证未来结果。"
+    "历史验证采用固定规则逐期向前分析，覆盖 2005–2017 年的 AAPL、MSFT、NVDA 和 SPY。研究尚未证明 Evolance 具有更强的预测能力。在测试样本中，恶化趋势与随后更深的回撤相关。汇总结果中，高、中、低置信度呈现描述性的表现排序，但尚未经过独立校准，且受到组合构成的影响。这些历史关联不保证未来仍然成立。"
   ],
   "ev_traditional": [
     "Traditional Analytics",
@@ -809,31 +809,31 @@
   ],
   "ev_Growth Strength_help": [
     "Trailing return + benchmark-relative return.",
-    "尾随收益 + 基准相对收益。"
+    "结合尾部收益和相对基准的超额收益。"
   ],
   "ev_Downside Stability_help": [
     "Downside deviation + maximum drawdown.",
-    "下行偏差 + 最大回撤。"
+    "结合下行波动和最大回撤。"
   ],
   "ev_Diversification Quality_help": [
     "Risk-contribution breadth + diversification ratio.",
-    "风险贡献广度 + 分散化比率。"
+    "结合风险贡献的集中程度和分散化比率。"
   ],
   "ev_Return Efficiency_help": [
     "Sortino + Information Ratio.",
-    "索提诺比率 + 信息比率。"
+    "结合索提诺比率和信息比率。"
   ],
   "ev_Structural Resilience_help": [
     "Directional deterioration across the other dimensions; improvements are not penalized.",
-    "其他维度的方向性恶化；不惩罚改善。"
+    "衡量多个维度是否同步恶化，并考虑风险传导。"
   ],
   "ev_intro_title": [
     "Beyond Traditional Analytics",
-    "超越传统指标"
+    "从指标到洞察"
   ],
   "ev_intro_text": [
     "Most portfolio tools stop at reporting return, risk and simulated future outcomes. Vexa goes one step further with Evolance — a research-tested interpretation framework developed for this project. It brings those signals together into a structured view of portfolio state, transition, structural pressure, directional outlook and confidence.",
-    "大多数投资组合工具停留在收益、风险与未来模拟结果的展示。Vexa 在此基础上进一步加入 Evolance——一套为本项目设计并经过历史验证的解释框架，用于把分散的指标整合为组合状态、结构压力、状态变化、方向性展望与置信度。"
+    "同一组指标，换一个视角理解组合。\n\n传统分析可以告诉你收益、风险和模拟结果，但这些数字放在一起意味着什么，往往还需要进一步判断。\n\nVexa 通过 Evolance 把分散的金融信号整理到一起，从组合当前状态、结构压力、变化趋势和未来方向等角度，提供一套更完整的结构化解读。"
   ],
   "ev_complements": [
     "Evolance complements traditional analytics; it does not replace them.",
@@ -845,7 +845,7 @@
   ],
   "ev_snapshot_period": [
     "Shared snapshot: {start} → {date} (252 return sessions). Outlook starts at this historical/synthetic date, not today. Sharpe uses the frozen 4% risk-free assumption.",
-    "共同快照：{start} → {date}（252 个收益交易日）。展望从该历史／合成数据时点开始，不是从今天开始。夏普比率使用冻结的 4% 无风险利率假设。"
+    "共同快照：{start} → {date}（252 个交易日）。展望从这一历史或模拟数据时点开始，而非今天。夏普比率按模型固定的 4% 年化无风险利率计算。"
   ],
   "ev_takeaway": [
     "Evolance Takeaway",
@@ -857,23 +857,23 @@
   ],
   "ev_how_it_works": [
     "How it works",
-    "如何工作"
+    "分析方法"
   ],
   "ev_historical_evidence": [
     "Historical evidence",
-    "历史证据"
+    "历史验证"
   ],
   "ev_intro_subtitle": [
     "The Evolance Interpretation Layer",
-    "Evolance 解释层"
+    "Evolance 结构化解读"
   ],
   "ev_intro_meaning": [
     "Traditional analytics tell you what the numbers are. Evolance helps explain what they mean together.",
-    "传统分析告诉你“数字是什么”，Evolance 进一步帮助解释“这些数字放在一起意味着什么”。"
+    "传统分析告诉你‘数字是什么’，Evolance 进一步帮助解释‘这些数字放在一起意味着什么’。"
   ],
   "ev_intro_side_by_side": [
     "Both views are shown side by side so you can compare conventional evidence with Vexa’s signature interpretation layer.",
-    "两种视角并列展示，让用户既能看到传统金融证据，也能体验 Vexa 特有的结构化解释层。"
+    "两种视角并列呈现：既保留传统金融指标，也提供 Vexa 特有的结构化解读。"
   ],
   "ev_relative_help": [
     "Percentage-point difference between portfolio and benchmark return over the same snapshot.",
@@ -881,6 +881,522 @@
   ],
   "demo_combined": [
     "Demo Data is being used because live market data is temporarily unavailable. Results use deterministic synthetic prices for feature demonstration and are not real historical/live market data or current predictions.",
-    "实时行情暂不可用，本次使用演示数据。结果基于固定可重复的合成价格，仅用于功能展示，不是真实历史／实时行情，也不是当前市场预测。"
+    "实时行情暂不可用，本次使用演示数据。当前使用可重复生成的模拟数据，仅用于功能展示，并非真实市场历史或实时行情，也不代表当前市场预测。"
+  ],
+  "legacy:Inflation-adjusted Value / 通胀调整后的实际购买力": [
+    "Inflation-adjusted Value",
+    "通胀调整后的实际购买力"
+  ],
+  "legacy:Nominal Future Value / 名义未来价值": [
+    "Nominal Future Value",
+    "名义未来价值"
+  ],
+  "legacy:Real Future Value / 实际购买力": [
+    "Real Future Value",
+    "实际购买力"
+  ],
+  "legacy:Purchasing Power Loss / 购买力损失": [
+    "Purchasing Power Loss",
+    "购买力损失"
+  ],
+  "legacy:Investment Inputs / 投资参数": [
+    "Investment Inputs",
+    "投资参数"
+  ],
+  "legacy:Calculation Results / 计算结果": [
+    "Calculation Results",
+    "计算结果"
+  ],
+  "legacy:Initial Principal / 初始本金": [
+    "Initial Principal",
+    "初始本金"
+  ],
+  "legacy:Future Value / 未来价值": [
+    "Future Value",
+    "未来价值"
+  ],
+  "legacy:Investment Growth / 投资增长": [
+    "Investment Growth",
+    "投资增长"
+  ],
+  "legacy:Total Return / 总收益率": [
+    "Total Return",
+    "累计收益率"
+  ],
+  "legacy:Investment Period / 投资年限": [
+    "Investment Period",
+    "投资年限"
+  ],
+  "legacy:Annual Return / 年化收益率": [
+    "Annual Return",
+    "年化收益率"
+  ],
+  "legacy:Portfolio Growth / 资产增长": [
+    "Portfolio Growth",
+    "资产增长"
+  ],
+  "legacy:Rule of 72 / 翻倍估算": [
+    "Rule of 72",
+    "翻倍估算"
+  ],
+  "legacy:Financial Insight / 结果解读": [
+    "Financial Insight",
+    "结果解读"
+  ],
+  "legacy:Total Contributions / 累计投入": [
+    "Total Contributions",
+    "累计投入"
+  ],
+  "legacy:Year-by-Year Table / 逐年明细": [
+    "Year-by-Year Table",
+    "逐年明细"
+  ],
+  "legacy:Goal Sensitivity / 目标敏感性分析": [
+    "Goal Sensitivity",
+    "目标敏感性分析"
+  ],
+  "legacy:Target Portfolio Value / 目标资产": [
+    "Target Portfolio Value",
+    "目标资产"
+  ],
+  "legacy:Required Monthly Contribution / 每月所需投入": [
+    "Required Monthly Contribution",
+    "每月所需投入"
+  ],
+  "legacy:Initial Principal / 初始本金 (¥)": [
+    "Initial Principal",
+    "初始本金（¥）"
+  ],
+  "legacy:Annual Return / 年化收益率 (%)": [
+    "Annual Return",
+    "年化收益率（%）"
+  ],
+  "legacy:Investment Period / 投资年限 (Years)": [
+    "Investment Period",
+    "投资年限（年）"
+  ],
+  "legacy:Inflation Rate / 通胀率 (%)": [
+    "Inflation Rate",
+    "通胀率（%）"
+  ],
+  "legacy:Growth Breakdown / 增长构成": [
+    "Growth Breakdown",
+    "增长构成"
+  ],
+  "legacy:Scenario Analysis / 情景分析": [
+    "Scenario Analysis",
+    "情景分析"
+  ],
+  "legacy:Estimated Doubling Time / 估算翻倍年限": [
+    "Estimated Doubling Time",
+    "估算翻倍年限"
+  ],
+  "legacy:Module Assumptions / 模块假设": [
+    "Module Assumptions",
+    "模块假设"
+  ],
+  "legacy:Annual compounding / 每年复利；一次性本金，无额外投入或取款。": [
+    "Annual compounding; lump-sum principal, no further contributions or withdrawals.",
+    "每年复利；一次性本金，无额外投入或取款。"
+  ],
+  "legacy:Monthly Contribution / 每月投入 (¥)": [
+    "Monthly Contribution",
+    "每月投入（¥）"
+  ],
+  "legacy:Monthly compounding / 月度复利；月收益率 = 年化收益率 ÷ 12，每月先增长再投入。累计投入含初始本金。": [
+    "Monthly compounding; monthly return = annual return / 12. Growth precedes each contribution; total contributions include initial principal.",
+    "月度复利；月收益率 = 年化收益率 ÷ 12，每月先增长再投入。累计投入含初始本金。"
+  ],
+  "legacy:Time Sensitivity / 时间敏感性": [
+    "Time Sensitivity",
+    "时间敏感性"
+  ],
+  "legacy:Return Sensitivity / 收益率敏感性": [
+    "Return Sensitivity",
+    "收益率敏感性"
+  ],
+  "legacy:Difference vs Base / 较基准差额": [
+    "Difference vs Base",
+    "较基准差额"
+  ],
+  "legacy:Target Portfolio Value / 目标资产 (¥)": [
+    "Target Portfolio Value",
+    "目标金额（¥）"
+  ],
+  "legacy:Monthly compounding / 月度复利；与 DCA 一致，月收益率 = 年化收益率 ÷ 12，每月先增长再投入。": [
+    "Monthly compounding, consistent with recurring investment: monthly return = annual return / 12; growth precedes each contribution.",
+    "月度复利；与定投一致，月收益率 = 年化收益率 ÷ 12，每月先增长再投入。"
+  ],
+  "legacy:Compound Interest / 复利计算": [
+    "Compound Interest",
+    "复利计算"
+  ],
+  "legacy:DCA Simulator / 定投模拟": [
+    "DCA Simulator",
+    "定投模拟"
+  ],
+  "legacy:Goal Planner / 目标规划": [
+    "Goal Planner",
+    "目标规划"
+  ],
+  "legacy:Portfolio Analytics / 组合分析": [
+    "Portfolio Analytics",
+    "组合分析"
+  ],
+  "legacy:About / Assumptions · 关于与假设": [
+    "About",
+    "关于与假设"
+  ],
+  "legacy:Scenario / 情景": [
+    "Scenario",
+    "情景"
+  ],
+  "legacy:Year": [
+    "Year",
+    "年"
+  ],
+  "legacy:Portfolio Value": [
+    "Portfolio Value",
+    "组合价值"
+  ],
+  "legacy:Investment Growth": [
+    "Investment Growth",
+    "投资增长"
+  ],
+  "legacy:Total Contributions": [
+    "Total Contributions",
+    "累计投入"
+  ],
+  "legacy:Target Value": [
+    "Target Value",
+    "目标资产"
+  ],
+  "legacy:Remaining Gap to Target": [
+    "Remaining Gap to Target",
+    "距目标差额"
+  ],
+  "legacy:Component": [
+    "Component",
+    "构成"
+  ],
+  "legacy:Amount": [
+    "Amount",
+    "金额"
+  ],
+  "legacy:Initial Principal": [
+    "Initial Principal",
+    "初始本金"
+  ],
+  "legacy:Scenario": [
+    "Scenario",
+    "情景"
+  ],
+  "legacy:Value (¥)": [
+    "Value (¥)",
+    "金额（¥）"
+  ],
+  "legacy:Portfolio Value (¥)": [
+    "Portfolio Value (¥)",
+    "组合价值（¥）"
+  ],
+  "legacy:Investment Period (Years)": [
+    "Investment Period (Years)",
+    "投资年限（年）"
+  ],
+  "legacy:Annual Return (%)": [
+    "Annual Return (%)",
+    "年化收益率（%）"
+  ],
+  "legacy:Required Monthly Contribution (¥)": [
+    "Required Monthly Contribution (¥)",
+    "每月所需投入（¥）"
+  ],
+  "legacy:Monthly Contribution (¥)": [
+    "Monthly Contribution (¥)",
+    "每月投入（¥）"
+  ],
+  "legacy:Calculate": [
+    "Calculate",
+    "计算"
+  ],
+  "legacy: (Base)": [
+    " (Base)",
+    "（基准）"
+  ],
+  "legacy:Estimate how an investment grows through annual compounding.": [
+    "Estimate how an investment grows through annual compounding.",
+    "按年度复利，估算一次性投入的长期增长。"
+  ],
+  "legacy:Simulate an initial investment with fixed monthly contributions.": [
+    "Simulate an initial investment with fixed monthly contributions.",
+    "结合初始本金和固定月度投入，模拟长期资金积累。"
+  ],
+  "legacy:Estimate the monthly contribution needed to reach a target.": [
+    "Estimate the monthly contribution needed to reach a target.",
+    "根据目标金额和投资期限，估算每月需要投入多少。"
+  ],
+  "legacy:购买力损失 = 名义未来价值 − 实际购买力；负值表示通缩下购买力增加。原有收益、图表与表格仍为名义金额。": [
+    "Purchasing power loss = nominal future value − real value. Negative values indicate increased purchasing power under deflation. Other results remain nominal.",
+    "购买力损失 = 名义未来价值 − 实际购买力；负值表示通缩下购买力增加。其他结果仍为名义金额。"
+  ],
+  "legacy:输入 0–1000 的整数年；0 年表示尚未开始投资。": [
+    "Enter an integer from 0 to 1000 years; zero means investing has not started.",
+    "输入 0–1000 的整数年；0 年表示尚未开始投资。"
+  ],
+  "legacy:固定年通胀率，须大于 -100%；负值表示通缩。": [
+    "Fixed annual inflation, above -100%; negative values mean deflation.",
+    "固定年通胀率，须大于 -100%；负值表示通缩。"
+  ],
+  "legacy:填写参数后点击 Calculate · 收益率输入 8 表示 8%。": [
+    "Enter your assumptions and click Calculate. A return of 8 means 8%.",
+    "填写参数后点击计算；收益率输入 8 表示 8%。"
+  ],
+  "legacy:请输入有限数字，不能使用 nan 或 inf。": [
+    "Enter finite numbers, not NaN or infinity.",
+    "请输入有限数字，不能使用非数或无穷大。"
+  ],
+  "legacy:本金不能为负，请输入大于或等于 0 的数值。": [
+    "Principal cannot be negative; enter zero or more.",
+    "本金不能为负，请输入大于或等于 0 的数值。"
+  ],
+  "legacy:年化收益率必须大于 -100%。": [
+    "Annual return must be above -100%.",
+    "年化收益率必须大于 -100%。"
+  ],
+  "legacy:投资年限不能为负。": [
+    "Investment period cannot be negative.",
+    "投资年限不能为负。"
+  ],
+  "legacy:计算结果超出支持范围，请减小本金、收益率或投资年限。": [
+    "Result exceeds the supported range; reduce principal, return or investment period.",
+    "计算结果超出支持范围，请减小本金、收益率或投资年限。"
+  ],
+  "legacy:初始本金为 0，总收益率和资产倍数不适用。": [
+    "Total return and growth multiple are unavailable with zero initial principal.",
+    "初始本金为 0，总收益率和资产倍数不适用。"
+  ],
+  "legacy:投资期限为 0 年，图中仅显示起始本金。": [
+    "For a zero-year period, the chart shows only initial principal.",
+    "投资期限为 0 年，图中仅显示起始本金。"
+  ],
+  "legacy:Investment Growth 为负，表示相对初始本金的累计亏损。": [
+    "Negative investment growth represents a cumulative loss relative to initial principal.",
+    "投资增长为负，表示相对初始本金的累计亏损。"
+  ],
+  "legacy:相同本金与期限：Conservative = Base − 3 个百分点；Optimistic = Base + 3 个百分点。": [
+    "Same principal and period: Conservative = Base − 3 pp; Optimistic = Base + 3 pp.",
+    "相同本金与期限：保守 = 基准 − 3 个百分点；乐观 = 基准 + 3 个百分点。"
+  ],
+  "legacy:保守收益率已调整为基准与 -100% 之间的中点，以保持大于 -100%；极近边界时受浮点精度限制。": [
+    "Conservative return is adjusted to the midpoint between Base and -100%; floating-point limits apply near the boundary.",
+    "保守收益率已调整为基准与 -100% 之间的中点；极近边界时受浮点精度限制。"
+  ],
+  "legacy:该情景分析仅用于教育模拟和敏感性比较，不代表未来收益预测。": [
+    "Scenarios are educational simulations and sensitivity comparisons, not future-return predictions.",
+    "情景分析仅用于教育演示和参数比较，不代表未来收益预测。"
+  ],
+  "legacy:近似估算：72 ÷ 年化收益率百分数，并非精确翻倍时间；极端收益率下偏差较大。": [
+    "Approximation: 72 divided by annual return in percent. This is not an exact doubling time, especially at extreme returns.",
+    "近似估算：72 ÷ 年化收益率百分数，并非精确翻倍时间；极端收益率下偏差较大。"
+  ],
+  "legacy:Rule of 72 仅适用于正收益率；当前收益率下不展示翻倍估算。": [
+    "The Rule of 72 applies only to positive returns; no estimate is shown for this return.",
+    "翻倍估算仅适用于正收益率；当前收益率下不展示估算。"
+  ],
+  "legacy:收益率过小，翻倍估算超出显示范围。": [
+    "Return is too small; the doubling estimate exceeds the display range.",
+    "收益率过小，翻倍估算超出显示范围。"
+  ],
+  "legacy:本金为零且没有额外投入时，资产保持为零。": [
+    "With zero principal and no further contributions, assets remain zero.",
+    "本金为零且没有额外投入时，资产保持为零。"
+  ],
+  "legacy:输入 0–1000 的整数年。每月先增长，再投入。": [
+    "Enter an integer from 0 to 1000 years. Each month grows before the contribution.",
+    "输入 0–1000 的整数年。每月先增长，再投入。"
+  ],
+  "legacy:Total Return = 投资收益 ÷ 累计投入，不是年化收益率，也未衡量各笔投入的持有时间。累计投入为 0 时不适用。": [
+    "Total return = investment growth / total contributions. It is not annualized or adjusted for contribution timing; unavailable with zero contributions.",
+    "累计收益率 = 投资增长 ÷ 累计投入，不是年化收益率，也未衡量各笔投入的持有时间。累计投入为 0 时不适用。"
+  ],
+  "legacy:每月投入保持固定名义金额；通胀调整仅折现最终资产，不改变定投现金流。": [
+    "Monthly contributions remain fixed nominal amounts; inflation discounts final assets without changing contribution cash flows.",
+    "每月投入保持固定名义金额；通胀调整仅折现最终资产，不改变定投现金流。"
+  ],
+  "legacy:基于固定收益率假设，仅用于教育和规划模拟，不代表未来收益预测，不构成投资建议。差额 = 情景月投入 − 基准月投入；负值表示所需投入减少。": [
+    "Fixed-return planning simulation, not a forecast or investment advice. Difference = scenario contribution − base contribution; negative means less investment is required.",
+    "基于固定收益率假设，仅用于教育和规划模拟，不代表未来收益预测，不构成投资建议。差额 = 情景月投入 − 基准月投入；负值表示所需投入减少。"
+  ],
+  "legacy:比较当前期限 ±5 年，限制在 1–1000 年并去重；Base 为当前期限。": [
+    "Compare the current period ±5 years, limited to 1–1000 years without duplicates; Base is the current period.",
+    "比较当前期限 ±5 年，限制在 1–1000 年并去重；基准为当前期限。"
+  ],
+  "legacy:保守 / 基准 / 乐观：当前年化收益率 −3 / 0 / +3 个百分点。": [
+    "Conservative / Base / Optimistic: annual return −3 / 0 / +3 percentage points.",
+    "保守 / 基准 / 乐观：当前年化收益率 −3 / 0 / +3 个百分点。"
+  ],
+  "legacy:保守收益率已按 Scenario Analysis 规则调整为基准与 -100% 之间的中点；极近边界时受浮点精度限制。": [
+    "Conservative return is adjusted using the scenario midpoint rule; floating-point limits apply near -100%.",
+    "保守收益率已按情景分析规则调整为基准与 -100% 之间的中点；极近边界时受浮点精度限制。"
+  ],
+  "legacy:通常，更长的期限或更高的假设收益率可降低月投入；负收益率、本金已足够等情况下可能出现不同趋势。": [
+    "Longer periods or higher assumed returns usually reduce monthly contributions; negative returns or sufficient principal can produce different patterns.",
+    "通常，更长的期限或更高的假设收益率可降低月投入；负收益率、本金已足够等情况下可能出现不同趋势。"
+  ],
+  "legacy:输入 1–1000 的整数年。": [
+    "Enter an integer from 1 to 1000 years.",
+    "输入 1–1000 的整数年。"
+  ],
+  "legacy:模拟使用未舍入的月投入；显示金额保留两位小数，按显示金额实际投入可能产生少量差额。": [
+    "Simulation uses unrounded monthly contributions; investing the displayed two-decimal amount may leave a small difference.",
+    "计算使用未舍入的月投入金额，页面显示保留两位小数。按显示金额实际投入时，最终结果可能略有差异。"
+  ],
+  "legacy:固定年通胀率假设：{v0:.2f}%。实际购买力以投资起点的货币购买力计价。仅用于教育模拟，不代表未来实际通胀预测，不构成投资建议。": [
+    "Fixed annual inflation: {v0:.2f}%. Purchasing power is measured at the investment start. Educational simulation, not an inflation forecast or investment advice.",
+    "固定年通胀率假设：{v0:.2f}%。实际购买力以投资起点计价；仅用于教育模拟，不代表通胀预测或投资建议。"
+  ],
+  "legacy:{v0} years": [
+    "{v0} years",
+    "{v0} 年"
+  ],
+  "legacy:{v0:,.2f} years": [
+    "{v0:,.2f} years",
+    "{v0:,.2f} 年"
+  ],
+  "legacy:Initial Principal: ¥{v0:,.2f} · Investment Growth: ¥{v1:,.2f}": [
+    "Initial principal: ¥{v0:,.2f} · Investment growth: ¥{v1:,.2f}",
+    "初始本金：¥{v0:,.2f} · 投资增长：¥{v1:,.2f}"
+  ],
+  "legacy:{v0} 情景超出计算范围，已省略该曲线；基准计算结果不受影响。": [
+    "{v0} exceeds the calculation range; its curve is omitted. Base results are unaffected.",
+    "{v0} 情景超出计算范围，已省略该曲线；基准结果不受影响。"
+  ],
+  "legacy:最终资产约为初始本金的 {v0:,.2f} 倍。": [
+    "Final assets are approximately {v0:,.2f} times initial principal.",
+    "最终资产约为初始本金的 {v0:,.2f} 倍。"
+  ],
+  "legacy:累计收益约为 ¥{v0:,.2f}。": [
+    "Cumulative investment growth is approximately ¥{v0:,.2f}.",
+    "累计投资增长约为 ¥{v0:,.2f}。"
+  ],
+  "legacy:按 Rule of 72 近似估算，约需 {v0:,.2f} 年翻倍，并非精确结果。": [
+    "The Rule of 72 estimates doubling in {v0:,.2f} years; this is approximate.",
+    "按翻倍估算公式，约需 {v0:,.2f} 年翻倍，并非精确结果。"
+  ],
+  "legacy:敏感性分析暂不可用：{v0}": [
+    "Sensitivity analysis unavailable: {v0}",
+    "敏感性分析暂不可用：{v0}"
+  ],
+  "legacy:{v0} 不可用：{v1}；基准结果不受影响。": [
+    "{v0} unavailable: {v1}; base results are unaffected.",
+    "{v0} 不可用：{v1}；基准结果不受影响。"
+  ],
+  "legacy:在当前假设下，初始本金 ¥{v0:,.2f} 在 {v1} 年后的模拟资产为 ¥{v2:,.2f}，已达到或超过目标 ¥{v3:,.2f}，无需额外月投入。": [
+    "Under these assumptions, initial principal ¥{v0:,.2f} grows to ¥{v2:,.2f} after {v1} years, meeting the ¥{v3:,.2f} target without further monthly contributions.",
+    "在当前假设下，初始本金 ¥{v0:,.2f} 在 {v1} 年后为 ¥{v2:,.2f}，达到目标 ¥{v3:,.2f}，无需额外月投入。"
+  ],
+  "legacy:在当前假设下，要在 {v0} 年后达到 ¥{v1:,.2f}，初始本金 ¥{v2:,.2f} 时，每月大约需要投入 ¥{v3:,.2f}。": [
+    "Under these assumptions, reaching ¥{v1:,.2f} after {v0} years with initial principal ¥{v2:,.2f} requires approximately ¥{v3:,.2f} per month.",
+    "在当前假设下，要在 {v0} 年后达到 ¥{v1:,.2f}，初始本金 ¥{v2:,.2f} 时，每月约需投入 ¥{v3:,.2f}。"
+  ],
+  "app_language": [
+    "🌐 Language",
+    "🌐 语言"
+  ],
+  "app_tagline": [
+    "Portfolio Intelligence, Made Clear.",
+    "让投资组合判断，更清晰。"
+  ],
+  "app_description": [
+    "Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.",
+    "Vexa 是一款面向投资组合分析的决策辅助工具，结合传统金融分析、概率化未来模拟与 Evolance 解释框架，把分散、复杂的金融信号整理成更清晰的结构判断与未来展望。"
+  ],
+  "app_development": [
+    "v0.4 development · Developed in Finance Mini Lab · Program One",
+    "v0.4 开发中 · 开发项目：Finance Mini Lab · Program One"
+  ],
+  "app_modules": [
+    "Explore the Modules",
+    "功能模块"
+  ],
+  "app_portfolio_note": [
+    "Portfolio Analytics: Monte Carlo simulation, explainable interpretation, SQLite cache and saved portfolios. Select a module below.",
+    "投资组合分析提供历史表现、蒙特卡洛模拟与组合解读，并支持 SQLite 缓存和组合保存。请选择下方模块开始。"
+  ],
+  "module_compound_interest": [
+    "Compound Interest",
+    "复利计算"
+  ],
+  "module_dca": [
+    "DCA Simulator",
+    "定投模拟"
+  ],
+  "module_goal_planner": [
+    "Goal Planner",
+    "目标规划"
+  ],
+  "module_portfolio_analytics": [
+    "Portfolio Analytics",
+    "投资组合分析"
+  ],
+  "module_compound_interest_description": [
+    "Model lump-sum capital growth over time.",
+    "模拟一次性投入在不同期限下的复利增长。"
+  ],
+  "module_dca_description": [
+    "Simulate recurring investment contributions.",
+    "模拟定期投入在长期投资中的资金积累。"
+  ],
+  "module_goal_planner_description": [
+    "Estimate the investment required to reach a target.",
+    "根据目标金额和投资期限，估算所需投入。"
+  ],
+  "module_portfolio_analytics_description": [
+    "Analyze historical performance, risk, future scenarios and portfolio interpretation.",
+    "分析历史表现、风险与未来情景，并提供组合结构解读。"
+  ],
+  "app_assumptions_title": [
+    "About / Assumptions",
+    "关于与假设"
+  ],
+  "app_assumptions": [
+    "- Fixed returns in planning modules do not guarantee performance.\n- Annual or monthly compounding depends on the module.\n- No taxes or fees; portfolio analytics uses historical prices.\n- Inflation adjustment applies to Compound Interest and DCA; Goal Planner uses nominal values.\n- For educational and research purposes only. Not investment advice.",
+    "- 规划模块使用固定收益率假设，不保证实际收益。\n- 按模块采用年度或月度复利。\n- 不计税费；投资组合分析使用历史价格。\n- 复利与定投提供通胀调整；目标规划使用名义金额。\n- 仅用于研究与教育目的，不构成任何投资建议。"
+  ],
+  "profile_Conservative": [
+    "Conservative",
+    "稳健型"
+  ],
+  "profile_Balanced": [
+    "Balanced",
+    "均衡型"
+  ],
+  "profile_Aggressive": [
+    "Aggressive",
+    "进取型"
+  ],
+  "ev_copy_transition_Stable": [
+    "Stable",
+    "目前未确认明显的恶化或恢复趋势"
+  ],
+  "ev_copy_transition_Deteriorating": [
+    "Deteriorating",
+    "多个维度呈恶化趋势"
+  ],
+  "ev_copy_transition_Recovering": [
+    "Recovering",
+    "多个维度呈恢复趋势"
+  ],
+  "ev_copy_flags": [
+    "{flags}",
+    "同时识别到{flags}"
+  ],
+  "ev_copy_takeaway_summary": [
+    "{direction} · {confidence} {confidence_label}",
+    "{direction} · 置信度：{confidence}"
+  ],
+  "copy_separator": [
+    ": ",
+    "："
   ]
 }

@@ -17,7 +17,7 @@
   ],
   "将临近用途与长期投资分开，按偏好和目标复核风险敞口。 / Separate near-term needs from long-term investing and review exposure against your preference and goal.": [
     "Separate near-term needs from long-term investing and review exposure against your preference and goal.",
-    "将临近用途与长期投资分开，按偏好和目标复核风险敞口。"
+    "将近期需要使用的资金与长期投资分开，并按风险偏好和目标检查风险配置。"
   ],
   "年化波动率 / Annualized volatility": [
     "Annualized volatility",
@@ -61,7 +61,7 @@
   ],
   "检查是否能承受历史量级回撤及资金需求。 / Review capacity for drawdowns of the observed magnitude and funding needs.": [
     "Review capacity for drawdowns of the observed magnitude and funding needs.",
-    "检查是否能承受历史量级回撤及资金需求。"
+    "结合资金用途和用款时间，判断自己能否承受历史上出现过的回撤幅度。"
   ],
   "对照所选模拟期限复核可承受损失。 / Review tolerable losses at the selected simulation horizon.": [
     "Review tolerable losses at the selected simulation horizon.",
@@ -69,7 +69,7 @@
   ],
   "比较承担额外波动是否符合你的目标。 / Compare the additional variability with your objective.": [
     "Compare the additional variability with your objective.",
-    "比较承担额外波动是否符合你的目标。"
+    "比较组合与基准的波动差异，判断额外风险是否符合你的投资目标。"
   ],
   "以已观察到的波动和回撤检查风险承受能力，不把低评级理解为安全保证。 / Check risk capacity against observed volatility and drawdown; a lower tier is not a safety guarantee.": [
     "Check risk capacity against observed volatility and drawdown; a lower tier is not a safety guarantee.",
@@ -81,7 +81,7 @@
   ],
   "复核所承担波动对应的历史超额收益；不据此推断未来表现。 / Review historical excess return per unit of risk without extrapolating future performance.": [
     "Review historical excess return per unit of risk without extrapolating future performance.",
-    "复核所承担波动对应的历史超额收益；不据此推断未来表现。"
+    "查看承担这些风险后，组合是否获得了相应的历史超额收益；不要据此推断未来表现。"
   ],
   "同时查看模拟下行情景和结果分布，不只关注中位数。 / Review the simulated downside and distribution rather than the median alone.": [
     "Review the simulated downside and distribution rather than the median alone.",
@@ -153,7 +153,7 @@
   ],
   "可研究宽基敞口与防御性类别的平衡，增长资产作为补充；不指定比例或证券。 / Explore a balance of broad-market and defensive exposure, with growth assets as a complement; no weights or securities specified.": [
     "Explore a balance of broad-market and defensive exposure, with growth assets as a complement; no weights or securities specified.",
-    "可研究宽基敞口与防御性类别的平衡，增长资产作为补充；不指定比例或证券。"
+    "可以了解宽基资产与防御性资产的搭配，增长型资产作为补充；这里不推荐具体比例或证券。"
   ],
   "可研究分散化股票/宽基敞口与增长类别，并区分长期投资和短期资金用途。 / Explore diversified equity/broad-market and growth categories while separating near-term funding needs.": [
     "Explore diversified equity/broad-market and growth categories while separating near-term funding needs.",
@@ -354,5 +354,105 @@
   "组合不存在。 / Portfolio not found.": [
     "Portfolio not found.",
     "组合不存在。"
+  ],
+  "请输入有效的有限数字。": [
+    "Enter valid finite numbers.",
+    "请输入有效的有限数字。"
+  ],
+  "请输入有限数字，不能使用 nan 或 inf。": [
+    "Enter finite numbers, not NaN or infinity.",
+    "请输入有限数字，不能使用 nan 或 inf。"
+  ],
+  "初始本金不能为负。": [
+    "Initial principal cannot be negative.",
+    "初始本金不能为负。"
+  ],
+  "每月投入不能为负。": [
+    "Monthly contribution cannot be negative.",
+    "每月投入不能为负。"
+  ],
+  "年化收益率必须大于 -100%。": [
+    "Annual return must be above -100%.",
+    "年化收益率必须大于 -100%。"
+  ],
+  "投资年限不能为负。": [
+    "Investment period cannot be negative.",
+    "投资年限不能为负。"
+  ],
+  "投资年限必须为 0–1000 的整数年。": [
+    "Investment period must be an integer from 0 to 1000 years.",
+    "投资年限必须为 0–1000 的整数年。"
+  ],
+  "目标资产必须大于 0。": [
+    "Target value must be above zero.",
+    "目标资产必须大于 0。"
+  ],
+  "投资年限必须大于 0。": [
+    "Investment period must be above zero.",
+    "投资年限必须大于 0。"
+  ],
+  "每月投入超出计算范围，请调整输入。": [
+    "Monthly contribution exceeds the calculation range; adjust inputs.",
+    "每月投入超出计算范围，请调整输入。"
+  ],
+  "当前参数无法在允许的数值误差内完成规划，请调整输入。": [
+    "These inputs cannot produce a plan within numerical tolerance; adjust inputs.",
+    "当前参数无法在允许的数值误差内完成规划，请调整输入。"
+  ],
+  "计算结果超出支持范围，请减小输入数值。": [
+    "Result exceeds the supported range; reduce inputs.",
+    "计算结果超出支持范围，请减小输入数值。"
+  ],
+  "收益率超出支持范围，请调整输入数值。": [
+    "Return exceeds the supported range; adjust inputs.",
+    "收益率超出支持范围，请调整输入数值。"
+  ],
+  "通胀调整参数必须为有限数字。": [
+    "Inflation inputs must be finite numbers.",
+    "通胀调整参数必须为有限数字。"
+  ],
+  "名义金额和投资年限不能为负。": [
+    "Nominal value and investment period cannot be negative.",
+    "名义金额和投资年限不能为负。"
+  ],
+  "通胀率必须大于 -100%。": [
+    "Inflation must be above -100%.",
+    "通胀率必须大于 -100%。"
+  ],
+  "通胀调整结果超出支持范围，请调整通胀率或投资年限。": [
+    "Inflation adjustment exceeds the supported range; adjust inflation or period.",
+    "通胀调整结果超出支持范围，请调整通胀率或投资年限。"
+  ],
+  "本金不能为负，请输入大于或等于 0 的数值。": [
+    "Principal cannot be negative; enter zero or more.",
+    "本金不能为负，请输入大于或等于 0 的数值。"
+  ],
+  "计算结果超出支持范围，请减小本金、收益率或投资年限。": [
+    "Result exceeds the supported range; reduce principal, return or investment period.",
+    "计算结果超出支持范围，请减小本金、收益率或投资年限。"
+  ],
+  "Conservative": [
+    "Conservative",
+    "保守"
+  ],
+  "Base": [
+    "Base",
+    "基准"
+  ],
+  "Optimistic": [
+    "Optimistic",
+    "乐观"
+  ],
+  "Conservative / 保守": [
+    "Conservative",
+    "保守"
+  ],
+  "Base / 基准": [
+    "Base",
+    "基准"
+  ],
+  "Optimistic / 乐观": [
+    "Optimistic",
+    "乐观"
   ]
 }

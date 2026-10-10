@@ -1,4 +1,4 @@
-"""Translation completeness, numerical invariance and portfolio-only scope."""
+"""Translation completeness and numerical invariance across languages."""
 import re
 import unittest
 from copy import deepcopy
@@ -30,6 +30,8 @@ class TranslationTests(unittest.TestCase):
             self.assertTrue(contains_chinese(metric_help(key, "中文")))
 
     def test_guidance_evidence_translates_without_changes(self):
+        evidence = "历史 Sharpe / Historical Sharpe: 0.69; benchmark: 0.80"
+        self.assertEqual(localize_message(evidence, "中文"), "历史夏普比率：0.69；基准：0.80")
         for data in [history(), history(.4, -.5, .9, .5), history(0, 0, loss=None), {}]:
             result = generate_guidance(data, profile())
             original = deepcopy(result)
@@ -66,7 +68,7 @@ class LanguageUITests(unittest.TestCase):
 
     def test_default_english_complete_page_and_tooltips(self):
         app = self.full_app()
-        self.assertEqual(app.selectbox(key="pa_language").value, "English")
+        self.assertEqual(app.selectbox(key="global_language").value, "English")
         for text in self.portfolio_strings(app):
             self.assertFalse(contains_chinese(text), text)
         self.assertTrue(all(metric.proto.help for metric in app.metric[:5]))
@@ -80,7 +82,7 @@ class LanguageUITests(unittest.TestCase):
         paths = historical["future_outlook"]["simulation"]["paths"].copy()
         fit = generate_guidance(historical, historical["guidance_profile"])["fit"]
         with patch("src.portfolio_ui.get_historical_prices") as download, patch("src.future_ui.simulate_monte_carlo") as simulate:
-            app.selectbox(key="pa_language").select("中文").run()
+            app.selectbox(key="global_language").select("中文").run()
         download.assert_not_called()
         simulate.assert_not_called()
         self.assertFalse(app.exception)
@@ -93,17 +95,17 @@ class LanguageUITests(unittest.TestCase):
             self.assertNotIn(english, text)
         # The product-positioning copy intentionally retains the project brand.
         self.assertFalse(re.search(r"[A-Za-z]{3,}(?: [A-Za-z]{3,}){2,}", text.replace("Finance Mini Lab", "")), text)
-        self.assertIn("合成", text)
+        self.assertIn("可重复生成的模拟数据", text)
         self.assertEqual(app.metric[0].label, "累计收益率")
         self.assertEqual(app.button(key="pa_analyze").label, "分析组合")
         self.assertTrue(any("最大跌幅" in metric.proto.help for metric in app.metric[:5]))
-        self.assertEqual(app.tabs[0].label, "Compound Interest / 复利计算")
-        app.selectbox(key="pa_language").select("English").run()
+        self.assertEqual(app.tabs[0].label, "复利计算")
+        app.selectbox(key="global_language").select("English").run()
         self.assertEqual(values, [metric.value for metric in app.metric])
 
     def test_validation_message_language(self):
         app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=30).run()
-        app.selectbox(key="pa_language").select("中文").run()
+        app.selectbox(key="global_language").select("中文").run()
         app.text_input(key="pa_weights").set_value("30,30,30")
         app.button(key="pa_analyze").click().run()
         self.assertFalse(app.exception)

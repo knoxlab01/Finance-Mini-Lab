@@ -7,6 +7,7 @@ from src.evolance_product import comparison_for, conclusion
 
 def render_evolance_comparison(historical, language='English'):
     t = lambda k, **v: tr('ev_' + k, language, **v)
+    colon = tr('copy_separator', language).rstrip()
     st.subheader(t('intro_title'))
     st.markdown('**' + t('intro_subtitle') + '**')
     st.write(t('intro_text'))
@@ -37,7 +38,7 @@ def render_evolance_comparison(historical, language='English'):
             relative = historical['metrics'].loc['Cumulative Return', 'Portfolio'] - historical['metrics'].loc['Cumulative Return', 'Benchmark']
         for key, value in values:
             formatted = t('unavailable') if pd.isna(value) else f'{value:.2f}' if key == 'Sharpe Ratio' else f'{value:.2%}'
-            st.markdown(f"**{tr(key, language)}:** {formatted}")
+            st.markdown(f"**{tr(key, language)}{colon}** {formatted}")
         st.markdown(t('relative', value=f'{relative * 100:+.2f}'), help=t('relative_help'))
     with right.container(border=True):
         st.markdown('### Evolance')
@@ -47,25 +48,25 @@ def render_evolance_comparison(historical, language='English'):
             st.caption(t('required'))
         else:
             out = row['outlooks']['12']
-            st.markdown('**' + t('state') + ':** ' + t(row['confirmed_state']), help=t(row['confirmed_state'] + '_help'))
-            st.markdown('**' + t('transition') + ':** ' + t(row['transition']), help=t(row['transition'] + '_help'))
-            st.markdown('**' + t('12m') + ':** ' + t(out['direction']))
-            st.markdown('**' + t('confidence') + ':** ' + t(out['confidence']), help=t('confidence_help'))
+            st.markdown('**' + t('state') + colon + '** ' + t(row['confirmed_state']), help=t(row['confirmed_state'] + '_help'))
+            st.markdown('**' + t('transition') + colon + '** ' + t(row['transition']), help=t(row['transition'] + '_help'))
+            st.markdown('**' + t('12m') + colon + '** ' + t(out['direction']))
+            st.markdown('**' + t('confidence') + colon + '** ' + t(out['confidence']), help=t('confidence_help'))
             short = row['outlooks']['6']
-            st.markdown('**' + t('6m') + ':** ' + t(short['direction']) + ' · ' + t(short['confidence']))
+            st.markdown('**' + t('6m') + colon + '** ' + t(short['direction']) + ' · ' + t(short['confidence']))
             flags = ', '.join(t(flag) for flag in row['flags']) if row['flags'] else t('no_flags')
-            st.markdown('**' + t('flags') + ':** ' + flags)
+            st.markdown('**' + t('flags') + colon + '** ' + flags)
     if ready:
         with st.container(border=True):
             st.markdown('### ' + t('takeaway'))
-            st.markdown('**' + t(out['direction']) + ' · ' + t(out['confidence']) + ' ' + t('confidence') + '**')
+            st.markdown('**' + t('copy_takeaway_summary', direction=t(out['direction']), confidence=t(out['confidence']), confidence_label=t('confidence')) + '**')
             st.write(conclusion(row, language))
             st.caption(t('disclaimer'))
         with st.expander(t('detail'), expanded=False):
             for dimension, score in row['scores'].items():
                 band = 'unavailable' if score is None else 'strong' if score >= 80 else 'healthy' if score >= 60 else 'mixed' if score >= 40 else 'weak' if score >= 20 else 'very_weak'
                 display = t('unavailable') if score is None else f'{score:.0f} · {t(band)}'
-                st.markdown('**' + t(dimension) + ':** ' + display, help=t(dimension + '_help'))
+                st.markdown('**' + t(dimension) + colon + '** ' + display, help=t(dimension + '_help'))
             if not row['transition_evidence_available'] or not row['confirmation_initialized']:
                 st.caption(t('warmup'))
             st.caption(t('bands_note'))

@@ -12,11 +12,11 @@ from src.benchmark import analyze_portfolio
 from src.future_ui import render_future_outlook
 from src.guidance_ui import render_portfolio_guidance
 from src.evolance_ui import render_evolance_comparison
-from src.i18n import tr, localize_message, metric_help
+from src.i18n import tr, localize_message, metric_help, current_language
 
 
 def render_portfolio_analytics():
-    language = st.selectbox("Language / 语言", ["English", "中文"], key="pa_language")
+    language = current_language()
     t = lambda key, **values: tr(key, language, **values)
     st.caption(t('development'))
     st.subheader(t('Portfolio Setup'))

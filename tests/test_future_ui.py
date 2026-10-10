@@ -44,7 +44,7 @@ class FutureUITests(unittest.TestCase):
 
     def test_one_year_does_not_project_further(self):
         app = AppTest.from_string(app_source(), default_timeout=30).run()
-        app.selectbox(key="fo_horizon").select(1)
+        app.selectbox(key="fo_horizon_English").select(1)
         app.button[0].click().run()
         self.assertFalse(app.exception)
         self.assertEqual(app.dataframe[0].value.index.tolist(), [1])

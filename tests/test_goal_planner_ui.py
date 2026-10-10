@@ -18,11 +18,11 @@ class GoalPlannerUITests(unittest.TestCase):
     def test_standard_chart_table_and_insight(self):
         with patch('streamlit.line_chart', wraps=st.line_chart) as chart:
             app = self.calculate()
-        self.assertEqual([t.label for t in app.tabs], ['Compound Interest / 复利计算', 'DCA Simulator / 定投模拟', 'Goal Planner / 目标规划', 'Portfolio Analytics / 组合分析'])
+        self.assertEqual([t.label for t in app.tabs], ['Compound Interest', 'DCA Simulator', 'Goal Planner', 'Portfolio Analytics'])
         metrics = {m.label: m.value for m in app.metric}
-        self.assertEqual(metrics['Required Monthly Contribution / 每月所需投入'], '¥4,252.82')
-        self.assertEqual(metrics['Total Contributions / 累计投入'], '¥610,338.02')
-        self.assertEqual(metrics['Investment Growth / 投资增长'], '¥389,661.98')
+        self.assertEqual(metrics['Required Monthly Contribution'], '¥4,252.82')
+        self.assertEqual(metrics['Total Contributions'], '¥610,338.02')
+        self.assertEqual(metrics['Investment Growth'], '¥389,661.98')
         data = chart.call_args.args[0]
         self.assertEqual(data['Year'], list(range(11)))
         self.assertEqual(data['Target Value'], [1000000] * 11)
@@ -30,15 +30,15 @@ class GoalPlannerUITests(unittest.TestCase):
         table = app.dataframe[0].value
         self.assertEqual(table.iloc[0]['Remaining Gap to Target'], '¥900,000.00')
         self.assertEqual(table.iloc[-1]['Remaining Gap to Target'], '¥0.00')
-        self.assertTrue(any('在当前假设下' in m.value for m in app.markdown))
+        self.assertTrue(any('Under these assumptions' in m.value for m in app.markdown))
 
     def test_sufficient_principal(self):
         app = self.calculate(target=10000.0, principal=20000.0, rate=0.0)
-        self.assertEqual({m.label:m.value for m in app.metric}['Required Monthly Contribution / 每月所需投入'], '¥0.00')
-        self.assertTrue(any('无需额外月投入' in m.value for m in app.markdown))
+        self.assertEqual({m.label:m.value for m in app.metric}['Required Monthly Contribution'], '¥0.00')
+        self.assertTrue(any('without further monthly contributions' in m.value for m in app.markdown))
 
     def test_invalid_and_recovery(self):
-        for args, text in [({'target':0.0}, '目标资产必须大于 0'), ({'principal':-1.0}, '初始本金不能为负'), ({'rate':-100.0}, '年化收益率必须大于 -100%'), ({'years':0}, '投资年限必须大于 0')]:
+        for args, text in [({'target':0.0}, 'Target value must be above zero'), ({'principal':-1.0}, 'Initial principal cannot be negative'), ({'rate':-100.0}, 'Annual return must be above -100%'), ({'years':0}, 'Investment period must be above zero')]:
             with self.subTest(args=args):
                 app = self.calculate(**args)
                 self.assertIn(text, app.error[0].value)
@@ -51,10 +51,10 @@ class GoalPlannerUITests(unittest.TestCase):
         app = self.calculate()
         app.button[1].click().run()
         self.assertFalse(app.exception)
-        self.assertEqual({m.label:m.value for m in app.metric}['Future Value / 未来价值'], '¥205,142.44')
+        self.assertEqual({m.label:m.value for m in app.metric}['Future Value'], '¥205,142.44')
         app.button[0].click().run()
         self.assertFalse(app.exception)
-        self.assertEqual({m.label:m.value for m in app.metric}['Future Value / 未来价值'], '¥21,589.25')
+        self.assertEqual({m.label:m.value for m in app.tabs[0].metric}['Future Value'], '¥21,589.25')
 
 
 if __name__ == '__main__':

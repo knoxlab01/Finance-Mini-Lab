@@ -72,4 +72,9 @@ def conclusion(row,language):
     t=lambda k,**v:tr('ev_'+k,language,**v)
     out=row['outlooks']['12']
     flags=', '.join(t(f) for f in row['flags']) if row['flags'] else t('no_flags')
+    if language == '中文':
+        flags = t('copy_flags', flags='、'.join(t(f) for f in row['flags'])) if row['flags'] else t('no_flags')
+        return t('conclusion', state=t(row['confirmed_state']),
+                 transition=t('copy_transition_' + row['transition']),
+                 direction=t(out['direction']), confidence=t(out['confidence']), flags=flags)
     return t('conclusion',state=t(row['confirmed_state']),transition=t(row['transition']),direction=t(out['direction']),confidence=t(out['confidence']),flags=flags)

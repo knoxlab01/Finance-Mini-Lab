@@ -19,17 +19,17 @@ class SensitivityUITests(unittest.TestCase):
             app = self.calculate()
         self.assertFalse(app.error)
         headings = [s.value for s in app.subheader]
-        self.assertIn("Time Sensitivity / 时间敏感性", headings)
-        self.assertIn("Return Sensitivity / 收益率敏感性", headings)
+        self.assertIn('Time Sensitivity', headings)
+        self.assertIn('Return Sensitivity', headings)
         self.assertEqual(len(app.dataframe), 3)
         time, returns = app.dataframe[1].value, app.dataframe[2].value
-        self.assertEqual(time.iloc[1]["Required Monthly Contribution / 每月所需投入"], "¥4,252.82")
-        self.assertEqual(returns["Annual Return / 年化收益率"].tolist(), ["5.00%", "8.00%", "11.00%"])
+        self.assertEqual(time.iloc[1]['Required Monthly Contribution'], "¥4,252.82")
+        self.assertEqual(returns['Annual Return'].tolist(), ["5.00%", "8.00%", "11.00%"])
         self.assertEqual(charts.call_count, 2)
         for call in charts.call_args_list:
             spec = call.kwargs["spec"]
             self.assertEqual(len(spec["data"]["values"]), 3)
-            self.assertEqual(spec["encoding"]["y"]["title"], "Required Monthly Contribution (¥)")
+            self.assertEqual(spec["encoding"]["y"]["title"], 'Required Monthly Contribution (¥)')
 
     def test_short_low_rate_and_zero(self):
         for inputs in [{"goal_years": 1}, {"goal_rate": -99.0}, {"goal_target": 100.0}]:
@@ -41,5 +41,5 @@ class SensitivityUITests(unittest.TestCase):
         app = self.calculate(goal_target=1e301, goal_principal=1e300, goal_rate=0.0, goal_years=1000)
         self.assertFalse(app.error)
         self.assertTrue(app.warning)
-        self.assertEqual(app.dataframe[2].value.iloc[2]["Required Monthly Contribution / 每月所需投入"], "N/A")
-        self.assertIn("Required Monthly Contribution / 每月所需投入", [m.label for m in app.metric])
+        self.assertEqual(app.dataframe[2].value.iloc[2]['Required Monthly Contribution'], "N/A")
+        self.assertIn('Required Monthly Contribution', [m.label for m in app.metric])
