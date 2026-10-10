@@ -12,6 +12,7 @@ from src.inflation import adjust_for_inflation
 from src.sensitivity import calculate_goal_sensitivity
 from src.portfolio_ui import render_portfolio_analytics
 from src.i18n import tr, localize_message, current_language
+from src.visual_polish import apply_polish
 
 def L(text, **values):
     return tr("legacy:" + text, current_language(), **values)
@@ -357,18 +358,23 @@ def render_goal_planner() -> None:
 
 def main() -> None:
     st.set_page_config(page_title="Vexa — Portfolio Intelligence, Made Clear", page_icon="📈")
+    apply_polish()
     language = st.selectbox(tr("app_language", current_language()), ["English", "中文"], key="global_language")
     t = lambda key: tr(key, language)
-    st.title("Vexa")
-    st.markdown("**" + t("app_tagline") + "**")
-    st.write(t("app_description"))
+    with st.container(key="vexa_polish_hero"):
+        st.title("Vexa")
+        st.markdown("**" + t("app_tagline") + "**")
+        st.write(t("app_description"))
     st.caption(t("app_development"))
     st.caption(t("ev_disclaimer"))
     st.subheader(t("app_modules"))
     module_ids = ["compound_interest", "dca", "goal_planner", "portfolio_analytics"]
     for offset in (0, 2):
         for column, module in zip(st.columns(2), module_ids[offset:offset + 2]):
-            with column.container(border=True, height=160):
+            with column.container(border=True, key="vexa_polish_portfolio" if module == "portfolio_analytics" else "vexa_polish_module_" + module):
+                if module == "portfolio_analytics":
+                    with st.container(key="vexa_polish_featured"):
+                        st.markdown("核心模块" if language == "中文" else "Featured")
                 st.markdown("**" + t("module_" + module) + "**")
                 st.write(t("module_" + module + "_description"))
     st.caption(t("app_portfolio_note"))

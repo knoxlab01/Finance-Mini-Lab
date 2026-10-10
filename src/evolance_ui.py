@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 from src.i18n import tr
 from src.evolance_product import comparison_for, conclusion
+from src.visual_polish import semantic_text, direction_tone
 
 
 def render_evolance_comparison(historical, language='English'):
@@ -41,7 +42,8 @@ def render_evolance_comparison(historical, language='English'):
             st.markdown(f"**{tr(key, language)}{colon}** {formatted}")
         st.markdown(t('relative', value=f'{relative * 100:+.2f}'), help=t('relative_help'))
     with right.container(border=True):
-        st.markdown('### Evolance')
+        with st.container(key="vexa_polish_signature"):
+            st.markdown('### Evolance')
         st.caption(t('structural_subtitle'))
         if not ready:
             st.caption(t(result['status']))
@@ -49,17 +51,19 @@ def render_evolance_comparison(historical, language='English'):
         else:
             out = row['outlooks']['12']
             st.markdown('**' + t('state') + colon + '** ' + t(row['confirmed_state']), help=t(row['confirmed_state'] + '_help'))
-            st.markdown('**' + t('transition') + colon + '** ' + t(row['transition']), help=t(row['transition'] + '_help'))
-            st.markdown('**' + t('12m') + colon + '** ' + t(out['direction']))
+            semantic_text('**' + t('transition') + colon + '** ' + t(row['transition']), 'transition',
+                          tone={'Deteriorating': 'negative', 'Recovering': 'positive'}.get(row['transition'], 'neutral'),
+                          help=t(row['transition'] + '_help'))
+            semantic_text('**' + t('12m') + colon + '** ' + t(out['direction']), 'direction', tone=direction_tone(out['direction']))
             st.markdown('**' + t('confidence') + colon + '** ' + t(out['confidence']), help=t('confidence_help'))
             short = row['outlooks']['6']
             st.markdown('**' + t('6m') + colon + '** ' + t(short['direction']) + ' · ' + t(short['confidence']))
             flags = ', '.join(t(flag) for flag in row['flags']) if row['flags'] else t('no_flags')
-            st.markdown('**' + t('flags') + colon + '** ' + flags)
+            semantic_text('**' + t('flags') + colon + '** ' + flags, 'flags', tone='caution' if row['flags'] else 'neutral')
     if ready:
-        with st.container(border=True):
+        with st.container(border=True, key="vexa_polish_takeaway"):
             st.markdown('### ' + t('takeaway'))
-            st.markdown('**' + t('copy_takeaway_summary', direction=t(out['direction']), confidence=t(out['confidence']), confidence_label=t('confidence')) + '**')
+            semantic_text('**' + t('copy_takeaway_summary', direction=t(out['direction']), confidence=t(out['confidence']), confidence_label=t('confidence')) + '**', 'takeaway_summary', tone=direction_tone(out['direction']))
             st.write(conclusion(row, language))
             st.caption(t('disclaimer'))
         with st.expander(t('detail'), expanded=False):
