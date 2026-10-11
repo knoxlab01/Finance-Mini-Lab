@@ -111,33 +111,39 @@ Demo Data is deterministic synthetic data, not historical or live market data an
 
 ## Screenshots
 
-以下为保留的 **v0.3 历史截图**，尚未展示 v0.4 Vexa 的最终视觉与 Evolance 界面；下一阶段统一替换。
+以下展示 **v0.4 开发中的 Vexa 界面**；v0.4 尚未正式发布，稳定线上版本仍为 v0.3.0。
 
-These are retained **v0.3 screenshots**, not the final v0.4 Vexa interface. Replacement is reserved for a later milestone.
+These screenshots show the **v0.4 development / upcoming Vexa interface**. v0.4 is not released; the stable live deployment remains v0.3.0.
 
-### Portfolio Analytics
+### Vexa Home
 
-Historical performance, benchmark comparison, risk metrics and diversification analysis.
+Product overview and entry points to planning and portfolio analysis.
 
-![Portfolio Analytics](assets/portfolio_analytics.png)
+![Vexa Home](assets/vexa_home.png)
+
+### Performance Overview
+
+Historical performance metrics and normalized portfolio-versus-benchmark growth.
+
+![Performance Overview](assets/vexa_performance_overview.png)
 
 ### Future Outlook
 
 Scenario projections and Monte Carlo outcome distributions.
 
-![Future Outlook](assets/future_outlook.png)
+![Future Outlook](assets/vexa_future_outlook.png)
+
+### Evolance Interpretation Layer
+
+Structural state, transition, directional outlook and confidence alongside traditional analytics.
+
+![Evolance Interpretation Layer](assets/vexa_evolance_layer.png)
 
 ### Portfolio Guidance
 
 Rule-based profile fit using historical and simulated risk evidence.
 
-![Portfolio Guidance](assets/portfolio_guidance.png)
-
-### Goal Planner
-
-Goal-based planning with required monthly contribution and growth projection.
-
-![Goal Planner](assets/goal_planner.png)
+![Portfolio Guidance](assets/vexa_portfolio_guidance.png)
 
 ## Run Locally
 
