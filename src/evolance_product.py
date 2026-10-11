@@ -38,14 +38,26 @@ def build_comparison(prices,config,synthetic=False,existing=None):
     if not set(needed).issubset(prices.columns):return missing
     frame=prices[needed]
     if (not isinstance(frame.index,pd.DatetimeIndex) or frame.index.tz is not None or frame.index.has_duplicates
-        or frame.index.hasnans or not frame.index.is_monotonic_increasing
-        or not np.isfinite(frame.to_numpy()).all() or (frame<=0).any().any()
+        or frame.index.hasnans or not frame.index.is_monotonic_increasing):
+        return dict(status='quality',synthetic=synthetic)
+    # Calendar completeness follows the selected end, not the last price date.
+    # Legacy callers without an end date retain their observed-date cutoff.
+    try:
+        cutoff=pd.Timestamp(config.get('end_date',frame.index[-1]))
+    except (TypeError,ValueError,OverflowError):
+        return dict(status='quality',synthetic=synthetic)
+    if pd.isna(cutoff) or cutoff.tz is not None:
+        return dict(status='quality',synthetic=synthetic)
+    cutoff=cutoff.normalize()
+    frame=frame.loc[frame.index<=cutoff]
+    if len(frame)<253:return missing
+    if (not np.isfinite(frame.to_numpy()).all() or (frame<=0).any().any()
         or frame.index.to_series().diff().dt.days.max()>SPEC['history']['max_gap_days']):
         return dict(status='quality',synthetic=synthetic)
     history=[];periods=frame.index.to_period('M')
     for period in periods.unique():
         end=period.end_time.normalize();pos=int(np.flatnonzero(periods==period)[-1])
-        if end>frame.index[-1] or pos<252:continue
+        if end>cutoff or pos<252:continue
         metrics,returns=evidence(frame.iloc[pos-252:pos+1],weights,config['benchmark'])
         scored=score_evidence(metrics,history);state=interpret(scored,metrics,history)
         history.append(dict(date=frame.index[pos].date().isoformat(),window_start=frame.index[pos-252].date().isoformat(),available_at=end.date().isoformat(),metrics=metrics,**scored,**state))
