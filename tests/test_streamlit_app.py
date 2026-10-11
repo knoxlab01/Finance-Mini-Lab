@@ -25,7 +25,7 @@ class StreamlitAppTests(unittest.TestCase):
         self.assertIn("**Portfolio Intelligence, Made Clear.**", [m.value for m in app.markdown])
         self.assertIn("Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.", [m.value for m in app.markdown])
         self.assertTrue(any("Not investment advice" in c.value for c in app.caption))
-        self.assertIn("v0.4 development · Developed in Finance Mini Lab · Program One", [c.value for c in app.caption])
+        self.assertIn("v0.4.0 · Developed in Finance Mini Lab · Program One", [c.value for c in app.caption])
         for name in ["Compound Interest", "DCA Simulator", "Goal Planner", "Portfolio Analytics"]:
             self.assertIn(f"**{name}**", [m.value for m in app.markdown])
         self.assertEqual([tab.label for tab in app.tabs], [

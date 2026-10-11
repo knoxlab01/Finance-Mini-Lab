@@ -10,8 +10,8 @@ Vexa 将传统组合分析、概率模拟与 Evolance 解释框架结合，帮�
 >
 > Evolance helps explain what they mean together.
 
-- **[Live App / Stable Deployment](https://finance-mini-lab-knox.streamlit.app/)** — stable v0.3.0 / 稳定公开版本 v0.3.0
-- **Development / 开发状态:** v0.4 — in development on `v0.4-dev`; not released or deployed / 尚未发布或部署
+- **[Live Demo / 在线体验](https://finance-mini-lab-knox.streamlit.app/)**
+- **Version / 版本:** v0.4.0 — release candidate on `v0.4-dev`; release approval pending / 本地候选版本，待正式发布批准
 - **Built with:** Python · Streamlit · pandas · NumPy · SQLite · yfinance
 
 Vexa is developed inside the **Finance Mini Lab** repository as part of **Program One**. Evolance is its signature interpretation framework. / Vexa 是产品名，Finance Mini Lab 保留为仓库与开发项目名，Evolance 是其特色解释框架。
@@ -111,9 +111,9 @@ Demo Data is deterministic synthetic data, not historical or live market data an
 
 ## Screenshots
 
-以下展示 **v0.4 开发中的 Vexa 界面**；v0.4 尚未正式发布，稳定线上版本仍为 v0.3.0。
+以下为 **Vexa v0.4.0 界面截图**，拍摄于开发验收期间；候选版本截图不代表线上已经更新。
 
-These screenshots show the **v0.4 development / upcoming Vexa interface**. v0.4 is not released; the stable live deployment remains v0.3.0.
+These **Vexa v0.4.0 interface screenshots** were captured during development acceptance. Release-candidate screenshots do not imply that the live deployment has been updated.
 
 ### Vexa Home
 
@@ -178,8 +178,10 @@ The suite runs offline; live-provider success is not a test requirement. / 测�
 | --- | --- | --- |
 | v0.1 | Financial planning basics / 金融规划基础 | Historical milestone / 历史阶段 |
 | v0.2 | Scenarios, inflation and sensitivity / 情景、通胀、敏感性 | Historical release / 历史版本 |
-| v0.3 | Portfolio analytics, Monte Carlo and guidance / 组合分析、模拟、引导 | **Stable public v0.3.0 / 当前稳定公开版本** |
-| v0.4 | Vexa identity, Evolance, historical validation, global language and product polish / 品牌、解释框架、验证、全局语言与产品打磨 | **In development / 开发中，尚未发布** |
+| v0.3 | Portfolio analytics, Monte Carlo and guidance / 组合分析、模拟、引导 | Historical v0.3.0 release / 历史版本 |
+| v0.4.0 | Vexa identity, Evolance, historical validation, global language and product polish / 品牌、解释框架、验证、全局语言与产品打磨 | **Release candidate / 候选版本，待发布批准** |
+
+[Vexa v0.4.0 release notes / 发布说明](docs/release_notes_v0.4.0.md).
 
 Historical context: [project log](docs/project_log.md), [v0.3 release-preparation notes](docs/release_notes_v0.3.0.md). These are preserved milestone records, not current deployment status.
 

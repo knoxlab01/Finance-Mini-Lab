@@ -2,7 +2,7 @@
 
 Vexa is the public product developed in Finance Mini Lab; Evolance is its structured interpretation framework. This document connects product methods to existing research records without replacing the frozen specification or rewriting historical reports.
 
-本文连接产品计算方法与既有研究记录。冻结规范与历史报告保留为原始依据；v0.4 仍在开发，公开稳定部署为 v0.3.0。
+本文连接产品计算方法与既有研究记录。冻结规范与历史报告保留为原始依据；本文适用于 Vexa v0.4.0 候选版本，正式发布与部署仍需单独批准。
 
 ## 1. Scope and evidence status
 

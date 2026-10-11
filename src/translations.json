@@ -1,7 +1,7 @@
 {
   "development": [
-    "v0.4 development · Historical performance does not guarantee future results.",
-    "v0.4 开发中 · 历史表现不保证未来收益。"
+    "v0.4.0 · Historical performance does not guarantee future results.",
+    "v0.4.0 · 历史表现不保证未来收益。"
   ],
   "Portfolio Setup": [
     "Portfolio Setup",
@@ -1312,8 +1312,8 @@
     "Vexa 是一款面向投资组合分析的决策辅助工具，结合传统金融分析、概率化未来模拟与 Evolance 解释框架，把分散、复杂的金融信号整理成更清晰的结构判断与未来展望。"
   ],
   "app_development": [
-    "v0.4 development · Developed in Finance Mini Lab · Program One",
-    "v0.4 开发中 · 开发项目：Finance Mini Lab · Program One"
+    "v0.4.0 · Developed in Finance Mini Lab · Program One",
+    "v0.4.0 · 开发项目：Finance Mini Lab · Program One"
   ],
   "app_modules": [
     "Explore the Modules",

@@ -12,14 +12,51 @@ from src.evolance_product import conclusion
 from src.i18n import CATALOG, tr
 
 
+APPROVED_ENGLISH_DIGEST = '4dab84501e7588d510b2081f9b209476a80f0ea2877cb55a926db6c556dee193'
+APPROVED_VERSION_FIELDS = {
+    'development': ' · Historical performance does not guarantee future results.',
+    'app_development': ' · Developed in Finance Mini Lab · Program One',
+}
+
+
+def protected_english_digest(catalog):
+    existing = {key: pair[0] for key, pair in catalog.items()
+                if not key.startswith('ev_copy_') and key != 'copy_separator'}
+    # Normalize only the exact approved release values, including their suffixes.
+    # Unknown versions and any wording drift still change the original checksum.
+    for key, suffix in APPROVED_VERSION_FIELDS.items():
+        if existing.get(key) == 'v0.4.0' + suffix:
+            existing[key] = 'v0.4 development' + suffix
+    return hashlib.sha256(json.dumps(existing, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
 class ChineseLocalizationTests(unittest.TestCase):
     setUp = portfolio_fixtures.PortfolioUITests.setUp
 
     def test_approved_english_catalog_is_unchanged(self):
-        existing = {key: pair[0] for key, pair in CATALOG.items()
-                    if not key.startswith('ev_copy_') and key != 'copy_separator'}
-        digest = hashlib.sha256(json.dumps(existing, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-        self.assertEqual(digest, '4dab84501e7588d510b2081f9b209476a80f0ea2877cb55a926db6c556dee193')
+        self.assertEqual(protected_english_digest(CATALOG), APPROVED_ENGLISH_DIGEST)
+
+    def test_english_guard_accepts_only_approved_version_values(self):
+        historical = deepcopy(CATALOG)
+        for key, suffix in APPROVED_VERSION_FIELDS.items():
+            historical[key][0] = 'v0.4 development' + suffix
+        self.assertEqual(protected_english_digest(historical), APPROVED_ENGLISH_DIGEST)
+        for key, suffix in APPROVED_VERSION_FIELDS.items():
+            historical[key][0] = 'v0.4.0' + suffix
+            self.assertEqual(protected_english_digest(historical), APPROVED_ENGLISH_DIGEST)
+
+    def test_english_guard_rejects_unapproved_versions_and_wording(self):
+        mutations = [
+            ('development', 'v0.4.1' + APPROVED_VERSION_FIELDS['development']),
+            ('app_development', 'v0.5.0' + APPROVED_VERSION_FIELDS['app_development']),
+            ('development', CATALOG['development'][0] + ' Changed wording.'),
+            ('app_development', CATALOG['app_development'][0].replace('Program One', 'Program Two')),
+            ('app_tagline', CATALOG['app_tagline'][0] + ' Changed wording.'),
+        ]
+        for key, value in mutations:
+            changed = deepcopy(CATALOG)
+            changed[key][0] = value
+            self.assertNotEqual(protected_english_digest(changed), APPROVED_ENGLISH_DIGEST)
 
     def test_key_chinese_copy_and_terminology(self):
         expected = {'app_tagline': '让投资组合判断，更清晰。',
