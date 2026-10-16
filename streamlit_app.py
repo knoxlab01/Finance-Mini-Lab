@@ -357,7 +357,7 @@ def render_goal_planner() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Vexa — Portfolio Intelligence, Made Clear", page_icon="📈")
+    st.set_page_config(page_title="Vexa — Intelligent Financial Analysis & Decision Support Platform", page_icon="📈")
     apply_polish()
     language = st.selectbox(tr("app_language", current_language()), ["English", "中文"], key="global_language")
     t = lambda key: tr(key, language)

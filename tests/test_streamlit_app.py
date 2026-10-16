@@ -23,9 +23,9 @@ class StreamlitAppTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertEqual(app.title[0].value, "Vexa")
         self.assertIn("**Portfolio Intelligence, Made Clear.**", [m.value for m in app.markdown])
-        self.assertIn("Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.", [m.value for m in app.markdown])
+        self.assertIn("Plan contributions, compare scenarios and sensitivity, account for inflation, and analyze historical portfolios. Evolance adds dynamic multi-factor interpretation, state transitions and conditional forward outlooks to support clearer financial decisions.", [m.value for m in app.markdown])
         self.assertTrue(any("Not investment advice" in c.value for c in app.caption))
-        self.assertIn("v0.4.0 · Developed in Finance Mini Lab · Program One", [c.value for c in app.caption])
+        self.assertIn("v0.4.0 · Independent Product", [c.value for c in app.caption])
         for name in ["Compound Interest", "DCA Simulator", "Goal Planner", "Portfolio Analytics"]:
             self.assertIn(f"**{name}**", [m.value for m in app.markdown])
         self.assertEqual([tab.label for tab in app.tabs], [
@@ -41,7 +41,7 @@ class StreamlitAppTests(unittest.TestCase):
         with patch("streamlit.set_page_config", wraps=st.set_page_config) as page_config:
             app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "streamlit_app.py"), default_timeout=15).run()
         self.assertFalse(app.exception)
-        self.assertEqual(page_config.call_args.kwargs["page_title"], "Vexa — Portfolio Intelligence, Made Clear")
+        self.assertEqual(page_config.call_args.kwargs["page_title"], "Vexa — Intelligent Financial Analysis & Decision Support Platform")
         self.assertNotIn("v0.3.0", app.title[0].value)
 
     def test_default_result_and_growth_data(self):

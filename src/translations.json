@@ -832,7 +832,7 @@
     "从指标到洞察"
   ],
   "ev_intro_text": [
-    "Most portfolio tools stop at reporting return, risk and simulated future outcomes. Vexa goes one step further with Evolance — a research-tested interpretation framework developed for this project. It brings those signals together into a structured view of portfolio state, transition, structural pressure, directional outlook and confidence.",
+    "Evolance is Vexa's experimental dynamic multi-factor interpretation and decision-support framework. It brings growth, downside stability, diversification, return efficiency and structural resilience together into portfolio states, transitions and conditional forward outlooks. Confidence describes evidence strength, not forecast accuracy.",
     "同一组指标，换一个视角理解组合。\n\n传统分析可以告诉你收益、风险和模拟结果，但这些数字放在一起意味着什么，往往还需要进一步判断。\n\nVexa 通过 Evolance 把分散的金融信号整理到一起，从组合当前状态、结构压力、变化趋势和未来方向等角度，提供一套更完整的结构化解读。"
   ],
   "ev_complements": [
@@ -864,8 +864,8 @@
     "历史验证"
   ],
   "ev_intro_subtitle": [
-    "The Evolance Interpretation Layer",
-    "Evolance 结构化解读"
+    "Evolance Interpretation Layer · Experimental",
+    "Evolance 结构化解读 · 实验性框架"
   ],
   "ev_intro_meaning": [
     "Traditional analytics tell you what the numbers are. Evolance helps explain what they mean together.",
@@ -1308,12 +1308,12 @@
     "让投资组合判断，更清晰。"
   ],
   "app_description": [
-    "Vexa combines traditional portfolio analytics, probabilistic forward simulation, and the Evolance interpretation framework to turn complex financial signals into clearer decision support.",
-    "Vexa 是一款面向投资组合分析的决策辅助工具，结合传统金融分析、概率化未来模拟与 Evolance 解释框架，把分散、复杂的金融信号整理成更清晰的结构判断与未来展望。"
+    "Plan contributions, compare scenarios and sensitivity, account for inflation, and analyze historical portfolios. Evolance adds dynamic multi-factor interpretation, state transitions and conditional forward outlooks to support clearer financial decisions.",
+    "Vexa 将金融规划、情景与敏感性分析、通胀调整和历史组合分析结合，通过 Evolance 动态多因素框架解读组合状态、变化趋势与条件性未来展望，辅助更清晰的金融判断。"
   ],
   "app_development": [
-    "v0.4.0 · Developed in Finance Mini Lab · Program One",
-    "v0.4.0 · 开发项目：Finance Mini Lab · Program One"
+    "v0.4.0 · Independent Product",
+    "v0.4.0 · 独立开发产品"
   ],
   "app_modules": [
     "Explore the Modules",

@@ -51,13 +51,19 @@ class GlobalLanguageTests(unittest.TestCase):
 
     def test_whole_product_language_audit_with_all_results(self):
         app=self.populated()
+        for historical_name in ['Finance Mini Lab', 'Program One']:
+            self.assertNotIn(historical_name, '\n'.join(self.strings(app)))
+        self.assertIn('v0.4.0 · Independent Product', [x.value for x in app.caption])
         self.assertFalse(any(re.search(r'[\u4e00-\u9fff]',text) for text in self.strings(app)))
         app.selectbox(key='global_language').select('中文').run()
         self.assertFalse(app.exception)
         self.assertEqual(app.selectbox(key='global_language').label,'🌐 语言')
         text='\n'.join(self.strings(app))
+        for historical_name in ['Finance Mini Lab', 'Program One']:
+            self.assertNotIn(historical_name, text)
+        self.assertIn('v0.4.0 · 独立开发产品', [x.value for x in app.caption])
         # Proper names and standard numerical/technical labels are allowed.
-        for proper in ['Finance Mini Lab','Program One','Vexa','Evolance','Yahoo Finance','SQLite','ETF','AAPL','MSFT','NVDA','SPY','CAGR','Sharpe','Sortino','N/A','P10','P50','P90']:
+        for proper in ['Vexa','Evolance','Yahoo Finance','SQLite','ETF','AAPL','MSFT','NVDA','SPY','CAGR','Sharpe','Sortino','N/A','P10','P50','P90']:
             text=text.replace(proper,'')
         self.assertFalse(re.search(r'[A-Za-z]{3,}(?: [A-Za-z]{3,})+',text),text)
         for phrase in ['让投资组合判断，更清晰。','复利计算','定投模拟','目标规划','投资组合分析','从指标到洞察','演示数据']:

@@ -12,10 +12,12 @@ from src.evolance_product import conclusion
 from src.i18n import CATALOG, tr
 
 
-APPROVED_ENGLISH_DIGEST = '4dab84501e7588d510b2081f9b209476a80f0ea2877cb55a926db6c556dee193'
+# Showcase baseline: only four explicitly reviewed presentation keys changed.
+# The full catalog remains guarded; no additional fields are excluded.
+APPROVED_ENGLISH_DIGEST = '3f10ae54e9a3816ba245705bb45ce17965065ba63693f3f8505cdfac5cce2460'
 APPROVED_VERSION_FIELDS = {
     'development': ' · Historical performance does not guarantee future results.',
-    'app_development': ' · Developed in Finance Mini Lab · Program One',
+    'app_development': ' · Independent Product',
 }
 
 
@@ -50,8 +52,12 @@ class ChineseLocalizationTests(unittest.TestCase):
             ('development', 'v0.4.1' + APPROVED_VERSION_FIELDS['development']),
             ('app_development', 'v0.5.0' + APPROVED_VERSION_FIELDS['app_development']),
             ('development', CATALOG['development'][0] + ' Changed wording.'),
-            ('app_development', CATALOG['app_development'][0].replace('Program One', 'Program Two')),
+            ('app_development', CATALOG['app_development'][0].replace('Independent Product', 'Internal Product')),
+            ('app_development', 'v0.4.0 · Developed in Finance Mini Lab · Program One'),
             ('app_tagline', CATALOG['app_tagline'][0] + ' Changed wording.'),
+            ('app_description', CATALOG['app_description'][0] + ' Changed wording.'),
+            ('ev_intro_subtitle', CATALOG['ev_intro_subtitle'][0] + ' Changed wording.'),
+            ('ev_intro_text', CATALOG['ev_intro_text'][0] + ' Changed wording.'),
         ]
         for key, value in mutations:
             changed = deepcopy(CATALOG)
@@ -60,8 +66,9 @@ class ChineseLocalizationTests(unittest.TestCase):
 
     def test_key_chinese_copy_and_terminology(self):
         expected = {'app_tagline': '让投资组合判断，更清晰。',
+                    'app_development': 'v0.4.0 · 独立开发产品',
                     'ev_intro_title': '从指标到洞察',
-                    'ev_intro_subtitle': 'Evolance 结构化解读',
+                    'ev_intro_subtitle': 'Evolance 结构化解读 · 实验性框架',
                     'ev_state': '当前状态', 'ev_transition': '变化趋势',
                     'ev_flags': '结构提示', 'ev_how_it_works': '分析方法',
                     'ev_historical_evidence': '历史验证',
